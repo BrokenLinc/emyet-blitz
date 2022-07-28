@@ -10,6 +10,12 @@ generator client {
   provider = "prisma-client-js"
 }
 
+generator jsonSchema {
+  provider                 = "prisma-json-schema-generator"
+  keepRelationScalarFields = "true"
+  includeRequiredFields    = "true"
+}
+
 // --------------------------------------
 
 model User {

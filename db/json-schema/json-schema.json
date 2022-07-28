@@ -1,0 +1,2889 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "definitions": {
+    "User": {
+      "type": "object",
+      "properties": {
+        "id": {
+          "type": "integer"
+        },
+        "createdAt": {
+          "type": "string",
+          "format": "date-time"
+        },
+        "updatedAt": {
+          "type": "string",
+          "format": "date-time"
+        },
+        "name": {
+          "type": ["string", "null"]
+        },
+        "email": {
+          "type": "string"
+        },
+        "hashedPassword": {
+          "type": ["string", "null"]
+        },
+        "role": {
+          "type": "string",
+          "default": "USER"
+        },
+        "tokens": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/Token"
+          }
+        },
+        "sessions": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/Session"
+          }
+        }
+      },
+      "required": ["updatedAt", "email"]
+    },
+    "Session": {
+      "type": "object",
+      "properties": {
+        "id": {
+          "type": "integer"
+        },
+        "createdAt": {
+          "type": "string",
+          "format": "date-time"
+        },
+        "updatedAt": {
+          "type": "string",
+          "format": "date-time"
+        },
+        "expiresAt": {
+          "type": ["string", "null"],
+          "format": "date-time"
+        },
+        "handle": {
+          "type": "string"
+        },
+        "hashedSessionToken": {
+          "type": ["string", "null"]
+        },
+        "antiCSRFToken": {
+          "type": ["string", "null"]
+        },
+        "publicData": {
+          "type": ["string", "null"]
+        },
+        "privateData": {
+          "type": ["string", "null"]
+        },
+        "user": {
+          "anyOf": [
+            {
+              "$ref": "#/definitions/User"
+            },
+            {
+              "type": "null"
+            }
+          ]
+        },
+        "userId": {
+          "type": ["integer", "null"]
+        }
+      },
+      "required": ["updatedAt", "handle"]
+    },
+    "Token": {
+      "type": "object",
+      "properties": {
+        "id": {
+          "type": "integer"
+        },
+        "createdAt": {
+          "type": "string",
+          "format": "date-time"
+        },
+        "updatedAt": {
+          "type": "string",
+          "format": "date-time"
+        },
+        "hashedToken": {
+          "type": "string"
+        },
+        "type": {
+          "type": "string",
+          "enum": ["RESET_PASSWORD"]
+        },
+        "expiresAt": {
+          "type": "string",
+          "format": "date-time"
+        },
+        "sentTo": {
+          "type": "string"
+        },
+        "user": {
+          "$ref": "#/definitions/User"
+        },
+        "userId": {
+          "type": "integer"
+        }
+      },
+      "required": ["updatedAt", "hashedToken", "type", "expiresAt", "sentTo", "userId"]
+    },
+    "activity": {
+      "type": "object",
+      "properties": {
+        "id": {
+          "type": "string"
+        },
+        "name": {
+          "type": "string"
+        },
+        "description": {
+          "type": ["string", "null"]
+        },
+        "characterlevelmin": {
+          "type": "integer"
+        },
+        "characterlevelmax": {
+          "type": "integer"
+        },
+        "skillid": {
+          "type": ["string", "null"]
+        },
+        "skillidrequiredvalue": {
+          "type": ["integer", "null"]
+        },
+        "pvpchance": {
+          "type": "integer"
+        },
+        "racerestrictiontype": {
+          "type": "integer"
+        },
+        "raceid": {
+          "type": ["string", "null"]
+        },
+        "careerrestrictiontype": {
+          "type": "integer"
+        },
+        "careerid": {
+          "type": ["string", "null"]
+        },
+        "imageid": {
+          "type": ["string", "null"]
+        },
+        "imagebackgroundcolor": {
+          "type": ["string", "null"]
+        },
+        "isdeleted": {
+          "type": "boolean"
+        },
+        "notes": {
+          "type": ["string", "null"]
+        },
+        "gender": {
+          "type": ["integer", "null"]
+        },
+        "singlebattleintroscript": {
+          "type": ["string", "null"]
+        },
+        "groupbattleintroscript": {
+          "type": ["string", "null"]
+        },
+        "career": {
+          "anyOf": [
+            {
+              "$ref": "#/definitions/career"
+            },
+            {
+              "type": "null"
+            }
+          ]
+        },
+        "image": {
+          "anyOf": [
+            {
+              "$ref": "#/definitions/image"
+            },
+            {
+              "type": "null"
+            }
+          ]
+        },
+        "race": {
+          "anyOf": [
+            {
+              "$ref": "#/definitions/race"
+            },
+            {
+              "type": "null"
+            }
+          ]
+        },
+        "skill": {
+          "anyOf": [
+            {
+              "$ref": "#/definitions/skill"
+            },
+            {
+              "type": "null"
+            }
+          ]
+        },
+        "characters": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/character"
+          }
+        }
+      },
+      "required": [
+        "name",
+        "characterlevelmin",
+        "characterlevelmax",
+        "pvpchance",
+        "racerestrictiontype",
+        "careerrestrictiontype",
+        "isdeleted"
+      ]
+    },
+    "activityresult": {
+      "type": "object",
+      "properties": {
+        "id": {
+          "type": "string"
+        },
+        "result": {
+          "type": ["string", "null"]
+        },
+        "battleturns": {
+          "type": ["string", "null"]
+        },
+        "cash": {
+          "type": "integer"
+        },
+        "experience": {
+          "type": "integer"
+        },
+        "health": {
+          "type": ["integer", "null"]
+        },
+        "pvpwins": {
+          "type": ["integer", "null"]
+        },
+        "pvplosses": {
+          "type": ["integer", "null"]
+        },
+        "customitemid1": {
+          "type": ["string", "null"]
+        },
+        "customitemid2": {
+          "type": ["string", "null"]
+        },
+        "activityid": {
+          "type": "string"
+        },
+        "featid": {
+          "type": ["string", "null"]
+        },
+        "skillid": {
+          "type": ["string", "null"]
+        },
+        "isnewskill": {
+          "type": ["boolean", "null"]
+        },
+        "resultscalculateddate": {
+          "type": ["string", "null"],
+          "format": "date-time"
+        },
+        "resultsallocateddate": {
+          "type": ["string", "null"],
+          "format": "date-time"
+        },
+        "characterid": {
+          "type": ["string", "null"]
+        },
+        "issuccess": {
+          "type": ["boolean", "null"]
+        },
+        "battleevents": {
+          "type": ["string", "null"]
+        },
+        "character": {
+          "anyOf": [
+            {
+              "$ref": "#/definitions/character"
+            },
+            {
+              "type": "null"
+            }
+          ]
+        },
+        "customitem1": {
+          "anyOf": [
+            {
+              "$ref": "#/definitions/customitem"
+            },
+            {
+              "type": "null"
+            }
+          ]
+        },
+        "customitem2": {
+          "anyOf": [
+            {
+              "$ref": "#/definitions/customitem"
+            },
+            {
+              "type": "null"
+            }
+          ]
+        },
+        "feat": {
+          "anyOf": [
+            {
+              "$ref": "#/definitions/feat"
+            },
+            {
+              "type": "null"
+            }
+          ]
+        },
+        "skill": {
+          "anyOf": [
+            {
+              "$ref": "#/definitions/skill"
+            },
+            {
+              "type": "null"
+            }
+          ]
+        }
+      },
+      "required": ["cash", "experience", "activityid"]
+    },
+    "adventure": {
+      "type": "object",
+      "properties": {
+        "id": {
+          "type": "string"
+        },
+        "name": {
+          "type": ["string", "null"]
+        },
+        "activityid": {
+          "type": "string"
+        },
+        "itemidrequired": {
+          "type": ["string", "null"]
+        },
+        "itemconsumedonsuccess": {
+          "type": "boolean"
+        },
+        "gender": {
+          "type": ["integer", "null"]
+        },
+        "introductionscript": {
+          "type": ["string", "null"]
+        },
+        "adventurechecktypeid": {
+          "type": "string"
+        },
+        "fighttargettypeidcheck": {
+          "type": ["string", "null"]
+        },
+        "raceidfightcheck": {
+          "type": ["string", "null"]
+        },
+        "careeridfightcheck": {
+          "type": ["string", "null"]
+        },
+        "masknamefightcheck": {
+          "type": ["string", "null"]
+        },
+        "levelfightcheck": {
+          "type": ["integer", "null"]
+        },
+        "usecharacterimagefightcheck": {
+          "type": ["boolean", "null"]
+        },
+        "maskimagebgcolorfightcheck": {
+          "type": ["string", "null"]
+        },
+        "imageidmaskfightcheck": {
+          "type": ["string", "null"]
+        },
+        "skillidcheck": {
+          "type": ["string", "null"]
+        },
+        "skillvaluecheck": {
+          "type": ["integer", "null"]
+        },
+        "failurescript": {
+          "type": ["string", "null"]
+        },
+        "successscript": {
+          "type": ["string", "null"]
+        },
+        "itemidreward": {
+          "type": ["string", "null"]
+        },
+        "cashreward": {
+          "type": "integer"
+        },
+        "itemtypeiddrop": {
+          "type": ["string", "null"]
+        },
+        "itemdropany": {
+          "type": "boolean"
+        },
+        "itemdroprelated": {
+          "type": "boolean"
+        },
+        "itemdropkeywords": {
+          "type": ["string", "null"]
+        },
+        "isdeleted": {
+          "type": "boolean"
+        },
+        "featidreward": {
+          "type": ["string", "null"]
+        },
+        "adventurechecktype": {
+          "$ref": "#/definitions/adventurechecktype"
+        },
+        "career": {
+          "anyOf": [
+            {
+              "$ref": "#/definitions/career"
+            },
+            {
+              "type": "null"
+            }
+          ]
+        },
+        "feat": {
+          "anyOf": [
+            {
+              "$ref": "#/definitions/feat"
+            },
+            {
+              "type": "null"
+            }
+          ]
+        },
+        "fighttargettype": {
+          "anyOf": [
+            {
+              "$ref": "#/definitions/fighttargettype"
+            },
+            {
+              "type": "null"
+            }
+          ]
+        },
+        "image": {
+          "anyOf": [
+            {
+              "$ref": "#/definitions/image"
+            },
+            {
+              "type": "null"
+            }
+          ]
+        },
+        "itemrequired": {
+          "anyOf": [
+            {
+              "$ref": "#/definitions/item"
+            },
+            {
+              "type": "null"
+            }
+          ]
+        },
+        "itemreward": {
+          "anyOf": [
+            {
+              "$ref": "#/definitions/item"
+            },
+            {
+              "type": "null"
+            }
+          ]
+        },
+        "itemtype": {
+          "anyOf": [
+            {
+              "$ref": "#/definitions/itemtype"
+            },
+            {
+              "type": "null"
+            }
+          ]
+        },
+        "race": {
+          "anyOf": [
+            {
+              "$ref": "#/definitions/race"
+            },
+            {
+              "type": "null"
+            }
+          ]
+        },
+        "skill": {
+          "anyOf": [
+            {
+              "$ref": "#/definitions/skill"
+            },
+            {
+              "type": "null"
+            }
+          ]
+        },
+        "careeradventure": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/careeradventure"
+          }
+        },
+        "raceadventure": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/raceadventure"
+          }
+        }
+      },
+      "required": [
+        "activityid",
+        "itemconsumedonsuccess",
+        "adventurechecktypeid",
+        "cashreward",
+        "itemdropany",
+        "itemdroprelated",
+        "isdeleted"
+      ]
+    },
+    "battlepool": {
+      "type": "object",
+      "properties": {
+        "id": {
+          "type": "string"
+        },
+        "characterid": {
+          "type": "string"
+        },
+        "groupid": {
+          "type": ["string", "null"]
+        },
+        "characterlevel": {
+          "type": "integer"
+        },
+        "battlelevel": {
+          "type": "number"
+        },
+        "dateadded": {
+          "type": "string",
+          "format": "date-time"
+        },
+        "character": {
+          "$ref": "#/definitions/character"
+        },
+        "group": {
+          "anyOf": [
+            {
+              "$ref": "#/definitions/group"
+            },
+            {
+              "type": "null"
+            }
+          ]
+        }
+      },
+      "required": ["characterid", "characterlevel", "battlelevel", "dateadded"]
+    },
+    "career": {
+      "type": "object",
+      "properties": {
+        "id": {
+          "type": "string"
+        },
+        "name": {
+          "type": "string"
+        },
+        "description": {
+          "type": ["string", "null"]
+        },
+        "gender": {
+          "type": ["integer", "null"]
+        },
+        "isdeleted": {
+          "type": "boolean"
+        },
+        "gameid": {
+          "type": "integer"
+        },
+        "itemid1": {
+          "type": ["string", "null"]
+        },
+        "itemid2": {
+          "type": ["string", "null"]
+        },
+        "skillid1": {
+          "type": ["string", "null"]
+        },
+        "skillid2": {
+          "type": ["string", "null"]
+        },
+        "featid1": {
+          "type": ["string", "null"]
+        },
+        "featid2": {
+          "type": ["string", "null"]
+        },
+        "feat1": {
+          "anyOf": [
+            {
+              "$ref": "#/definitions/feat"
+            },
+            {
+              "type": "null"
+            }
+          ]
+        },
+        "feat2": {
+          "anyOf": [
+            {
+              "$ref": "#/definitions/feat"
+            },
+            {
+              "type": "null"
+            }
+          ]
+        },
+        "item1": {
+          "anyOf": [
+            {
+              "$ref": "#/definitions/item"
+            },
+            {
+              "type": "null"
+            }
+          ]
+        },
+        "item2": {
+          "anyOf": [
+            {
+              "$ref": "#/definitions/item"
+            },
+            {
+              "type": "null"
+            }
+          ]
+        },
+        "skill1": {
+          "anyOf": [
+            {
+              "$ref": "#/definitions/skill"
+            },
+            {
+              "type": "null"
+            }
+          ]
+        },
+        "skill2": {
+          "anyOf": [
+            {
+              "$ref": "#/definitions/skill"
+            },
+            {
+              "type": "null"
+            }
+          ]
+        },
+        "activities": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/activity"
+          }
+        },
+        "adventure": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/adventure"
+          }
+        },
+        "careeradventure": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/careeradventure"
+          }
+        },
+        "careerrace": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/careerrace"
+          }
+        },
+        "characters": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/character"
+          }
+        },
+        "feat": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/feat"
+          }
+        },
+        "feats1": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/feat"
+          }
+        },
+        "feats2": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/feat"
+          }
+        },
+        "image": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/image"
+          }
+        },
+        "item": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/item"
+          }
+        },
+        "skill": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/skill"
+          }
+        }
+      },
+      "required": ["name", "isdeleted", "gameid"]
+    },
+    "careerrace": {
+      "type": "object",
+      "properties": {
+        "id": {
+          "type": "string"
+        },
+        "careerid": {
+          "type": "string"
+        },
+        "raceid": {
+          "type": "string"
+        },
+        "maleweight": {
+          "type": "integer"
+        },
+        "femaleweight": {
+          "type": "integer"
+        },
+        "malename": {
+          "type": "string"
+        },
+        "femalename": {
+          "type": "string"
+        },
+        "bio": {
+          "type": "string"
+        },
+        "malebio": {
+          "type": "string"
+        },
+        "femalebio": {
+          "type": "string"
+        },
+        "flavortext": {
+          "type": "string"
+        },
+        "career": {
+          "$ref": "#/definitions/career"
+        },
+        "race": {
+          "$ref": "#/definitions/race"
+        },
+        "characterforhire": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/characterforhire"
+          }
+        }
+      },
+      "required": [
+        "careerid",
+        "raceid",
+        "maleweight",
+        "femaleweight",
+        "malename",
+        "femalename",
+        "bio",
+        "malebio",
+        "femalebio",
+        "flavortext"
+      ]
+    },
+    "character": {
+      "type": "object",
+      "properties": {
+        "id": {
+          "type": "string"
+        },
+        "userid": {
+          "type": "string"
+        },
+        "careerid": {
+          "type": "string"
+        },
+        "raceid": {
+          "type": "string"
+        },
+        "imageid": {
+          "type": "string"
+        },
+        "levelid": {
+          "type": "string"
+        },
+        "name": {
+          "type": "string"
+        },
+        "experience": {
+          "type": "integer"
+        },
+        "gender": {
+          "type": "integer"
+        },
+        "health": {
+          "type": "integer"
+        },
+        "maxhealth": {
+          "type": "integer"
+        },
+        "biography": {
+          "type": "string"
+        },
+        "activityresult": {
+          "type": ["string", "null"]
+        },
+        "isdeleted": {
+          "type": "boolean"
+        },
+        "datecreated": {
+          "type": "string",
+          "format": "date-time"
+        },
+        "skillpoints": {
+          "type": "integer"
+        },
+        "activityresultid": {
+          "type": ["string", "null"]
+        },
+        "activityid": {
+          "type": ["string", "null"]
+        },
+        "pvpwins": {
+          "type": "integer"
+        },
+        "pvplosses": {
+          "type": "integer"
+        },
+        "pvprating": {
+          "type": "number"
+        },
+        "isnpc": {
+          "type": "boolean"
+        },
+        "groupid": {
+          "type": ["string", "null"]
+        },
+        "datelastactivityselected": {
+          "type": "string",
+          "format": "date-time"
+        },
+        "isretired": {
+          "type": "boolean"
+        },
+        "activity": {
+          "anyOf": [
+            {
+              "$ref": "#/definitions/activity"
+            },
+            {
+              "type": "null"
+            }
+          ]
+        },
+        "career": {
+          "$ref": "#/definitions/career"
+        },
+        "image": {
+          "$ref": "#/definitions/image"
+        },
+        "level": {
+          "$ref": "#/definitions/characterlevel"
+        },
+        "race": {
+          "$ref": "#/definitions/race"
+        },
+        "activityresults": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/activityresult"
+          }
+        },
+        "battlepool": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/battlepool"
+          }
+        },
+        "characterfeat": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/characterfeat"
+          }
+        },
+        "charactergroup": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/charactergroup"
+          }
+        },
+        "characterskill": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/characterskill"
+          }
+        },
+        "useritem": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/useritem"
+          }
+        }
+      },
+      "required": [
+        "userid",
+        "careerid",
+        "raceid",
+        "imageid",
+        "levelid",
+        "name",
+        "experience",
+        "gender",
+        "health",
+        "maxhealth",
+        "biography",
+        "isdeleted",
+        "datecreated",
+        "skillpoints",
+        "pvpwins",
+        "pvplosses",
+        "pvprating",
+        "isnpc",
+        "datelastactivityselected",
+        "isretired"
+      ]
+    },
+    "characterfeat": {
+      "type": "object",
+      "properties": {
+        "id": {
+          "type": "string"
+        },
+        "characterid": {
+          "type": "string"
+        },
+        "featid": {
+          "type": "string"
+        },
+        "rank": {
+          "type": "integer"
+        },
+        "isequipped": {
+          "type": "boolean"
+        },
+        "character": {
+          "$ref": "#/definitions/character"
+        },
+        "feat": {
+          "$ref": "#/definitions/feat"
+        }
+      },
+      "required": ["characterid", "featid", "rank", "isequipped"]
+    },
+    "charactergroup": {
+      "type": "object",
+      "properties": {
+        "id": {
+          "type": "string"
+        },
+        "characterid": {
+          "type": "string"
+        },
+        "groupid": {
+          "type": "string"
+        },
+        "character": {
+          "$ref": "#/definitions/character"
+        },
+        "group": {
+          "$ref": "#/definitions/group"
+        }
+      },
+      "required": ["characterid", "groupid"]
+    },
+    "characterskill": {
+      "type": "object",
+      "properties": {
+        "id": {
+          "type": "string"
+        },
+        "characterid": {
+          "type": "string"
+        },
+        "skillid": {
+          "type": "string"
+        },
+        "value": {
+          "type": "integer"
+        },
+        "freepointvalue": {
+          "type": "integer"
+        },
+        "character": {
+          "$ref": "#/definitions/character"
+        },
+        "skill": {
+          "$ref": "#/definitions/skill"
+        }
+      },
+      "required": ["characterid", "skillid", "value", "freepointvalue"]
+    },
+    "customitem": {
+      "type": "object",
+      "properties": {
+        "id": {
+          "type": "string"
+        },
+        "itemid": {
+          "type": "string"
+        },
+        "name": {
+          "type": ["string", "null"]
+        },
+        "description": {
+          "type": ["string", "null"]
+        },
+        "flavortext": {
+          "type": ["string", "null"]
+        },
+        "notrade": {
+          "type": "boolean"
+        },
+        "item": {
+          "$ref": "#/definitions/item"
+        },
+        "activityresults1": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/activityresult"
+          }
+        },
+        "activityresults2": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/activityresult"
+          }
+        },
+        "useritem": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/useritem"
+          }
+        }
+      },
+      "required": ["itemid", "notrade"]
+    },
+    "effect": {
+      "type": "object",
+      "properties": {
+        "id": {
+          "type": "string"
+        },
+        "name": {
+          "type": ["string", "null"]
+        },
+        "effectdurationtypeid": {
+          "type": ["string", "null"]
+        },
+        "duration": {
+          "type": ["integer", "null"]
+        },
+        "attackmodifier": {
+          "type": "integer"
+        },
+        "attackkeyword": {
+          "type": ["string", "null"]
+        },
+        "defensemodifier": {
+          "type": "integer"
+        },
+        "defensekeyword": {
+          "type": ["string", "null"]
+        },
+        "damagehealing": {
+          "type": "integer"
+        },
+        "armormodifier": {
+          "type": "integer"
+        },
+        "weapondamagemodifier": {
+          "type": "integer"
+        },
+        "isdeleted": {
+          "type": "boolean"
+        },
+        "effectdurationtype": {
+          "anyOf": [
+            {
+              "$ref": "#/definitions/effectdurationtype"
+            },
+            {
+              "type": "null"
+            }
+          ]
+        },
+        "effectskillbonus": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/effectskillbonus"
+          }
+        },
+        "effectspecialmechaniccombo": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/effectspecialmechaniccombo"
+          }
+        },
+        "feats1": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/feat"
+          }
+        },
+        "feats2": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/feat"
+          }
+        }
+      },
+      "required": [
+        "attackmodifier",
+        "defensemodifier",
+        "damagehealing",
+        "armormodifier",
+        "weapondamagemodifier",
+        "isdeleted"
+      ]
+    },
+    "feat": {
+      "type": "object",
+      "properties": {
+        "id": {
+          "type": "string"
+        },
+        "name": {
+          "type": ["string", "null"]
+        },
+        "description": {
+          "type": ["string", "null"]
+        },
+        "featcastmodeid": {
+          "type": ["string", "null"]
+        },
+        "reactiveevent": {
+          "type": ["string", "null"]
+        },
+        "featreactiveeventinitiatorid": {
+          "type": ["string", "null"]
+        },
+        "cooldown": {
+          "type": "integer"
+        },
+        "skillid": {
+          "type": ["string", "null"]
+        },
+        "skillrequiredvalue": {
+          "type": ["integer", "null"]
+        },
+        "featspecialmechanicid": {
+          "type": ["string", "null"]
+        },
+        "cashprize": {
+          "type": "integer"
+        },
+        "feattargettypeidtarget1": {
+          "type": ["string", "null"]
+        },
+        "gendertarget1": {
+          "type": ["integer", "null"]
+        },
+        "damagehealingtarget1": {
+          "type": "integer"
+        },
+        "racerestrictiontypetarget1": {
+          "type": "integer"
+        },
+        "raceidtarget1": {
+          "type": ["string", "null"]
+        },
+        "careerrestrictiontypetarget1": {
+          "type": "integer"
+        },
+        "careeridtarget1": {
+          "type": ["string", "null"]
+        },
+        "effectidtarget1": {
+          "type": ["string", "null"]
+        },
+        "feattargettypeidtarget2": {
+          "type": ["string", "null"]
+        },
+        "gendertarget2": {
+          "type": ["integer", "null"]
+        },
+        "damagehealingtarget2": {
+          "type": "integer"
+        },
+        "racerestrictiontypetarget2": {
+          "type": "integer"
+        },
+        "raceidtarget2": {
+          "type": ["string", "null"]
+        },
+        "careerrestrictiontypetarget2": {
+          "type": "integer"
+        },
+        "careeridtarget2": {
+          "type": ["string", "null"]
+        },
+        "effectidtarget2": {
+          "type": ["string", "null"]
+        },
+        "target1onlyscript": {
+          "type": "string"
+        },
+        "target2onlyscript": {
+          "type": "string"
+        },
+        "successscript": {
+          "type": "string"
+        },
+        "failurescript": {
+          "type": "string"
+        },
+        "isdeleted": {
+          "type": "boolean"
+        },
+        "imageid": {
+          "type": ["string", "null"]
+        },
+        "racerestrictiontype": {
+          "type": ["integer", "null"]
+        },
+        "raceid": {
+          "type": ["string", "null"]
+        },
+        "careerrestrictiontype": {
+          "type": ["integer", "null"]
+        },
+        "careerid": {
+          "type": ["string", "null"]
+        },
+        "gender": {
+          "type": ["integer", "null"]
+        },
+        "level": {
+          "type": "integer"
+        },
+        "career": {
+          "anyOf": [
+            {
+              "$ref": "#/definitions/career"
+            },
+            {
+              "type": "null"
+            }
+          ]
+        },
+        "career_careerTofeat_careeridtarget1": {
+          "anyOf": [
+            {
+              "$ref": "#/definitions/career"
+            },
+            {
+              "type": "null"
+            }
+          ]
+        },
+        "career_careerTofeat_careeridtarget2": {
+          "anyOf": [
+            {
+              "$ref": "#/definitions/career"
+            },
+            {
+              "type": "null"
+            }
+          ]
+        },
+        "effect_effectTofeat_effectidtarget1": {
+          "anyOf": [
+            {
+              "$ref": "#/definitions/effect"
+            },
+            {
+              "type": "null"
+            }
+          ]
+        },
+        "effect_effectTofeat_effectidtarget2": {
+          "anyOf": [
+            {
+              "$ref": "#/definitions/effect"
+            },
+            {
+              "type": "null"
+            }
+          ]
+        },
+        "featcastmode": {
+          "anyOf": [
+            {
+              "$ref": "#/definitions/featcastmode"
+            },
+            {
+              "type": "null"
+            }
+          ]
+        },
+        "featreactiveeventinitiator": {
+          "anyOf": [
+            {
+              "$ref": "#/definitions/featreactiveeventinitiator"
+            },
+            {
+              "type": "null"
+            }
+          ]
+        },
+        "featspecialmechanic": {
+          "anyOf": [
+            {
+              "$ref": "#/definitions/featspecialmechanic"
+            },
+            {
+              "type": "null"
+            }
+          ]
+        },
+        "feattargettype_feat_feattargettypeidtarget1Tofeattargettype": {
+          "anyOf": [
+            {
+              "$ref": "#/definitions/feattargettype"
+            },
+            {
+              "type": "null"
+            }
+          ]
+        },
+        "feattargettype_feat_feattargettypeidtarget2Tofeattargettype": {
+          "anyOf": [
+            {
+              "$ref": "#/definitions/feattargettype"
+            },
+            {
+              "type": "null"
+            }
+          ]
+        },
+        "race_feat_raceidtarget1Torace": {
+          "anyOf": [
+            {
+              "$ref": "#/definitions/race"
+            },
+            {
+              "type": "null"
+            }
+          ]
+        },
+        "race_feat_raceidtarget2Torace": {
+          "anyOf": [
+            {
+              "$ref": "#/definitions/race"
+            },
+            {
+              "type": "null"
+            }
+          ]
+        },
+        "activityresults": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/activityresult"
+          }
+        },
+        "adventure": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/adventure"
+          }
+        },
+        "career_career_featid1Tofeat": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/career"
+          }
+        },
+        "career_career_featid2Tofeat": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/career"
+          }
+        },
+        "characterfeat": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/characterfeat"
+          }
+        },
+        "item": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/item"
+          }
+        },
+        "race_featTorace_featid1": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/race"
+          }
+        },
+        "race_featTorace_featid2": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/race"
+          }
+        }
+      },
+      "required": [
+        "cooldown",
+        "cashprize",
+        "damagehealingtarget1",
+        "racerestrictiontypetarget1",
+        "careerrestrictiontypetarget1",
+        "damagehealingtarget2",
+        "racerestrictiontypetarget2",
+        "careerrestrictiontypetarget2",
+        "target1onlyscript",
+        "target2onlyscript",
+        "successscript",
+        "failurescript",
+        "isdeleted",
+        "level"
+      ]
+    },
+    "forumcategory": {
+      "type": "object",
+      "properties": {
+        "id": {
+          "type": "string"
+        },
+        "cssclass": {
+          "type": ["string", "null"]
+        },
+        "title": {
+          "type": ["string", "null"]
+        },
+        "creationdate": {
+          "type": "string",
+          "format": "date-time"
+        },
+        "isdeleted": {
+          "type": "boolean"
+        },
+        "displaypriority": {
+          "type": ["integer", "null"]
+        },
+        "islocked": {
+          "type": "boolean"
+        },
+        "forumthread": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/forumthread"
+          }
+        }
+      },
+      "required": ["creationdate", "isdeleted", "islocked"]
+    },
+    "forumpost": {
+      "type": "object",
+      "properties": {
+        "id": {
+          "type": "string"
+        },
+        "userid": {
+          "type": "string"
+        },
+        "forumthreadid": {
+          "type": "string"
+        },
+        "content": {
+          "type": ["string", "null"]
+        },
+        "creationdate": {
+          "type": "string",
+          "format": "date-time"
+        },
+        "isdeleted": {
+          "type": "boolean"
+        },
+        "forumthread": {
+          "$ref": "#/definitions/forumthread"
+        }
+      },
+      "required": ["userid", "forumthreadid", "creationdate", "isdeleted"]
+    },
+    "forumthread": {
+      "type": "object",
+      "properties": {
+        "id": {
+          "type": "string"
+        },
+        "userid": {
+          "type": "string"
+        },
+        "forumcategoryid": {
+          "type": "string"
+        },
+        "content": {
+          "type": ["string", "null"]
+        },
+        "islocked": {
+          "type": "boolean"
+        },
+        "issticky": {
+          "type": "boolean"
+        },
+        "creationdate": {
+          "type": "string",
+          "format": "date-time"
+        },
+        "isdeleted": {
+          "type": "boolean"
+        },
+        "title": {
+          "type": ["string", "null"]
+        },
+        "forumcategory": {
+          "$ref": "#/definitions/forumcategory"
+        },
+        "forumpost": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/forumpost"
+          }
+        }
+      },
+      "required": ["userid", "forumcategoryid", "islocked", "issticky", "creationdate", "isdeleted"]
+    },
+    "gender": {
+      "type": "object",
+      "properties": {
+        "id": {
+          "type": "string"
+        },
+        "name": {
+          "type": ["string", "null"]
+        },
+        "image": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/image"
+          }
+        }
+      },
+      "required": []
+    },
+    "group": {
+      "type": "object",
+      "properties": {
+        "id": {
+          "type": "string"
+        },
+        "startdatetime": {
+          "type": "string",
+          "format": "date-time"
+        },
+        "enddatetime": {
+          "type": ["string", "null"],
+          "format": "date-time"
+        },
+        "duration": {
+          "type": "number"
+        },
+        "wins": {
+          "type": "integer"
+        },
+        "losses": {
+          "type": "integer"
+        },
+        "runtimes": {
+          "type": "integer"
+        },
+        "battlepool": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/battlepool"
+          }
+        },
+        "charactergroup": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/charactergroup"
+          }
+        }
+      },
+      "required": ["startdatetime", "duration", "wins", "losses", "runtimes"]
+    },
+    "item": {
+      "type": "object",
+      "properties": {
+        "id": {
+          "type": "string"
+        },
+        "name": {
+          "type": ["string", "null"]
+        },
+        "itemtypeid": {
+          "type": "string"
+        },
+        "characterlevel": {
+          "type": "integer"
+        },
+        "flavortext": {
+          "type": ["string", "null"]
+        },
+        "description": {
+          "type": ["string", "null"]
+        },
+        "healing": {
+          "type": "integer"
+        },
+        "armor": {
+          "type": "integer"
+        },
+        "attack": {
+          "type": "integer"
+        },
+        "attackkeyword": {
+          "type": ["string", "null"]
+        },
+        "damage": {
+          "type": "integer"
+        },
+        "damagevariance": {
+          "type": "number"
+        },
+        "hitscript": {
+          "type": ["string", "null"]
+        },
+        "critscript": {
+          "type": ["string", "null"]
+        },
+        "missscript": {
+          "type": ["string", "null"]
+        },
+        "defense": {
+          "type": "integer"
+        },
+        "defensekeyword": {
+          "type": ["string", "null"]
+        },
+        "defendscript": {
+          "type": ["string", "null"]
+        },
+        "isdeleted": {
+          "type": "boolean"
+        },
+        "imageid": {
+          "type": ["string", "null"]
+        },
+        "imagebackgroundcolor": {
+          "type": ["string", "null"]
+        },
+        "notes": {
+          "type": ["string", "null"]
+        },
+        "racerestrictiontype": {
+          "type": "integer"
+        },
+        "raceid": {
+          "type": ["string", "null"]
+        },
+        "careerrestrictiontype": {
+          "type": "integer"
+        },
+        "careerid": {
+          "type": ["string", "null"]
+        },
+        "notrade": {
+          "type": "boolean"
+        },
+        "featid": {
+          "type": ["string", "null"]
+        },
+        "notradeafterequip": {
+          "type": "boolean"
+        },
+        "isvisibleininventory": {
+          "type": "boolean"
+        },
+        "career": {
+          "anyOf": [
+            {
+              "$ref": "#/definitions/career"
+            },
+            {
+              "type": "null"
+            }
+          ]
+        },
+        "feat": {
+          "anyOf": [
+            {
+              "$ref": "#/definitions/feat"
+            },
+            {
+              "type": "null"
+            }
+          ]
+        },
+        "image": {
+          "anyOf": [
+            {
+              "$ref": "#/definitions/image"
+            },
+            {
+              "type": "null"
+            }
+          ]
+        },
+        "itemtype": {
+          "$ref": "#/definitions/itemtype"
+        },
+        "adventuresrequired": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/adventure"
+          }
+        },
+        "adventuresrewarded": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/adventure"
+          }
+        },
+        "careers1": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/career"
+          }
+        },
+        "careers2": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/career"
+          }
+        },
+        "customitem": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/customitem"
+          }
+        },
+        "itemequippableinslot": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/itemequippableinslot"
+          }
+        },
+        "itemskillbonus": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/itemskillbonus"
+          }
+        },
+        "races1": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/race"
+          }
+        },
+        "races2": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/race"
+          }
+        }
+      },
+      "required": [
+        "itemtypeid",
+        "characterlevel",
+        "healing",
+        "armor",
+        "attack",
+        "damage",
+        "damagevariance",
+        "defense",
+        "isdeleted",
+        "racerestrictiontype",
+        "careerrestrictiontype",
+        "notrade",
+        "notradeafterequip",
+        "isvisibleininventory"
+      ]
+    },
+    "itemslot": {
+      "type": "object",
+      "properties": {
+        "id": {
+          "type": "string"
+        },
+        "name": {
+          "type": ["string", "null"]
+        },
+        "itemequippableinslot": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/itemequippableinslot"
+          }
+        },
+        "useritem": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/useritem"
+          }
+        }
+      },
+      "required": []
+    },
+    "itemtype": {
+      "type": "object",
+      "properties": {
+        "id": {
+          "type": "string"
+        },
+        "name": {
+          "type": "string"
+        },
+        "isdeleted": {
+          "type": "boolean"
+        },
+        "adventure": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/adventure"
+          }
+        },
+        "item": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/item"
+          }
+        }
+      },
+      "required": ["name", "isdeleted"]
+    },
+    "race": {
+      "type": "object",
+      "properties": {
+        "id": {
+          "type": "string"
+        },
+        "name": {
+          "type": "string"
+        },
+        "isdeleted": {
+          "type": "boolean"
+        },
+        "itemid1": {
+          "type": ["string", "null"]
+        },
+        "itemid2": {
+          "type": ["string", "null"]
+        },
+        "skillid1": {
+          "type": ["string", "null"]
+        },
+        "skillid2": {
+          "type": ["string", "null"]
+        },
+        "featid1": {
+          "type": ["string", "null"]
+        },
+        "featid2": {
+          "type": ["string", "null"]
+        },
+        "feat1": {
+          "anyOf": [
+            {
+              "$ref": "#/definitions/feat"
+            },
+            {
+              "type": "null"
+            }
+          ]
+        },
+        "feat2": {
+          "anyOf": [
+            {
+              "$ref": "#/definitions/feat"
+            },
+            {
+              "type": "null"
+            }
+          ]
+        },
+        "item1": {
+          "anyOf": [
+            {
+              "$ref": "#/definitions/item"
+            },
+            {
+              "type": "null"
+            }
+          ]
+        },
+        "item2": {
+          "anyOf": [
+            {
+              "$ref": "#/definitions/item"
+            },
+            {
+              "type": "null"
+            }
+          ]
+        },
+        "skill1": {
+          "anyOf": [
+            {
+              "$ref": "#/definitions/skill"
+            },
+            {
+              "type": "null"
+            }
+          ]
+        },
+        "skill2": {
+          "anyOf": [
+            {
+              "$ref": "#/definitions/skill"
+            },
+            {
+              "type": "null"
+            }
+          ]
+        },
+        "activities": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/activity"
+          }
+        },
+        "adventure": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/adventure"
+          }
+        },
+        "careerrace": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/careerrace"
+          }
+        },
+        "characters": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/character"
+          }
+        },
+        "feats1": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/feat"
+          }
+        },
+        "feats2": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/feat"
+          }
+        },
+        "image": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/image"
+          }
+        },
+        "raceadventure": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/raceadventure"
+          }
+        }
+      },
+      "required": ["name", "isdeleted"]
+    },
+    "runtime": {
+      "type": "object",
+      "properties": {
+        "id": {
+          "type": "string"
+        },
+        "time": {
+          "type": "string",
+          "format": "date-time"
+        }
+      },
+      "required": ["time"]
+    },
+    "skill": {
+      "type": "object",
+      "properties": {
+        "id": {
+          "type": "string"
+        },
+        "name": {
+          "type": "string"
+        },
+        "learningscript": {
+          "type": "string"
+        },
+        "gameid": {
+          "type": "integer"
+        },
+        "isdeleted": {
+          "type": "boolean"
+        },
+        "careerid": {
+          "type": ["string", "null"]
+        },
+        "description": {
+          "type": ["string", "null"]
+        },
+        "career": {
+          "anyOf": [
+            {
+              "$ref": "#/definitions/career"
+            },
+            {
+              "type": "null"
+            }
+          ]
+        },
+        "activities": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/activity"
+          }
+        },
+        "activityresults": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/activityresult"
+          }
+        },
+        "adventure": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/adventure"
+          }
+        },
+        "careers1": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/career"
+          }
+        },
+        "careers2": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/career"
+          }
+        },
+        "characterskill": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/characterskill"
+          }
+        },
+        "effectskillbonus": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/effectskillbonus"
+          }
+        },
+        "itemskillbonus": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/itemskillbonus"
+          }
+        },
+        "races1": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/race"
+          }
+        },
+        "races2": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/race"
+          }
+        }
+      },
+      "required": ["name", "learningscript", "gameid", "isdeleted"]
+    },
+    "useritem": {
+      "type": "object",
+      "properties": {
+        "id": {
+          "type": "string"
+        },
+        "userid": {
+          "type": "string"
+        },
+        "customitemid": {
+          "type": "string"
+        },
+        "characterid": {
+          "type": ["string", "null"]
+        },
+        "itemslotid": {
+          "type": ["string", "null"]
+        },
+        "itemslotvariation": {
+          "type": ["integer", "null"]
+        },
+        "character": {
+          "anyOf": [
+            {
+              "$ref": "#/definitions/character"
+            },
+            {
+              "type": "null"
+            }
+          ]
+        },
+        "customitem": {
+          "$ref": "#/definitions/customitem"
+        },
+        "itemslot": {
+          "anyOf": [
+            {
+              "$ref": "#/definitions/itemslot"
+            },
+            {
+              "type": "null"
+            }
+          ]
+        }
+      },
+      "required": ["userid", "customitemid"]
+    },
+    "adventurechecktype": {
+      "type": "object",
+      "properties": {
+        "id": {
+          "type": "string"
+        },
+        "name": {
+          "type": "string"
+        },
+        "adventure": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/adventure"
+          }
+        }
+      },
+      "required": ["name"]
+    },
+    "careeradventure": {
+      "type": "object",
+      "properties": {
+        "id": {
+          "type": "string"
+        },
+        "careerid": {
+          "type": "string"
+        },
+        "adventureid": {
+          "type": "string"
+        },
+        "adventure": {
+          "$ref": "#/definitions/adventure"
+        },
+        "career": {
+          "$ref": "#/definitions/career"
+        }
+      },
+      "required": ["careerid", "adventureid"]
+    },
+    "characterforhire": {
+      "type": "object",
+      "properties": {
+        "id": {
+          "type": "string"
+        },
+        "userid": {
+          "type": "string"
+        },
+        "careerraceid": {
+          "type": "string"
+        },
+        "gender": {
+          "type": "integer"
+        },
+        "expirationdate": {
+          "type": "string",
+          "format": "date-time"
+        },
+        "ishired": {
+          "type": "boolean"
+        },
+        "careerrace": {
+          "$ref": "#/definitions/careerrace"
+        }
+      },
+      "required": ["userid", "careerraceid", "gender", "expirationdate", "ishired"]
+    },
+    "characterlevel": {
+      "type": "object",
+      "properties": {
+        "id": {
+          "type": "string"
+        },
+        "level": {
+          "type": "integer"
+        },
+        "maxexperience": {
+          "type": "integer"
+        },
+        "characters": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/character"
+          }
+        }
+      },
+      "required": ["level", "maxexperience"]
+    },
+    "effectdurationtype": {
+      "type": "object",
+      "properties": {
+        "id": {
+          "type": "string"
+        },
+        "name": {
+          "type": ["string", "null"]
+        },
+        "effects": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/effect"
+          }
+        }
+      },
+      "required": []
+    },
+    "effectskillbonus": {
+      "type": "object",
+      "properties": {
+        "id": {
+          "type": "string"
+        },
+        "effectid": {
+          "type": "string"
+        },
+        "skillid": {
+          "type": "string"
+        },
+        "bonus": {
+          "type": "integer"
+        },
+        "effect": {
+          "$ref": "#/definitions/effect"
+        },
+        "skill": {
+          "$ref": "#/definitions/skill"
+        }
+      },
+      "required": ["effectid", "skillid", "bonus"]
+    },
+    "effectspecialmechanic": {
+      "type": "object",
+      "properties": {
+        "id": {
+          "type": "string"
+        },
+        "name": {
+          "type": ["string", "null"]
+        },
+        "effectspecialmechaniccombo": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/effectspecialmechaniccombo"
+          }
+        }
+      },
+      "required": []
+    },
+    "effectspecialmechaniccombo": {
+      "type": "object",
+      "properties": {
+        "id": {
+          "type": "string"
+        },
+        "effectid": {
+          "type": "string"
+        },
+        "effectspecialmechanicid": {
+          "type": "string"
+        },
+        "effect": {
+          "$ref": "#/definitions/effect"
+        },
+        "effectspecialmechanic": {
+          "$ref": "#/definitions/effectspecialmechanic"
+        }
+      },
+      "required": ["effectid", "effectspecialmechanicid"]
+    },
+    "featcastmode": {
+      "type": "object",
+      "properties": {
+        "id": {
+          "type": "string"
+        },
+        "name": {
+          "type": ["string", "null"]
+        },
+        "feat": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/feat"
+          }
+        }
+      },
+      "required": []
+    },
+    "featreactiveeventinitiator": {
+      "type": "object",
+      "properties": {
+        "id": {
+          "type": "string"
+        },
+        "name": {
+          "type": ["string", "null"]
+        },
+        "feat": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/feat"
+          }
+        }
+      },
+      "required": []
+    },
+    "featspecialmechanic": {
+      "type": "object",
+      "properties": {
+        "id": {
+          "type": "string"
+        },
+        "name": {
+          "type": ["string", "null"]
+        },
+        "feat": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/feat"
+          }
+        }
+      },
+      "required": []
+    },
+    "feattargettype": {
+      "type": "object",
+      "properties": {
+        "id": {
+          "type": "string"
+        },
+        "name": {
+          "type": ["string", "null"]
+        },
+        "feats1": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/feat"
+          }
+        },
+        "feats2": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/feat"
+          }
+        }
+      },
+      "required": []
+    },
+    "fighttargettype": {
+      "type": "object",
+      "properties": {
+        "id": {
+          "type": "string"
+        },
+        "name": {
+          "type": "string"
+        },
+        "adventure": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/adventure"
+          }
+        }
+      },
+      "required": ["name"]
+    },
+    "image": {
+      "type": "object",
+      "properties": {
+        "id": {
+          "type": "string"
+        },
+        "imagecategoryid": {
+          "type": "string"
+        },
+        "filename": {
+          "type": "string"
+        },
+        "isdeleted": {
+          "type": "boolean"
+        },
+        "raceid": {
+          "type": ["string", "null"]
+        },
+        "careerid": {
+          "type": ["string", "null"]
+        },
+        "genderid": {
+          "type": ["string", "null"]
+        },
+        "gender": {
+          "type": ["integer", "null"]
+        },
+        "career": {
+          "anyOf": [
+            {
+              "$ref": "#/definitions/career"
+            },
+            {
+              "type": "null"
+            }
+          ]
+        },
+        "genderEntity": {
+          "anyOf": [
+            {
+              "$ref": "#/definitions/gender"
+            },
+            {
+              "type": "null"
+            }
+          ]
+        },
+        "imagecategory": {
+          "$ref": "#/definitions/imagecategory"
+        },
+        "race": {
+          "anyOf": [
+            {
+              "$ref": "#/definitions/race"
+            },
+            {
+              "type": "null"
+            }
+          ]
+        },
+        "activities": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/activity"
+          }
+        },
+        "adventure": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/adventure"
+          }
+        },
+        "characters": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/character"
+          }
+        },
+        "item": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/item"
+          }
+        }
+      },
+      "required": ["imagecategoryid", "filename", "isdeleted"]
+    },
+    "imagecategory": {
+      "type": "object",
+      "properties": {
+        "id": {
+          "type": "string"
+        },
+        "name": {
+          "type": "string"
+        },
+        "isdeleted": {
+          "type": "boolean"
+        },
+        "image": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/image"
+          }
+        }
+      },
+      "required": ["name", "isdeleted"]
+    },
+    "itemequippableinslot": {
+      "type": "object",
+      "properties": {
+        "id": {
+          "type": "string"
+        },
+        "itemid": {
+          "type": "string"
+        },
+        "itemslotid": {
+          "type": "string"
+        },
+        "item": {
+          "$ref": "#/definitions/item"
+        },
+        "itemslot": {
+          "$ref": "#/definitions/itemslot"
+        }
+      },
+      "required": ["itemid", "itemslotid"]
+    },
+    "itemskillbonus": {
+      "type": "object",
+      "properties": {
+        "id": {
+          "type": "string"
+        },
+        "itemid": {
+          "type": "string"
+        },
+        "skillid": {
+          "type": "string"
+        },
+        "bonus": {
+          "type": "integer"
+        },
+        "item": {
+          "$ref": "#/definitions/item"
+        },
+        "skill": {
+          "$ref": "#/definitions/skill"
+        }
+      },
+      "required": ["itemid", "skillid", "bonus"]
+    },
+    "phrase": {
+      "type": "object",
+      "properties": {
+        "id": {
+          "type": "string"
+        },
+        "name": {
+          "type": "string"
+        },
+        "isdeleted": {
+          "type": "boolean"
+        },
+        "phrasevariation": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/phrasevariation"
+          }
+        },
+        "phrasevariationterm": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/phrasevariationterm"
+          }
+        }
+      },
+      "required": ["name", "isdeleted"]
+    },
+    "phrasevariation": {
+      "type": "object",
+      "properties": {
+        "id": {
+          "type": "string"
+        },
+        "name": {
+          "type": "string"
+        },
+        "phraseid": {
+          "type": "string"
+        },
+        "phrase": {
+          "$ref": "#/definitions/phrase"
+        },
+        "phrasevariationterm": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/phrasevariationterm"
+          }
+        }
+      },
+      "required": ["name", "phraseid"]
+    },
+    "phrasevariationterm": {
+      "type": "object",
+      "properties": {
+        "id": {
+          "type": "string"
+        },
+        "name": {
+          "type": "string"
+        },
+        "phrasevariationid": {
+          "type": ["string", "null"]
+        },
+        "phraseid": {
+          "type": "string"
+        },
+        "phrase": {
+          "$ref": "#/definitions/phrase"
+        },
+        "phrasevariation": {
+          "anyOf": [
+            {
+              "$ref": "#/definitions/phrasevariation"
+            },
+            {
+              "type": "null"
+            }
+          ]
+        }
+      },
+      "required": ["name", "phraseid"]
+    },
+    "raceadventure": {
+      "type": "object",
+      "properties": {
+        "id": {
+          "type": "string"
+        },
+        "raceid": {
+          "type": "string"
+        },
+        "adventureid": {
+          "type": "string"
+        },
+        "adventure": {
+          "$ref": "#/definitions/adventure"
+        },
+        "race": {
+          "$ref": "#/definitions/race"
+        }
+      },
+      "required": ["raceid", "adventureid"]
+    }
+  },
+  "type": "object",
+  "properties": {
+    "user": {
+      "$ref": "#/definitions/User"
+    },
+    "session": {
+      "$ref": "#/definitions/Session"
+    },
+    "token": {
+      "$ref": "#/definitions/Token"
+    },
+    "activity": {
+      "$ref": "#/definitions/activity"
+    },
+    "activityresult": {
+      "$ref": "#/definitions/activityresult"
+    },
+    "adventure": {
+      "$ref": "#/definitions/adventure"
+    },
+    "battlepool": {
+      "$ref": "#/definitions/battlepool"
+    },
+    "career": {
+      "$ref": "#/definitions/career"
+    },
+    "careerrace": {
+      "$ref": "#/definitions/careerrace"
+    },
+    "character": {
+      "$ref": "#/definitions/character"
+    },
+    "characterfeat": {
+      "$ref": "#/definitions/characterfeat"
+    },
+    "charactergroup": {
+      "$ref": "#/definitions/charactergroup"
+    },
+    "characterskill": {
+      "$ref": "#/definitions/characterskill"
+    },
+    "customitem": {
+      "$ref": "#/definitions/customitem"
+    },
+    "effect": {
+      "$ref": "#/definitions/effect"
+    },
+    "feat": {
+      "$ref": "#/definitions/feat"
+    },
+    "forumcategory": {
+      "$ref": "#/definitions/forumcategory"
+    },
+    "forumpost": {
+      "$ref": "#/definitions/forumpost"
+    },
+    "forumthread": {
+      "$ref": "#/definitions/forumthread"
+    },
+    "gender": {
+      "$ref": "#/definitions/gender"
+    },
+    "group": {
+      "$ref": "#/definitions/group"
+    },
+    "item": {
+      "$ref": "#/definitions/item"
+    },
+    "itemslot": {
+      "$ref": "#/definitions/itemslot"
+    },
+    "itemtype": {
+      "$ref": "#/definitions/itemtype"
+    },
+    "race": {
+      "$ref": "#/definitions/race"
+    },
+    "runtime": {
+      "$ref": "#/definitions/runtime"
+    },
+    "skill": {
+      "$ref": "#/definitions/skill"
+    },
+    "useritem": {
+      "$ref": "#/definitions/useritem"
+    },
+    "adventurechecktype": {
+      "$ref": "#/definitions/adventurechecktype"
+    },
+    "careeradventure": {
+      "$ref": "#/definitions/careeradventure"
+    },
+    "characterforhire": {
+      "$ref": "#/definitions/characterforhire"
+    },
+    "characterlevel": {
+      "$ref": "#/definitions/characterlevel"
+    },
+    "effectdurationtype": {
+      "$ref": "#/definitions/effectdurationtype"
+    },
+    "effectskillbonus": {
+      "$ref": "#/definitions/effectskillbonus"
+    },
+    "effectspecialmechanic": {
+      "$ref": "#/definitions/effectspecialmechanic"
+    },
+    "effectspecialmechaniccombo": {
+      "$ref": "#/definitions/effectspecialmechaniccombo"
+    },
+    "featcastmode": {
+      "$ref": "#/definitions/featcastmode"
+    },
+    "featreactiveeventinitiator": {
+      "$ref": "#/definitions/featreactiveeventinitiator"
+    },
+    "featspecialmechanic": {
+      "$ref": "#/definitions/featspecialmechanic"
+    },
+    "feattargettype": {
+      "$ref": "#/definitions/feattargettype"
+    },
+    "fighttargettype": {
+      "$ref": "#/definitions/fighttargettype"
+    },
+    "image": {
+      "$ref": "#/definitions/image"
+    },
+    "imagecategory": {
+      "$ref": "#/definitions/imagecategory"
+    },
+    "itemequippableinslot": {
+      "$ref": "#/definitions/itemequippableinslot"
+    },
+    "itemskillbonus": {
+      "$ref": "#/definitions/itemskillbonus"
+    },
+    "phrase": {
+      "$ref": "#/definitions/phrase"
+    },
+    "phrasevariation": {
+      "$ref": "#/definitions/phrasevariation"
+    },
+    "phrasevariationterm": {
+      "$ref": "#/definitions/phrasevariationterm"
+    },
+    "raceadventure": {
+      "$ref": "#/definitions/raceadventure"
+    }
+  }
+}
