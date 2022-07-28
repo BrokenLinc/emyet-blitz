@@ -12,7 +12,7 @@ export const seedDatabaseWithCsv = async (csvPath = "./db/seed-csv") => {
     console.log(`Found ${files.length} files in ${csvPath}`)
     for (const file of files) {
       const filePath = path.join(csvPath, file)
-      const tableName = file.split(".")[1]
+      const tableName = file.split(".")[0]
       if (!tableName) continue
 
       const records = await parseCsvFile(filePath, tableName)
@@ -74,13 +74,11 @@ const coerceValue = (tableName: string, column: string, value: any) => {
     case "boolean":
       return value === "True"
     case "string":
-      if (
-        value.length === 38 &&
-        column.includes("id") &&
-        _.startsWith(value, "{") &&
-        _.endsWith(value, "}")
-      ) {
+      if (value.length === 38 && _.startsWith(value, "{") && _.endsWith(value, "}")) {
         return value.slice(1, -1)
+      }
+      if (column.includes("id") && value === "") {
+        return null
       }
     default:
       return value
