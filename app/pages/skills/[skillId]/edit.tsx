@@ -2,7 +2,7 @@ import { Suspense } from "react"
 import { Head, Link, useRouter, useQuery, useMutation, useParam, BlitzPage, Routes } from "blitz"
 import Layout from "app/core/layouts/Layout"
 import getSkill from "app/skills/queries/getSkill"
-import updateSkill, { UpdateSkill } from "app/skills/mutations/updateSkill"
+import { SkillsMutations } from "app/skills/mutations"
 import { SkillForm, FORM_ERROR } from "app/skills/components/SkillForm"
 
 export const EditSkill = () => {
@@ -16,7 +16,7 @@ export const EditSkill = () => {
       staleTime: Infinity,
     }
   )
-  const [updateSkillMutation] = useMutation(updateSkill)
+  const [updateSkillMutation] = useMutation(SkillsMutations.update)
 
   return (
     <>
@@ -33,7 +33,7 @@ export const EditSkill = () => {
           // TODO use a zod schema for form validation
           //  - Tip: extract mutation's schema into a shared `validations.ts` file and
           //         then import and use it here
-          schema={UpdateSkill}
+          schema={SkillsMutations.Update}
           initialValues={skill}
           onSubmit={async (values) => {
             try {
