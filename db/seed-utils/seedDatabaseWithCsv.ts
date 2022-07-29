@@ -15,11 +15,14 @@ export const seedDatabaseWithCsv = async (csvPath = "./db/seed-csv") => {
       const tableName = file.split(".")[0]
       if (!tableName) continue
 
+      console.log(`Parsing ${file}...`)
       const records = await parseCsvFile(filePath, tableName)
       console.log(`Parsed ${records.length} records from ${file}`)
       for (const record of records) {
         await db[tableName].create({ data: record })
       }
+      console.log(`Inserted ${records.length} records into ${tableName}`)
+      console.log("-----------------------------------------------------")
     }
   } catch (error) {
     console.error(error)
@@ -64,20 +67,25 @@ const parseCsvFile = async (filePath: string, tableName: string) => {
   })
 }
 
-const coerceValue = (tableName: string, column: string, value: any) => {
+const coerceValue = (tableName: string, columnName: string, value: any) => {
   const table = jsonSchema.definitions[tableName]
-  const type = _.flatten([table.properties[column]?.type])[0]
+  const column = table.properties[columnName]
+  const type = _.flatten([column?.type])[0]
+  const format = column?.format
   switch (type) {
-    case "decimal":
     case "integer":
+    case "number":
       return Number(value)
     case "boolean":
       return value === "True"
     case "string":
+      if (format === "date-time") {
+        return new Date(value)
+      }
       if (value.length === 38 && _.startsWith(value, "{") && _.endsWith(value, "}")) {
         return value.slice(1, -1)
       }
-      if (column.includes("id") && value === "") {
+      if (columnName.includes("id") && value === "") {
         return null
       }
     default:
