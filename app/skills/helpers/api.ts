@@ -2,11 +2,13 @@ import { paginate, resolver, NotFoundError } from "blitz"
 import db, { Prisma } from "db"
 import { z } from "zod"
 
-// Table specific code
+/*
+ * Table specific code
+ */
 
 type FindManyArgs = Prisma.skillFindManyArgs
-const recordsName = "skills"
 const table = db.skill
+const recordsName = "skills"
 
 const id = z.string()
 const idParams = z.object({
@@ -26,7 +28,11 @@ const optionalParams = z
   })
   .partial()
 
-// Generic code
+/*
+ * Generic code
+ */
+
+export interface GetManyInput extends Pick<FindManyArgs, "where" | "orderBy" | "skip" | "take"> {}
 
 export const Create = z.object({}).merge(requiredParams).merge(optionalParams)
 export const Delete = idParams
@@ -39,7 +45,6 @@ export const Get = z.object({
   // This accepts type of undefined, but is required at runtime
   id: id.optional().refine(Boolean, "Required"),
 })
-export interface GetManyInput extends Pick<FindManyArgs, "where" | "orderBy" | "skip" | "take"> {}
 
 export const create = resolver.pipe(
   resolver.zod(Create),
