@@ -1,11 +1,11 @@
 import { Link, useRouter, useMutation, BlitzPage, Routes } from "blitz"
 import Layout from "app/core/layouts/Layout"
-import { SkillsMutations } from "app/skills/mutations"
+import createSkill, { CreateSkill } from "app/skills/mutations/createSkill"
 import { SkillForm, FORM_ERROR } from "app/skills/components/SkillForm"
 
 const NewSkillPage: BlitzPage = () => {
   const router = useRouter()
-  const [createSkillMutation] = useMutation(SkillsMutations.create)
+  const [createSkillMutation] = useMutation(createSkill)
 
   return (
     <div>
@@ -16,7 +16,7 @@ const NewSkillPage: BlitzPage = () => {
         // TODO use a zod schema for form validation
         //  - Tip: extract mutation's schema into a shared `validations.ts` file and
         //         then import and use it here
-        schema={SkillsMutations.Create}
+        schema={CreateSkill}
         // initialValues={{}}
         onSubmit={async (values) => {
           try {

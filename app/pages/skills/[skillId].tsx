@@ -2,12 +2,12 @@ import { Suspense } from "react"
 import { Head, Link, useRouter, useQuery, useParam, BlitzPage, useMutation, Routes } from "blitz"
 import Layout from "app/core/layouts/Layout"
 import getSkill from "app/skills/queries/getSkill"
-import { SkillsMutations } from "app/skills/mutations"
+import deleteSkill from "app/skills/mutations/deleteSkill"
 
 export const Skill = () => {
   const router = useRouter()
   const skillId = useParam("skillId", "string")
-  const [deleteSkillMutation] = useMutation(SkillsMutations.remove)
+  const [deleteSkillMutation] = useMutation(deleteSkill)
   const [skill] = useQuery(getSkill, { id: skillId })
 
   return (
