@@ -1,4 +1,4 @@
-import mutations from "../helpers"
+import mutations from "../helpers/api"
 
 export const UpdateSkill = mutations.Update
 
