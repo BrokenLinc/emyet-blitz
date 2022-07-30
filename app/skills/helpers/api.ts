@@ -9,6 +9,8 @@ import { z } from "zod"
 type FindManyArgs = Prisma.skillFindManyArgs
 const table = db.skill
 const recordsName = "skills"
+const readRole = "USER"
+const controlRole = "ADMIN"
 
 const id = z.string()
 const idParams = z.object({
@@ -48,32 +50,36 @@ export const Get = z.object({
 
 export const create = resolver.pipe(
   resolver.zod(Create),
-  resolver.authorize(),
+  resolver.authorize(controlRole),
   async (data) => await table.create({ data })
 )
 
 export const _delete = resolver.pipe(
   resolver.zod(Delete),
-  resolver.authorize(),
+  resolver.authorize(controlRole),
   async ({ id }) => await table.deleteMany({ where: { id } })
 )
 
 export const update = resolver.pipe(
   resolver.zod(Update),
-  resolver.authorize(),
+  resolver.authorize(controlRole),
   async ({ id, ...data }) => await table.update({ where: { id }, data })
 )
 
-export const get = resolver.pipe(resolver.zod(Get), resolver.authorize(), async ({ id }) => {
-  const item = await table.findFirst({ where: { id } })
+export const get = resolver.pipe(
+  resolver.zod(Get),
+  resolver.authorize(readRole),
+  async ({ id }) => {
+    const item = await table.findFirst({ where: { id } })
 
-  if (!item) throw new NotFoundError()
+    if (!item) throw new NotFoundError()
 
-  return item
-})
+    return item
+  }
+)
 
 export const getMany = resolver.pipe(
-  resolver.authorize(),
+  resolver.authorize(readRole),
   async ({ where, orderBy, skip = 0, take = 100 }: GetManyInput) => {
     const { items, hasMore, nextPage, count } = await paginate({
       skip,

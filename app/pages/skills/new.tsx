@@ -1,23 +1,21 @@
+import React from "react"
 import { Link, useRouter, useMutation, BlitzPage, Routes } from "blitz"
 import Layout from "app/core/layouts/Layout"
 import createSkill, { CreateSkill } from "app/skills/mutations/createSkill"
 import { SkillForm, FORM_ERROR } from "app/skills/components/SkillForm"
+import { AdminOnly } from "app/components/AdminOnly"
 
 const NewSkillPage: BlitzPage = () => {
   const router = useRouter()
   const [createSkillMutation] = useMutation(createSkill)
 
   return (
-    <div>
+    <AdminOnly>
       <h1>Create New Skill</h1>
 
       <SkillForm
         submitText="Create Skill"
-        // TODO use a zod schema for form validation
-        //  - Tip: extract mutation's schema into a shared `validations.ts` file and
-        //         then import and use it here
         schema={CreateSkill}
-        // initialValues={{}}
         onSubmit={async (values) => {
           try {
             const skill = await createSkillMutation({ ...values, gameid: 0, isdeleted: true }) // TODO: remove gameid
@@ -36,11 +34,13 @@ const NewSkillPage: BlitzPage = () => {
           <a>Skills</a>
         </Link>
       </p>
-    </div>
+    </AdminOnly>
   )
 }
 
 NewSkillPage.authenticate = true
-NewSkillPage.getLayout = (page) => <Layout title={"Create New Skill"}>{page}</Layout>
+NewSkillPage.getLayout = (page) => {
+  return <Layout title={"Create New Skill"}>{page}</Layout>
+}
 
 export default NewSkillPage
