@@ -11,9 +11,8 @@ export function SkillForm<S extends z.ZodType<any, any>>(props: FormProps<S>) {
     <Form<S> {...props}>
       <InputControl name="name" label="Name" placeholder="Name" />
       <InputControl name="learningscript" label="Learning script" />
-      <InputControl name="gameid" label="Game ID" inputProps={{ type: "number" }} />
-      <CheckboxControl name="isdeleted" label="Deleted" />
       <TextareaControl name="description" label="Description" />
+      <CheckboxControl name="isdeleted" label="Soft deleted" />
     </Form>
   )
 }
