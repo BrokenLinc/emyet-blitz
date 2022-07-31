@@ -17,11 +17,12 @@ const NewSkillPage: BlitzPage = () => {
 
       <SkillForm
         schema={skillSchemas.Create}
+        initialValues={{ isdeleted: false }}
         submitLabel="Create Skill"
         onSubmit={async (values) => {
           console.log("values", values)
           try {
-            const skill = await createSkillMutation({ ...values, gameid: 0, isdeleted: true }) // TODO: remove gameid
+            const skill = await createSkillMutation(values)
             router.push(Routes.ShowSkillPage({ skillId: skill.id }))
           } catch (error: any) {
             console.error(error)

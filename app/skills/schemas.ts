@@ -1,5 +1,7 @@
 import { z } from "zod"
 
+import { castedInt } from "app/core/helpers/validation"
+
 /*
  * Table specific code
  */
@@ -12,7 +14,7 @@ const idParams = z.object({
 const requiredParams = z.object({
   name: z.string().min(1),
   learningscript: z.string(),
-  gameid: z.number().int(),
+  gameid: castedInt(),
   isdeleted: z.boolean(),
 })
 
@@ -26,7 +28,7 @@ const optionalParams = z
  * Generic code
  */
 
-export const Create = requiredParams //z.object({}).merge(requiredParams).merge(optionalParams)
+export const Create = z.object({}).merge(requiredParams).merge(optionalParams)
 export const Delete = idParams
 export const Update = z
   .object({})

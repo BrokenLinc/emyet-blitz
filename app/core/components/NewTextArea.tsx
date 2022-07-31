@@ -6,11 +6,11 @@ export interface LabeledTextareaProps extends UI.FormControlProps {
   name: string
   label: string
   labelProps?: UI.FormLabelProps
-  inputProps?: UI.TextareaProps
+  textareaProps?: UI.TextareaProps
 }
 
 export const LabeledTextarea = React.forwardRef<UI.TextareaProps, LabeledTextareaProps>(
-  ({ name, label, labelProps, inputProps, ...formControlProps }, ref) => {
+  ({ name, label, labelProps, textareaProps, ...formControlProps }, ref) => {
     const { formState, ...form } = useFormContext()
 
     const error = Array.isArray(formState.errors[name])
@@ -21,7 +21,11 @@ export const LabeledTextarea = React.forwardRef<UI.TextareaProps, LabeledTextare
     return (
       <UI.FormControl isInvalid={!!error} {...formControlProps}>
         <UI.FormLabel {...labelProps}>{label}</UI.FormLabel>
-        <UI.Textarea isDisabled={formState.isSubmitting} {...form.register(name)} {...inputProps} />
+        <UI.Textarea
+          isDisabled={formState.isSubmitting}
+          {...form.register(name)}
+          {...textareaProps}
+        />
         <UI.FormErrorMessage>{error}</UI.FormErrorMessage>
       </UI.FormControl>
     )
