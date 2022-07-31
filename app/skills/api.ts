@@ -1,6 +1,8 @@
 import { paginate, resolver, NotFoundError } from "blitz"
 import db, { Prisma } from "db"
-import { z } from "zod"
+import { Role } from "types"
+
+import schemas from "./schemas"
 
 /*
  * Table specific code
@@ -9,26 +11,8 @@ import { z } from "zod"
 type FindManyArgs = Prisma.skillFindManyArgs
 const table = db.skill
 const recordsName = "skills"
-const readRole = "USER"
-const controlRole = "ADMIN"
-
-const id = z.string()
-const idParams = z.object({
-  id,
-})
-
-const requiredParams = z.object({
-  name: z.string().min(1),
-  learningscript: z.string(),
-  gameid: z.number().int(),
-  isdeleted: z.boolean(),
-})
-
-const optionalParams = z
-  .object({
-    description: z.string().nullable(),
-  })
-  .partial()
+const readRole: Role[] = ["ADMIN", "USER"]
+const controlRole: Role = "ADMIN"
 
 /*
  * Generic code
@@ -36,38 +20,26 @@ const optionalParams = z
 
 export interface GetManyInput extends Pick<FindManyArgs, "where" | "orderBy" | "skip" | "take"> {}
 
-export const Create = z.object({}).merge(requiredParams).merge(optionalParams)
-export const Delete = idParams
-export const Update = z
-  .object({})
-  .merge(idParams)
-  .merge(requiredParams.partial())
-  .merge(optionalParams)
-export const Get = z.object({
-  // This accepts type of undefined, but is required at runtime
-  id: id.optional().refine(Boolean, "Required"),
-})
-
 export const create = resolver.pipe(
-  resolver.zod(Create),
+  resolver.zod(schemas.Create),
   resolver.authorize(controlRole),
   async (data) => await table.create({ data })
 )
 
 export const _delete = resolver.pipe(
-  resolver.zod(Delete),
+  resolver.zod(schemas.Delete),
   resolver.authorize(controlRole),
   async ({ id }) => await table.deleteMany({ where: { id } })
 )
 
 export const update = resolver.pipe(
-  resolver.zod(Update),
+  resolver.zod(schemas.Update),
   resolver.authorize(controlRole),
   async ({ id, ...data }) => await table.update({ where: { id }, data })
 )
 
 export const get = resolver.pipe(
-  resolver.zod(Get),
+  resolver.zod(schemas.Get),
   resolver.authorize(readRole),
   async ({ id }) => {
     const item = await table.findFirst({ where: { id } })
@@ -96,15 +68,3 @@ export const getMany = resolver.pipe(
     }
   }
 )
-
-export default {
-  Create,
-  Delete,
-  Update,
-  Get,
-  create,
-  _delete,
-  update,
-  get,
-  getMany,
-}

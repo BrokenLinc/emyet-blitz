@@ -8,7 +8,7 @@ export interface FormProps<S extends z.ZodType<any, any>>
   /** All your form fields */
   children?: ReactNode
   /** Text to display in the submit button */
-  submitText?: string
+  submitLabel?: string
   schema?: S
   onSubmit: (values: z.infer<S>) => Promise<void | OnSubmitResult>
   initialValues?: UseFormProps<z.infer<S>>["defaultValues"]
@@ -23,7 +23,7 @@ export const FORM_ERROR = "FORM_ERROR"
 
 export function Form<S extends z.ZodType<any, any>>({
   children,
-  submitText,
+  submitLabel,
   schema,
   initialValues,
   onSubmit,
@@ -40,6 +40,7 @@ export function Form<S extends z.ZodType<any, any>>({
     <FormProvider {...ctx}>
       <form
         onSubmit={ctx.handleSubmit(async (values) => {
+          console.log({ values })
           const result = (await onSubmit(values)) || {}
           for (const [key, value] of Object.entries(result)) {
             if (key === FORM_ERROR) {
@@ -64,9 +65,9 @@ export function Form<S extends z.ZodType<any, any>>({
           </div>
         )}
 
-        {submitText && (
+        {submitLabel && (
           <button type="submit" disabled={ctx.formState.isSubmitting}>
-            {submitText}
+            {submitLabel}
           </button>
         )}
 

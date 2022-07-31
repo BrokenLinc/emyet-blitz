@@ -1,5 +1,2 @@
-import mutations from "../helpers/api"
-
-export const CreateSkill = mutations.Create
-
-export default mutations.create
+import * as api from "../api"
+export default api.create

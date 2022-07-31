@@ -1,9 +1,11 @@
 import React from "react"
 import { Link, useRouter, useMutation, BlitzPage, Routes } from "blitz"
 import Layout from "app/core/layouts/Layout"
-import createSkill, { CreateSkill } from "app/skills/mutations/createSkill"
+import createSkill from "app/skills/mutations/createSkill"
 import { SkillForm, FORM_ERROR } from "app/skills/components/SkillForm"
 import { AdminOnly } from "app/components/AdminOnly"
+import * as UI from "@chakra-ui/react"
+import skillSchemas from "app/skills/schemas"
 
 const NewSkillPage: BlitzPage = () => {
   const router = useRouter()
@@ -11,12 +13,13 @@ const NewSkillPage: BlitzPage = () => {
 
   return (
     <AdminOnly>
-      <h1>Create New Skill</h1>
+      <UI.Heading mb={6}>Create New Skill</UI.Heading>
 
       <SkillForm
-        submitText="Create Skill"
-        schema={CreateSkill}
+        schema={skillSchemas.Create}
+        submitLabel="Create Skill"
         onSubmit={async (values) => {
+          console.log("values", values)
           try {
             const skill = await createSkillMutation({ ...values, gameid: 0, isdeleted: true }) // TODO: remove gameid
             router.push(Routes.ShowSkillPage({ skillId: skill.id }))
@@ -29,11 +32,9 @@ const NewSkillPage: BlitzPage = () => {
         }}
       />
 
-      <p>
-        <Link href={Routes.SkillsPage()}>
-          <a>Skills</a>
-        </Link>
-      </p>
+      <Link href={Routes.SkillsPage()} passHref>
+        <UI.Link>Skills</UI.Link>
+      </Link>
     </AdminOnly>
   )
 }

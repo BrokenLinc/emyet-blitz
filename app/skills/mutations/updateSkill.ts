@@ -1,5 +1,2 @@
-import mutations from "../helpers/api"
-
-export const UpdateSkill = mutations.Update
-
-export default mutations.update
+import * as api from "../api"
+export default api.update
