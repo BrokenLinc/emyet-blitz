@@ -14,7 +14,6 @@ const NewSkillPage: BlitzPage = () => {
   return (
     <AdminOnly>
       <UI.Heading mb={6}>New Skill</UI.Heading>
-
       <SkillForm
         schema={skillValidations.Create}
         submitLabel="Create Skill"
@@ -36,7 +35,7 @@ const NewSkillPage: BlitzPage = () => {
 
 NewSkillPage.authenticate = true
 NewSkillPage.getLayout = (page) => {
-  return <AdminLayout title={"Create New Skill"}>{page}</AdminLayout>
+  return <AdminLayout>{page}</AdminLayout>
 }
 
 export default NewSkillPage

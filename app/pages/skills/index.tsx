@@ -1,7 +1,10 @@
 import { Suspense } from "react"
 import { Head, Link, usePaginatedQuery, useRouter, BlitzPage, Routes } from "blitz"
-import Layout from "app/core/layouts/Layout"
+import * as UI from "@chakra-ui/react"
+
 import getSkills from "app/skills/queries/getSkills"
+import { AdminLayout } from "app/core/layouts/AdminLayout"
+import { AdminOnly } from "app/components/AdminOnly"
 
 const ITEMS_PER_PAGE = 100
 
@@ -41,27 +44,16 @@ export const SkillsList = () => {
 
 const SkillsPage: BlitzPage = () => {
   return (
-    <>
-      <Head>
-        <title>Skills</title>
-      </Head>
-
-      <div>
-        <p>
-          <Link href={Routes.NewSkillPage()}>
-            <a>Create Skill</a>
-          </Link>
-        </p>
-
-        <Suspense fallback={<div>Loading...</div>}>
-          <SkillsList />
-        </Suspense>
-      </div>
-    </>
+    <AdminOnly>
+      <UI.Heading mb={6}>Skills</UI.Heading>
+      <Suspense fallback={<div>Loading...</div>}>
+        <SkillsList />
+      </Suspense>
+    </AdminOnly>
   )
 }
 
 SkillsPage.authenticate = true
-SkillsPage.getLayout = (page) => <Layout>{page}</Layout>
+SkillsPage.getLayout = (page) => <AdminLayout>{page}</AdminLayout>
 
 export default SkillsPage
