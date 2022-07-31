@@ -4,7 +4,7 @@ import Layout from "app/core/layouts/Layout"
 import getSkill from "app/skills/queries/getSkill"
 import updateSkill from "app/skills/mutations/updateSkill"
 import { SkillForm, FORM_ERROR } from "app/skills/components/SkillForm"
-import skillSchemas from "app/skills/schemas"
+import skillValidations from "app/skills/validations"
 
 export const EditSkill = () => {
   const router = useRouter()
@@ -30,7 +30,7 @@ export const EditSkill = () => {
         <pre>{JSON.stringify(skill, null, 2)}</pre>
 
         <SkillForm
-          schema={skillSchemas.Update}
+          schema={skillValidations.Update}
           initialValues={skill}
           submitLabel="Update Skill"
           onSubmit={async (values) => {

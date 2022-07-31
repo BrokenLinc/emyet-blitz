@@ -1,2 +1,2 @@
-import * as api from "../api"
-export default api._delete
+import * as crud from "../crud"
+export default crud._delete

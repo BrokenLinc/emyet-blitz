@@ -2,7 +2,7 @@ import { paginate, resolver, NotFoundError } from "blitz"
 import db, { Prisma } from "db"
 import { Role } from "types"
 
-import schemas from "./schemas"
+import validations from "./validations"
 
 /*
  * Table specific code
@@ -21,25 +21,25 @@ const controlRole: Role = "ADMIN"
 export interface GetManyInput extends Pick<FindManyArgs, "where" | "orderBy" | "skip" | "take"> {}
 
 export const create = resolver.pipe(
-  resolver.zod(schemas.Create),
+  resolver.zod(validations.Create),
   resolver.authorize(controlRole),
   async (data) => await table.create({ data })
 )
 
 export const _delete = resolver.pipe(
-  resolver.zod(schemas.Delete),
+  resolver.zod(validations.Delete),
   resolver.authorize(controlRole),
   async ({ id }) => await table.deleteMany({ where: { id } })
 )
 
 export const update = resolver.pipe(
-  resolver.zod(schemas.Update),
+  resolver.zod(validations.Update),
   resolver.authorize(controlRole),
   async ({ id, ...data }) => await table.update({ where: { id }, data })
 )
 
 export const get = resolver.pipe(
-  resolver.zod(schemas.Get),
+  resolver.zod(validations.Get),
   resolver.authorize(readRole),
   async ({ id }) => {
     const item = await table.findFirst({ where: { id } })

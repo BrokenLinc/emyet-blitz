@@ -1,2 +1,2 @@
-import * as api from "../api"
-export default api.getMany
+import * as crud from "../crud"
+export default crud.getMany

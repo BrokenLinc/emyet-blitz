@@ -1,6 +1,6 @@
 import { AuthenticationError, Link, useMutation, Routes, PromiseReturnType } from "blitz"
-import { LabeledTextField } from "app/core/components/LabeledTextField"
-import { Form, FORM_ERROR } from "app/core/components/Form"
+import LabeledTextField from "app/core/components/legacy/LabeledTextField"
+import { Form, FORM_ERROR } from "app/core/components/legacy/Form"
 import login from "app/auth/mutations/login"
 import { Login } from "app/auth/validations"
 
@@ -16,9 +16,9 @@ export const LoginForm = (props: LoginFormProps) => {
       <h1>Login</h1>
 
       <Form
-        submitText="Login"
         schema={Login}
         initialValues={{ email: "", password: "" }}
+        submitText="Login"
         onSubmit={async (values) => {
           try {
             const user = await loginMutation(values)

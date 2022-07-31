@@ -1,16 +1,15 @@
 import React from "react"
 import { Controller, useFormContext } from "react-hook-form"
 import * as UI from "@chakra-ui/react"
-import { MotionValue } from "framer-motion"
 
-export interface LabeledCheckboxProps extends UI.FormControlProps {
+export interface CheckboxControlProps extends UI.FormControlProps {
   name: string
   label: string
   labelProps?: UI.FormLabelProps
   checkboxProps?: UI.CheckboxProps
 }
 
-export const LabeledTextField = React.forwardRef<UI.CheckboxProps, LabeledCheckboxProps>(
+export const CheckboxControl = React.forwardRef<UI.CheckboxProps, CheckboxControlProps>(
   ({ name, label, labelProps, checkboxProps, ...formControlProps }, ref) => {
     const { formState, ...form } = useFormContext()
 
@@ -41,5 +40,3 @@ export const LabeledTextField = React.forwardRef<UI.CheckboxProps, LabeledCheckb
     )
   }
 )
-
-export default LabeledTextField

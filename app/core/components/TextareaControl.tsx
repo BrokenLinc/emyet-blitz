@@ -2,14 +2,14 @@ import React from "react"
 import { useFormContext } from "react-hook-form"
 import * as UI from "@chakra-ui/react"
 
-export interface LabeledTextareaProps extends UI.FormControlProps {
+export interface TextareaControlProps extends UI.FormControlProps {
   name: string
   label: string
   labelProps?: UI.FormLabelProps
   textareaProps?: UI.TextareaProps
 }
 
-export const LabeledTextarea = React.forwardRef<UI.TextareaProps, LabeledTextareaProps>(
+export const TextareaControl = React.forwardRef<UI.TextareaProps, TextareaControlProps>(
   ({ name, label, labelProps, textareaProps, ...formControlProps }, ref) => {
     const { formState, ...form } = useFormContext()
 
@@ -31,5 +31,3 @@ export const LabeledTextarea = React.forwardRef<UI.TextareaProps, LabeledTextare
     )
   }
 )
-
-export default LabeledTextarea

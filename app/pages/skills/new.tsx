@@ -5,7 +5,7 @@ import createSkill from "app/skills/mutations/createSkill"
 import { SkillForm, FORM_ERROR } from "app/skills/components/SkillForm"
 import { AdminOnly } from "app/components/AdminOnly"
 import * as UI from "@chakra-ui/react"
-import skillSchemas from "app/skills/schemas"
+import skillValidations from "app/skills/validations"
 
 const NewSkillPage: BlitzPage = () => {
   const router = useRouter()
@@ -16,7 +16,7 @@ const NewSkillPage: BlitzPage = () => {
       <UI.Heading mb={6}>Create New Skill</UI.Heading>
 
       <SkillForm
-        schema={skillSchemas.Create}
+        schema={skillValidations.Create}
         initialValues={{ isdeleted: false }}
         submitLabel="Create Skill"
         onSubmit={async (values) => {
