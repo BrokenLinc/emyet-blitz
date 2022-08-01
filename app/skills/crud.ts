@@ -8,7 +8,7 @@ import validations from "./validations"
  * Table specific code
  */
 
-type FindManyArgs = Prisma.skillFindManyArgs
+type FindManyArgs = Prisma.SkillFindManyArgs
 const table = db.skill
 const recordsName = "skills"
 const readRole: Role[] = ["ADMIN", "USER"]

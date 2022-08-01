@@ -7,17 +7,19 @@ import { CheckboxControl } from "app/core/components/CheckboxControl"
 import { TextareaControl } from "app/core/components/TextareaControl"
 export { FORM_ERROR } from "app/core/components/Form"
 
-import jsonSchema from "../../db/json-schema/json-schema.json"
+import jsonSchema from "../../../db/json-schema/json-schema.json"
 
 export function createFormWithSchema(tableName: keyof typeof jsonSchema.definitions) {
   function SchemaForm<S extends z.ZodType<any, any>>(props: FormProps<S>) {
     const controls = _.map(jsonSchema.definitions[tableName].properties, (property, name) => {
-      if (name.includes("id")) return null
+      if (name === "id") return null
+
+      if (_.endsWith(name, "Id")) return null // TODO: figure out intersections
 
       const type = _.flatten([property["type"]])[0]
       if (!type) return null
 
-      const label = _.startCase(name)
+      const label = _.upperFirst(_.lowerCase(name))
 
       if (type === "boolean") {
         return <CheckboxControl name={name} label={label} />

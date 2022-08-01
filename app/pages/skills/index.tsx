@@ -46,7 +46,7 @@ const useRouterString = (paramName: string) => {
 }
 
 export const SkillsList = () => {
-  const isdeleted = useRouterBoolean("isdeleted")
+  const isDeleted = useRouterBoolean("isDeleted")
   const page = useRouterPage()
   const search = useRouterString("search")
   const [{ skills, hasMore }] = usePaginatedQuery(getSkills, {
@@ -54,21 +54,21 @@ export const SkillsList = () => {
     skip: ITEMS_PER_PAGE * page.current,
     take: ITEMS_PER_PAGE,
     where: {
-      isdeleted: isdeleted.value,
+      isDeleted: isDeleted.value,
       OR: [{ name: { contains: search.value, mode: "insensitive" } }],
     },
   })
 
   return (
     <UI.VStack spacing={4} alignItems="start">
-      <UI.Button onClick={isdeleted.toggle}>Del</UI.Button>
+      <UI.Button onClick={isDeleted.toggle}>Del</UI.Button>
       <UI.SimpleGrid minChildWidth="280px" spacing={4}>
         {skills.map((skill) => (
           <Link key={skill.id} href={Routes.EditSkillPage({ skillId: skill.id })} passHref>
             <UI.VStack
               as="a"
               alignItems="start"
-              color={skill.isdeleted ? "red" : ""}
+              color={skill.isDeleted ? "red" : ""}
               bg="gray.50"
               border="2px solid transparent"
               borderRadius="md"

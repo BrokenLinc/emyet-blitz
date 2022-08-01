@@ -13,9 +13,9 @@ const idParams = z.object({
 
 const requiredParams = z.object({
   name: z.string().min(1),
-  learningscript: z.string(),
-  gameid: castedInt(0),
-  isdeleted: castedBoolean(false),
+  learningScript: z.string(),
+  gameId: castedInt(0),
+  isDeleted: castedBoolean(false),
 })
 
 const optionalParams = z

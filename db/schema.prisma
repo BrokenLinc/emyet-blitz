@@ -88,7 +88,7 @@ model activity {
   career                  career?     @relation(fields: [careerid], references: [id])
   image                   image?      @relation(fields: [imageid], references: [id])
   race                    race?       @relation(fields: [raceid], references: [id])
-  skill                   skill?      @relation(fields: [skillid], references: [id])
+  skill                   Skill?      @relation(fields: [skillid], references: [id])
   characters              character[]
 }
 
@@ -116,7 +116,7 @@ model activityresult {
   customitem1           customitem? @relation("activityresult_customitemid1Tocustomitem", fields: [customitemid1], references: [id])
   customitem2           customitem? @relation("activityresult_customitemid2Tocustomitem", fields: [customitemid2], references: [id])
   feat                  feat?       @relation(fields: [featid], references: [id])
-  skill                 skill?      @relation(fields: [skillid], references: [id])
+  skill                 Skill?      @relation(fields: [skillid], references: [id])
 }
 
 model adventure {
@@ -157,7 +157,7 @@ model adventure {
   itemreward                  item?              @relation("adventure_itemidrewardToitem", fields: [itemidreward], references: [id])
   itemtype                    itemtype?          @relation(fields: [itemtypeiddrop], references: [id])
   race                        race?              @relation(fields: [raceidfightcheck], references: [id])
-  skill                       skill?             @relation(fields: [skillidcheck], references: [id])
+  skill                       Skill?             @relation(fields: [skillidcheck], references: [id])
   careeradventure             careeradventure[]
   raceadventure               raceadventure[]
 }
@@ -190,8 +190,8 @@ model career {
   feat2           feat?             @relation("career_featid2Tofeat", fields: [featid2], references: [id])
   item1           item?             @relation("career_itemid1Toitem", fields: [itemid1], references: [id])
   item2           item?             @relation("career_itemid2Toitem", fields: [itemid2], references: [id])
-  skill1          skill?            @relation("career_skillid1Toskill", fields: [skillid1], references: [id])
-  skill2          skill?            @relation("career_skillid2Toskill", fields: [skillid2], references: [id])
+  skill1          Skill?            @relation("career_skillid1Toskill", fields: [skillid1], references: [id])
+  skill2          Skill?            @relation("career_skillid2Toskill", fields: [skillid2], references: [id])
   activities      activity[]
   adventure       adventure[]
   careeradventure careeradventure[]
@@ -202,7 +202,7 @@ model career {
   feats2          feat[]            @relation("careerTofeat_careeridtarget2")
   image           image[]
   item            item[]
-  skill           skill[]
+  skill           Skill[]
 }
 
 model careerrace {
@@ -286,7 +286,7 @@ model characterskill {
   value          Int
   freepointvalue Int
   character      character @relation(fields: [characterid], references: [id])
-  skill          skill     @relation(fields: [skillid], references: [id])
+  skill          Skill     @relation(fields: [skillid], references: [id])
 }
 
 model customitem {
@@ -512,8 +512,8 @@ model race {
   feat2         feat?           @relation("featTorace_featid2", fields: [featid2], references: [id])
   item1         item?           @relation("itemTorace_itemid1", fields: [itemid1], references: [id])
   item2         item?           @relation("itemTorace_itemid2", fields: [itemid2], references: [id])
-  skill1        skill?          @relation("race_skillid1Toskill", fields: [skillid1], references: [id])
-  skill2        skill?          @relation("race_skillid2Toskill", fields: [skillid2], references: [id])
+  skill1        Skill?          @relation("race_skillid1Toskill", fields: [skillid1], references: [id])
+  skill2        Skill?          @relation("race_skillid2Toskill", fields: [skillid2], references: [id])
   activities    activity[]
   adventure     adventure[]
   careerrace    careerrace[]
@@ -529,15 +529,15 @@ model runtime {
   time DateTime @db.Timestamp(6)
 }
 
-model skill {
+model Skill {
   id               String             @id @default(uuid()) @db.Uuid
   name             String             @db.VarChar(255)
-  learningscript   String             @db.VarChar
-  gameid           Int
-  isdeleted        Boolean
-  careerid         String?            @db.Uuid
   description      String?            @db.VarChar(255)
-  career           career?            @relation(fields: [careerid], references: [id])
+  learningScript   String             @db.VarChar
+  careerId         String?            @db.Uuid
+  isDeleted        Boolean
+  gameId           Int
+  career           career?            @relation(fields: [careerId], references: [id])
   activities       activity[]
   activityresults  activityresult[]
   adventure        adventure[]
@@ -548,6 +548,8 @@ model skill {
   itemskillbonus   itemskillbonus[]
   races1           race[]             @relation("race_skillid1Toskill")
   races2           race[]             @relation("race_skillid2Toskill")
+
+  @@map("skill")
 }
 
 model useritem {
@@ -605,7 +607,7 @@ model effectskillbonus {
   skillid  String @db.Uuid
   bonus    Int
   effect   effect @relation(fields: [effectid], references: [id])
-  skill    skill  @relation(fields: [skillid], references: [id])
+  skill    Skill  @relation(fields: [skillid], references: [id])
 }
 
 model effectspecialmechanic {
@@ -693,7 +695,7 @@ model itemskillbonus {
   skillid String @db.Uuid
   bonus   Int
   item    item   @relation(fields: [itemid], references: [id])
-  skill   skill  @relation(fields: [skillid], references: [id])
+  skill   Skill  @relation(fields: [skillid], references: [id])
 }
 
 model phrase {

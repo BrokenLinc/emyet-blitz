@@ -16,13 +16,19 @@
           "format": "date-time"
         },
         "name": {
-          "type": ["string", "null"]
+          "type": [
+            "string",
+            "null"
+          ]
         },
         "email": {
           "type": "string"
         },
         "hashedPassword": {
-          "type": ["string", "null"]
+          "type": [
+            "string",
+            "null"
+          ]
         },
         "role": {
           "type": "string",
@@ -41,7 +47,10 @@
           }
         }
       },
-      "required": ["updatedAt", "email"]
+      "required": [
+        "updatedAt",
+        "email"
+      ]
     },
     "Session": {
       "type": "object",
@@ -58,23 +67,38 @@
           "format": "date-time"
         },
         "expiresAt": {
-          "type": ["string", "null"],
+          "type": [
+            "string",
+            "null"
+          ],
           "format": "date-time"
         },
         "handle": {
           "type": "string"
         },
         "hashedSessionToken": {
-          "type": ["string", "null"]
+          "type": [
+            "string",
+            "null"
+          ]
         },
         "antiCSRFToken": {
-          "type": ["string", "null"]
+          "type": [
+            "string",
+            "null"
+          ]
         },
         "publicData": {
-          "type": ["string", "null"]
+          "type": [
+            "string",
+            "null"
+          ]
         },
         "privateData": {
-          "type": ["string", "null"]
+          "type": [
+            "string",
+            "null"
+          ]
         },
         "user": {
           "anyOf": [
@@ -87,10 +111,16 @@
           ]
         },
         "userId": {
-          "type": ["integer", "null"]
+          "type": [
+            "integer",
+            "null"
+          ]
         }
       },
-      "required": ["updatedAt", "handle"]
+      "required": [
+        "updatedAt",
+        "handle"
+      ]
     },
     "Token": {
       "type": "object",
@@ -111,7 +141,9 @@
         },
         "type": {
           "type": "string",
-          "enum": ["RESET_PASSWORD"]
+          "enum": [
+            "RESET_PASSWORD"
+          ]
         },
         "expiresAt": {
           "type": "string",
@@ -127,7 +159,14 @@
           "type": "integer"
         }
       },
-      "required": ["updatedAt", "hashedToken", "type", "expiresAt", "sentTo", "userId"]
+      "required": [
+        "updatedAt",
+        "hashedToken",
+        "type",
+        "expiresAt",
+        "sentTo",
+        "userId"
+      ]
     },
     "activity": {
       "type": "object",
@@ -139,7 +178,10 @@
           "type": "string"
         },
         "description": {
-          "type": ["string", "null"]
+          "type": [
+            "string",
+            "null"
+          ]
         },
         "characterlevelmin": {
           "type": "integer"
@@ -148,10 +190,16 @@
           "type": "integer"
         },
         "skillid": {
-          "type": ["string", "null"]
+          "type": [
+            "string",
+            "null"
+          ]
         },
         "skillidrequiredvalue": {
-          "type": ["integer", "null"]
+          "type": [
+            "integer",
+            "null"
+          ]
         },
         "pvpchance": {
           "type": "integer"
@@ -160,34 +208,58 @@
           "type": "integer"
         },
         "raceid": {
-          "type": ["string", "null"]
+          "type": [
+            "string",
+            "null"
+          ]
         },
         "careerrestrictiontype": {
           "type": "integer"
         },
         "careerid": {
-          "type": ["string", "null"]
+          "type": [
+            "string",
+            "null"
+          ]
         },
         "imageid": {
-          "type": ["string", "null"]
+          "type": [
+            "string",
+            "null"
+          ]
         },
         "imagebackgroundcolor": {
-          "type": ["string", "null"]
+          "type": [
+            "string",
+            "null"
+          ]
         },
         "isdeleted": {
           "type": "boolean"
         },
         "notes": {
-          "type": ["string", "null"]
+          "type": [
+            "string",
+            "null"
+          ]
         },
         "gender": {
-          "type": ["integer", "null"]
+          "type": [
+            "integer",
+            "null"
+          ]
         },
         "singlebattleintroscript": {
-          "type": ["string", "null"]
+          "type": [
+            "string",
+            "null"
+          ]
         },
         "groupbattleintroscript": {
-          "type": ["string", "null"]
+          "type": [
+            "string",
+            "null"
+          ]
         },
         "career": {
           "anyOf": [
@@ -222,7 +294,7 @@
         "skill": {
           "anyOf": [
             {
-              "$ref": "#/definitions/skill"
+              "$ref": "#/definitions/Skill"
             },
             {
               "type": "null"
@@ -253,10 +325,16 @@
           "type": "string"
         },
         "result": {
-          "type": ["string", "null"]
+          "type": [
+            "string",
+            "null"
+          ]
         },
         "battleturns": {
-          "type": ["string", "null"]
+          "type": [
+            "string",
+            "null"
+          ]
         },
         "cash": {
           "type": "integer"
@@ -265,48 +343,87 @@
           "type": "integer"
         },
         "health": {
-          "type": ["integer", "null"]
+          "type": [
+            "integer",
+            "null"
+          ]
         },
         "pvpwins": {
-          "type": ["integer", "null"]
+          "type": [
+            "integer",
+            "null"
+          ]
         },
         "pvplosses": {
-          "type": ["integer", "null"]
+          "type": [
+            "integer",
+            "null"
+          ]
         },
         "customitemid1": {
-          "type": ["string", "null"]
+          "type": [
+            "string",
+            "null"
+          ]
         },
         "customitemid2": {
-          "type": ["string", "null"]
+          "type": [
+            "string",
+            "null"
+          ]
         },
         "activityid": {
           "type": "string"
         },
         "featid": {
-          "type": ["string", "null"]
+          "type": [
+            "string",
+            "null"
+          ]
         },
         "skillid": {
-          "type": ["string", "null"]
+          "type": [
+            "string",
+            "null"
+          ]
         },
         "isnewskill": {
-          "type": ["boolean", "null"]
+          "type": [
+            "boolean",
+            "null"
+          ]
         },
         "resultscalculateddate": {
-          "type": ["string", "null"],
+          "type": [
+            "string",
+            "null"
+          ],
           "format": "date-time"
         },
         "resultsallocateddate": {
-          "type": ["string", "null"],
+          "type": [
+            "string",
+            "null"
+          ],
           "format": "date-time"
         },
         "characterid": {
-          "type": ["string", "null"]
+          "type": [
+            "string",
+            "null"
+          ]
         },
         "issuccess": {
-          "type": ["boolean", "null"]
+          "type": [
+            "boolean",
+            "null"
+          ]
         },
         "battleevents": {
-          "type": ["string", "null"]
+          "type": [
+            "string",
+            "null"
+          ]
         },
         "character": {
           "anyOf": [
@@ -351,7 +468,7 @@
         "skill": {
           "anyOf": [
             {
-              "$ref": "#/definitions/skill"
+              "$ref": "#/definitions/Skill"
             },
             {
               "type": "null"
@@ -359,7 +476,11 @@
           ]
         }
       },
-      "required": ["cash", "experience", "activityid"]
+      "required": [
+        "cash",
+        "experience",
+        "activityid"
+      ]
     },
     "adventure": {
       "type": "object",
@@ -368,70 +489,124 @@
           "type": "string"
         },
         "name": {
-          "type": ["string", "null"]
+          "type": [
+            "string",
+            "null"
+          ]
         },
         "activityid": {
           "type": "string"
         },
         "itemidrequired": {
-          "type": ["string", "null"]
+          "type": [
+            "string",
+            "null"
+          ]
         },
         "itemconsumedonsuccess": {
           "type": "boolean"
         },
         "gender": {
-          "type": ["integer", "null"]
+          "type": [
+            "integer",
+            "null"
+          ]
         },
         "introductionscript": {
-          "type": ["string", "null"]
+          "type": [
+            "string",
+            "null"
+          ]
         },
         "adventurechecktypeid": {
           "type": "string"
         },
         "fighttargettypeidcheck": {
-          "type": ["string", "null"]
+          "type": [
+            "string",
+            "null"
+          ]
         },
         "raceidfightcheck": {
-          "type": ["string", "null"]
+          "type": [
+            "string",
+            "null"
+          ]
         },
         "careeridfightcheck": {
-          "type": ["string", "null"]
+          "type": [
+            "string",
+            "null"
+          ]
         },
         "masknamefightcheck": {
-          "type": ["string", "null"]
+          "type": [
+            "string",
+            "null"
+          ]
         },
         "levelfightcheck": {
-          "type": ["integer", "null"]
+          "type": [
+            "integer",
+            "null"
+          ]
         },
         "usecharacterimagefightcheck": {
-          "type": ["boolean", "null"]
+          "type": [
+            "boolean",
+            "null"
+          ]
         },
         "maskimagebgcolorfightcheck": {
-          "type": ["string", "null"]
+          "type": [
+            "string",
+            "null"
+          ]
         },
         "imageidmaskfightcheck": {
-          "type": ["string", "null"]
+          "type": [
+            "string",
+            "null"
+          ]
         },
         "skillidcheck": {
-          "type": ["string", "null"]
+          "type": [
+            "string",
+            "null"
+          ]
         },
         "skillvaluecheck": {
-          "type": ["integer", "null"]
+          "type": [
+            "integer",
+            "null"
+          ]
         },
         "failurescript": {
-          "type": ["string", "null"]
+          "type": [
+            "string",
+            "null"
+          ]
         },
         "successscript": {
-          "type": ["string", "null"]
+          "type": [
+            "string",
+            "null"
+          ]
         },
         "itemidreward": {
-          "type": ["string", "null"]
+          "type": [
+            "string",
+            "null"
+          ]
         },
         "cashreward": {
           "type": "integer"
         },
         "itemtypeiddrop": {
-          "type": ["string", "null"]
+          "type": [
+            "string",
+            "null"
+          ]
         },
         "itemdropany": {
           "type": "boolean"
@@ -440,13 +615,19 @@
           "type": "boolean"
         },
         "itemdropkeywords": {
-          "type": ["string", "null"]
+          "type": [
+            "string",
+            "null"
+          ]
         },
         "isdeleted": {
           "type": "boolean"
         },
         "featidreward": {
-          "type": ["string", "null"]
+          "type": [
+            "string",
+            "null"
+          ]
         },
         "adventurechecktype": {
           "$ref": "#/definitions/adventurechecktype"
@@ -534,7 +715,7 @@
         "skill": {
           "anyOf": [
             {
-              "$ref": "#/definitions/skill"
+              "$ref": "#/definitions/Skill"
             },
             {
               "type": "null"
@@ -574,7 +755,10 @@
           "type": "string"
         },
         "groupid": {
-          "type": ["string", "null"]
+          "type": [
+            "string",
+            "null"
+          ]
         },
         "characterlevel": {
           "type": "integer"
@@ -600,7 +784,12 @@
           ]
         }
       },
-      "required": ["characterid", "characterlevel", "battlelevel", "dateadded"]
+      "required": [
+        "characterid",
+        "characterlevel",
+        "battlelevel",
+        "dateadded"
+      ]
     },
     "career": {
       "type": "object",
@@ -612,10 +801,16 @@
           "type": "string"
         },
         "description": {
-          "type": ["string", "null"]
+          "type": [
+            "string",
+            "null"
+          ]
         },
         "gender": {
-          "type": ["integer", "null"]
+          "type": [
+            "integer",
+            "null"
+          ]
         },
         "isdeleted": {
           "type": "boolean"
@@ -624,22 +819,40 @@
           "type": "integer"
         },
         "itemid1": {
-          "type": ["string", "null"]
+          "type": [
+            "string",
+            "null"
+          ]
         },
         "itemid2": {
-          "type": ["string", "null"]
+          "type": [
+            "string",
+            "null"
+          ]
         },
         "skillid1": {
-          "type": ["string", "null"]
+          "type": [
+            "string",
+            "null"
+          ]
         },
         "skillid2": {
-          "type": ["string", "null"]
+          "type": [
+            "string",
+            "null"
+          ]
         },
         "featid1": {
-          "type": ["string", "null"]
+          "type": [
+            "string",
+            "null"
+          ]
         },
         "featid2": {
-          "type": ["string", "null"]
+          "type": [
+            "string",
+            "null"
+          ]
         },
         "feat1": {
           "anyOf": [
@@ -684,7 +897,7 @@
         "skill1": {
           "anyOf": [
             {
-              "$ref": "#/definitions/skill"
+              "$ref": "#/definitions/Skill"
             },
             {
               "type": "null"
@@ -694,7 +907,7 @@
         "skill2": {
           "anyOf": [
             {
-              "$ref": "#/definitions/skill"
+              "$ref": "#/definitions/Skill"
             },
             {
               "type": "null"
@@ -764,11 +977,15 @@
         "skill": {
           "type": "array",
           "items": {
-            "$ref": "#/definitions/skill"
+            "$ref": "#/definitions/Skill"
           }
         }
       },
-      "required": ["name", "isdeleted", "gameid"]
+      "required": [
+        "name",
+        "isdeleted",
+        "gameid"
+      ]
     },
     "careerrace": {
       "type": "object",
@@ -872,7 +1089,10 @@
           "type": "string"
         },
         "activityresult": {
-          "type": ["string", "null"]
+          "type": [
+            "string",
+            "null"
+          ]
         },
         "isdeleted": {
           "type": "boolean"
@@ -885,10 +1105,16 @@
           "type": "integer"
         },
         "activityresultid": {
-          "type": ["string", "null"]
+          "type": [
+            "string",
+            "null"
+          ]
         },
         "activityid": {
-          "type": ["string", "null"]
+          "type": [
+            "string",
+            "null"
+          ]
         },
         "pvpwins": {
           "type": "integer"
@@ -903,7 +1129,10 @@
           "type": "boolean"
         },
         "groupid": {
-          "type": ["string", "null"]
+          "type": [
+            "string",
+            "null"
+          ]
         },
         "datelastactivityselected": {
           "type": "string",
@@ -1019,7 +1248,12 @@
           "$ref": "#/definitions/feat"
         }
       },
-      "required": ["characterid", "featid", "rank", "isequipped"]
+      "required": [
+        "characterid",
+        "featid",
+        "rank",
+        "isequipped"
+      ]
     },
     "charactergroup": {
       "type": "object",
@@ -1040,7 +1274,10 @@
           "$ref": "#/definitions/group"
         }
       },
-      "required": ["characterid", "groupid"]
+      "required": [
+        "characterid",
+        "groupid"
+      ]
     },
     "characterskill": {
       "type": "object",
@@ -1064,10 +1301,15 @@
           "$ref": "#/definitions/character"
         },
         "skill": {
-          "$ref": "#/definitions/skill"
+          "$ref": "#/definitions/Skill"
         }
       },
-      "required": ["characterid", "skillid", "value", "freepointvalue"]
+      "required": [
+        "characterid",
+        "skillid",
+        "value",
+        "freepointvalue"
+      ]
     },
     "customitem": {
       "type": "object",
@@ -1079,13 +1321,22 @@
           "type": "string"
         },
         "name": {
-          "type": ["string", "null"]
+          "type": [
+            "string",
+            "null"
+          ]
         },
         "description": {
-          "type": ["string", "null"]
+          "type": [
+            "string",
+            "null"
+          ]
         },
         "flavortext": {
-          "type": ["string", "null"]
+          "type": [
+            "string",
+            "null"
+          ]
         },
         "notrade": {
           "type": "boolean"
@@ -1112,7 +1363,10 @@
           }
         }
       },
-      "required": ["itemid", "notrade"]
+      "required": [
+        "itemid",
+        "notrade"
+      ]
     },
     "effect": {
       "type": "object",
@@ -1121,25 +1375,40 @@
           "type": "string"
         },
         "name": {
-          "type": ["string", "null"]
+          "type": [
+            "string",
+            "null"
+          ]
         },
         "effectdurationtypeid": {
-          "type": ["string", "null"]
+          "type": [
+            "string",
+            "null"
+          ]
         },
         "duration": {
-          "type": ["integer", "null"]
+          "type": [
+            "integer",
+            "null"
+          ]
         },
         "attackmodifier": {
           "type": "integer"
         },
         "attackkeyword": {
-          "type": ["string", "null"]
+          "type": [
+            "string",
+            "null"
+          ]
         },
         "defensemodifier": {
           "type": "integer"
         },
         "defensekeyword": {
-          "type": ["string", "null"]
+          "type": [
+            "string",
+            "null"
+          ]
         },
         "damagehealing": {
           "type": "integer"
@@ -1204,40 +1473,70 @@
           "type": "string"
         },
         "name": {
-          "type": ["string", "null"]
+          "type": [
+            "string",
+            "null"
+          ]
         },
         "description": {
-          "type": ["string", "null"]
+          "type": [
+            "string",
+            "null"
+          ]
         },
         "featcastmodeid": {
-          "type": ["string", "null"]
+          "type": [
+            "string",
+            "null"
+          ]
         },
         "reactiveevent": {
-          "type": ["string", "null"]
+          "type": [
+            "string",
+            "null"
+          ]
         },
         "featreactiveeventinitiatorid": {
-          "type": ["string", "null"]
+          "type": [
+            "string",
+            "null"
+          ]
         },
         "cooldown": {
           "type": "integer"
         },
         "skillid": {
-          "type": ["string", "null"]
+          "type": [
+            "string",
+            "null"
+          ]
         },
         "skillrequiredvalue": {
-          "type": ["integer", "null"]
+          "type": [
+            "integer",
+            "null"
+          ]
         },
         "featspecialmechanicid": {
-          "type": ["string", "null"]
+          "type": [
+            "string",
+            "null"
+          ]
         },
         "cashprize": {
           "type": "integer"
         },
         "feattargettypeidtarget1": {
-          "type": ["string", "null"]
+          "type": [
+            "string",
+            "null"
+          ]
         },
         "gendertarget1": {
-          "type": ["integer", "null"]
+          "type": [
+            "integer",
+            "null"
+          ]
         },
         "damagehealingtarget1": {
           "type": "integer"
@@ -1246,22 +1545,37 @@
           "type": "integer"
         },
         "raceidtarget1": {
-          "type": ["string", "null"]
+          "type": [
+            "string",
+            "null"
+          ]
         },
         "careerrestrictiontypetarget1": {
           "type": "integer"
         },
         "careeridtarget1": {
-          "type": ["string", "null"]
+          "type": [
+            "string",
+            "null"
+          ]
         },
         "effectidtarget1": {
-          "type": ["string", "null"]
+          "type": [
+            "string",
+            "null"
+          ]
         },
         "feattargettypeidtarget2": {
-          "type": ["string", "null"]
+          "type": [
+            "string",
+            "null"
+          ]
         },
         "gendertarget2": {
-          "type": ["integer", "null"]
+          "type": [
+            "integer",
+            "null"
+          ]
         },
         "damagehealingtarget2": {
           "type": "integer"
@@ -1270,16 +1584,25 @@
           "type": "integer"
         },
         "raceidtarget2": {
-          "type": ["string", "null"]
+          "type": [
+            "string",
+            "null"
+          ]
         },
         "careerrestrictiontypetarget2": {
           "type": "integer"
         },
         "careeridtarget2": {
-          "type": ["string", "null"]
+          "type": [
+            "string",
+            "null"
+          ]
         },
         "effectidtarget2": {
-          "type": ["string", "null"]
+          "type": [
+            "string",
+            "null"
+          ]
         },
         "target1onlyscript": {
           "type": "string"
@@ -1297,22 +1620,40 @@
           "type": "boolean"
         },
         "imageid": {
-          "type": ["string", "null"]
+          "type": [
+            "string",
+            "null"
+          ]
         },
         "racerestrictiontype": {
-          "type": ["integer", "null"]
+          "type": [
+            "integer",
+            "null"
+          ]
         },
         "raceid": {
-          "type": ["string", "null"]
+          "type": [
+            "string",
+            "null"
+          ]
         },
         "careerrestrictiontype": {
-          "type": ["integer", "null"]
+          "type": [
+            "integer",
+            "null"
+          ]
         },
         "careerid": {
-          "type": ["string", "null"]
+          "type": [
+            "string",
+            "null"
+          ]
         },
         "gender": {
-          "type": ["integer", "null"]
+          "type": [
+            "integer",
+            "null"
+          ]
         },
         "level": {
           "type": "integer"
@@ -1510,10 +1851,16 @@
           "type": "string"
         },
         "cssclass": {
-          "type": ["string", "null"]
+          "type": [
+            "string",
+            "null"
+          ]
         },
         "title": {
-          "type": ["string", "null"]
+          "type": [
+            "string",
+            "null"
+          ]
         },
         "creationdate": {
           "type": "string",
@@ -1523,7 +1870,10 @@
           "type": "boolean"
         },
         "displaypriority": {
-          "type": ["integer", "null"]
+          "type": [
+            "integer",
+            "null"
+          ]
         },
         "islocked": {
           "type": "boolean"
@@ -1535,7 +1885,11 @@
           }
         }
       },
-      "required": ["creationdate", "isdeleted", "islocked"]
+      "required": [
+        "creationdate",
+        "isdeleted",
+        "islocked"
+      ]
     },
     "forumpost": {
       "type": "object",
@@ -1550,7 +1904,10 @@
           "type": "string"
         },
         "content": {
-          "type": ["string", "null"]
+          "type": [
+            "string",
+            "null"
+          ]
         },
         "creationdate": {
           "type": "string",
@@ -1563,7 +1920,12 @@
           "$ref": "#/definitions/forumthread"
         }
       },
-      "required": ["userid", "forumthreadid", "creationdate", "isdeleted"]
+      "required": [
+        "userid",
+        "forumthreadid",
+        "creationdate",
+        "isdeleted"
+      ]
     },
     "forumthread": {
       "type": "object",
@@ -1578,7 +1940,10 @@
           "type": "string"
         },
         "content": {
-          "type": ["string", "null"]
+          "type": [
+            "string",
+            "null"
+          ]
         },
         "islocked": {
           "type": "boolean"
@@ -1594,7 +1959,10 @@
           "type": "boolean"
         },
         "title": {
-          "type": ["string", "null"]
+          "type": [
+            "string",
+            "null"
+          ]
         },
         "forumcategory": {
           "$ref": "#/definitions/forumcategory"
@@ -1606,7 +1974,14 @@
           }
         }
       },
-      "required": ["userid", "forumcategoryid", "islocked", "issticky", "creationdate", "isdeleted"]
+      "required": [
+        "userid",
+        "forumcategoryid",
+        "islocked",
+        "issticky",
+        "creationdate",
+        "isdeleted"
+      ]
     },
     "gender": {
       "type": "object",
@@ -1615,7 +1990,10 @@
           "type": "string"
         },
         "name": {
-          "type": ["string", "null"]
+          "type": [
+            "string",
+            "null"
+          ]
         },
         "image": {
           "type": "array",
@@ -1637,7 +2015,10 @@
           "format": "date-time"
         },
         "enddatetime": {
-          "type": ["string", "null"],
+          "type": [
+            "string",
+            "null"
+          ],
           "format": "date-time"
         },
         "duration": {
@@ -1665,7 +2046,13 @@
           }
         }
       },
-      "required": ["startdatetime", "duration", "wins", "losses", "runtimes"]
+      "required": [
+        "startdatetime",
+        "duration",
+        "wins",
+        "losses",
+        "runtimes"
+      ]
     },
     "item": {
       "type": "object",
@@ -1674,7 +2061,10 @@
           "type": "string"
         },
         "name": {
-          "type": ["string", "null"]
+          "type": [
+            "string",
+            "null"
+          ]
         },
         "itemtypeid": {
           "type": "string"
@@ -1683,10 +2073,16 @@
           "type": "integer"
         },
         "flavortext": {
-          "type": ["string", "null"]
+          "type": [
+            "string",
+            "null"
+          ]
         },
         "description": {
-          "type": ["string", "null"]
+          "type": [
+            "string",
+            "null"
+          ]
         },
         "healing": {
           "type": "integer"
@@ -1698,7 +2094,10 @@
           "type": "integer"
         },
         "attackkeyword": {
-          "type": ["string", "null"]
+          "type": [
+            "string",
+            "null"
+          ]
         },
         "damage": {
           "type": "integer"
@@ -1707,52 +2106,85 @@
           "type": "number"
         },
         "hitscript": {
-          "type": ["string", "null"]
+          "type": [
+            "string",
+            "null"
+          ]
         },
         "critscript": {
-          "type": ["string", "null"]
+          "type": [
+            "string",
+            "null"
+          ]
         },
         "missscript": {
-          "type": ["string", "null"]
+          "type": [
+            "string",
+            "null"
+          ]
         },
         "defense": {
           "type": "integer"
         },
         "defensekeyword": {
-          "type": ["string", "null"]
+          "type": [
+            "string",
+            "null"
+          ]
         },
         "defendscript": {
-          "type": ["string", "null"]
+          "type": [
+            "string",
+            "null"
+          ]
         },
         "isdeleted": {
           "type": "boolean"
         },
         "imageid": {
-          "type": ["string", "null"]
+          "type": [
+            "string",
+            "null"
+          ]
         },
         "imagebackgroundcolor": {
-          "type": ["string", "null"]
+          "type": [
+            "string",
+            "null"
+          ]
         },
         "notes": {
-          "type": ["string", "null"]
+          "type": [
+            "string",
+            "null"
+          ]
         },
         "racerestrictiontype": {
           "type": "integer"
         },
         "raceid": {
-          "type": ["string", "null"]
+          "type": [
+            "string",
+            "null"
+          ]
         },
         "careerrestrictiontype": {
           "type": "integer"
         },
         "careerid": {
-          "type": ["string", "null"]
+          "type": [
+            "string",
+            "null"
+          ]
         },
         "notrade": {
           "type": "boolean"
         },
         "featid": {
-          "type": ["string", "null"]
+          "type": [
+            "string",
+            "null"
+          ]
         },
         "notradeafterequip": {
           "type": "boolean"
@@ -1872,7 +2304,10 @@
           "type": "string"
         },
         "name": {
-          "type": ["string", "null"]
+          "type": [
+            "string",
+            "null"
+          ]
         },
         "itemequippableinslot": {
           "type": "array",
@@ -1914,7 +2349,10 @@
           }
         }
       },
-      "required": ["name", "isdeleted"]
+      "required": [
+        "name",
+        "isdeleted"
+      ]
     },
     "race": {
       "type": "object",
@@ -1929,22 +2367,40 @@
           "type": "boolean"
         },
         "itemid1": {
-          "type": ["string", "null"]
+          "type": [
+            "string",
+            "null"
+          ]
         },
         "itemid2": {
-          "type": ["string", "null"]
+          "type": [
+            "string",
+            "null"
+          ]
         },
         "skillid1": {
-          "type": ["string", "null"]
+          "type": [
+            "string",
+            "null"
+          ]
         },
         "skillid2": {
-          "type": ["string", "null"]
+          "type": [
+            "string",
+            "null"
+          ]
         },
         "featid1": {
-          "type": ["string", "null"]
+          "type": [
+            "string",
+            "null"
+          ]
         },
         "featid2": {
-          "type": ["string", "null"]
+          "type": [
+            "string",
+            "null"
+          ]
         },
         "feat1": {
           "anyOf": [
@@ -1989,7 +2445,7 @@
         "skill1": {
           "anyOf": [
             {
-              "$ref": "#/definitions/skill"
+              "$ref": "#/definitions/Skill"
             },
             {
               "type": "null"
@@ -1999,7 +2455,7 @@
         "skill2": {
           "anyOf": [
             {
-              "$ref": "#/definitions/skill"
+              "$ref": "#/definitions/Skill"
             },
             {
               "type": "null"
@@ -2055,7 +2511,10 @@
           }
         }
       },
-      "required": ["name", "isdeleted"]
+      "required": [
+        "name",
+        "isdeleted"
+      ]
     },
     "runtime": {
       "type": "object",
@@ -2068,9 +2527,11 @@
           "format": "date-time"
         }
       },
-      "required": ["time"]
+      "required": [
+        "time"
+      ]
     },
-    "skill": {
+    "Skill": {
       "type": "object",
       "properties": {
         "id": {
@@ -2079,20 +2540,26 @@
         "name": {
           "type": "string"
         },
-        "learningscript": {
+        "description": {
+          "type": [
+            "string",
+            "null"
+          ]
+        },
+        "learningScript": {
           "type": "string"
         },
-        "gameid": {
-          "type": "integer"
+        "careerId": {
+          "type": [
+            "string",
+            "null"
+          ]
         },
-        "isdeleted": {
+        "isDeleted": {
           "type": "boolean"
         },
-        "careerid": {
-          "type": ["string", "null"]
-        },
-        "description": {
-          "type": ["string", "null"]
+        "gameId": {
+          "type": "integer"
         },
         "career": {
           "anyOf": [
@@ -2165,7 +2632,12 @@
           }
         }
       },
-      "required": ["name", "learningscript", "gameid", "isdeleted"]
+      "required": [
+        "name",
+        "learningScript",
+        "isDeleted",
+        "gameId"
+      ]
     },
     "useritem": {
       "type": "object",
@@ -2180,13 +2652,22 @@
           "type": "string"
         },
         "characterid": {
-          "type": ["string", "null"]
+          "type": [
+            "string",
+            "null"
+          ]
         },
         "itemslotid": {
-          "type": ["string", "null"]
+          "type": [
+            "string",
+            "null"
+          ]
         },
         "itemslotvariation": {
-          "type": ["integer", "null"]
+          "type": [
+            "integer",
+            "null"
+          ]
         },
         "character": {
           "anyOf": [
@@ -2212,7 +2693,10 @@
           ]
         }
       },
-      "required": ["userid", "customitemid"]
+      "required": [
+        "userid",
+        "customitemid"
+      ]
     },
     "adventurechecktype": {
       "type": "object",
@@ -2230,7 +2714,9 @@
           }
         }
       },
-      "required": ["name"]
+      "required": [
+        "name"
+      ]
     },
     "careeradventure": {
       "type": "object",
@@ -2251,7 +2737,10 @@
           "$ref": "#/definitions/career"
         }
       },
-      "required": ["careerid", "adventureid"]
+      "required": [
+        "careerid",
+        "adventureid"
+      ]
     },
     "characterforhire": {
       "type": "object",
@@ -2279,7 +2768,13 @@
           "$ref": "#/definitions/careerrace"
         }
       },
-      "required": ["userid", "careerraceid", "gender", "expirationdate", "ishired"]
+      "required": [
+        "userid",
+        "careerraceid",
+        "gender",
+        "expirationdate",
+        "ishired"
+      ]
     },
     "characterlevel": {
       "type": "object",
@@ -2300,7 +2795,10 @@
           }
         }
       },
-      "required": ["level", "maxexperience"]
+      "required": [
+        "level",
+        "maxexperience"
+      ]
     },
     "effectdurationtype": {
       "type": "object",
@@ -2309,7 +2807,10 @@
           "type": "string"
         },
         "name": {
-          "type": ["string", "null"]
+          "type": [
+            "string",
+            "null"
+          ]
         },
         "effects": {
           "type": "array",
@@ -2339,10 +2840,14 @@
           "$ref": "#/definitions/effect"
         },
         "skill": {
-          "$ref": "#/definitions/skill"
+          "$ref": "#/definitions/Skill"
         }
       },
-      "required": ["effectid", "skillid", "bonus"]
+      "required": [
+        "effectid",
+        "skillid",
+        "bonus"
+      ]
     },
     "effectspecialmechanic": {
       "type": "object",
@@ -2351,7 +2856,10 @@
           "type": "string"
         },
         "name": {
-          "type": ["string", "null"]
+          "type": [
+            "string",
+            "null"
+          ]
         },
         "effectspecialmechaniccombo": {
           "type": "array",
@@ -2381,7 +2889,10 @@
           "$ref": "#/definitions/effectspecialmechanic"
         }
       },
-      "required": ["effectid", "effectspecialmechanicid"]
+      "required": [
+        "effectid",
+        "effectspecialmechanicid"
+      ]
     },
     "featcastmode": {
       "type": "object",
@@ -2390,7 +2901,10 @@
           "type": "string"
         },
         "name": {
-          "type": ["string", "null"]
+          "type": [
+            "string",
+            "null"
+          ]
         },
         "feat": {
           "type": "array",
@@ -2408,7 +2922,10 @@
           "type": "string"
         },
         "name": {
-          "type": ["string", "null"]
+          "type": [
+            "string",
+            "null"
+          ]
         },
         "feat": {
           "type": "array",
@@ -2426,7 +2943,10 @@
           "type": "string"
         },
         "name": {
-          "type": ["string", "null"]
+          "type": [
+            "string",
+            "null"
+          ]
         },
         "feat": {
           "type": "array",
@@ -2444,7 +2964,10 @@
           "type": "string"
         },
         "name": {
-          "type": ["string", "null"]
+          "type": [
+            "string",
+            "null"
+          ]
         },
         "feats1": {
           "type": "array",
@@ -2477,7 +3000,9 @@
           }
         }
       },
-      "required": ["name"]
+      "required": [
+        "name"
+      ]
     },
     "image": {
       "type": "object",
@@ -2495,16 +3020,28 @@
           "type": "boolean"
         },
         "raceid": {
-          "type": ["string", "null"]
+          "type": [
+            "string",
+            "null"
+          ]
         },
         "careerid": {
-          "type": ["string", "null"]
+          "type": [
+            "string",
+            "null"
+          ]
         },
         "genderid": {
-          "type": ["string", "null"]
+          "type": [
+            "string",
+            "null"
+          ]
         },
         "gender": {
-          "type": ["integer", "null"]
+          "type": [
+            "integer",
+            "null"
+          ]
         },
         "career": {
           "anyOf": [
@@ -2564,7 +3101,11 @@
           }
         }
       },
-      "required": ["imagecategoryid", "filename", "isdeleted"]
+      "required": [
+        "imagecategoryid",
+        "filename",
+        "isdeleted"
+      ]
     },
     "imagecategory": {
       "type": "object",
@@ -2585,7 +3126,10 @@
           }
         }
       },
-      "required": ["name", "isdeleted"]
+      "required": [
+        "name",
+        "isdeleted"
+      ]
     },
     "itemequippableinslot": {
       "type": "object",
@@ -2606,7 +3150,10 @@
           "$ref": "#/definitions/itemslot"
         }
       },
-      "required": ["itemid", "itemslotid"]
+      "required": [
+        "itemid",
+        "itemslotid"
+      ]
     },
     "itemskillbonus": {
       "type": "object",
@@ -2627,10 +3174,14 @@
           "$ref": "#/definitions/item"
         },
         "skill": {
-          "$ref": "#/definitions/skill"
+          "$ref": "#/definitions/Skill"
         }
       },
-      "required": ["itemid", "skillid", "bonus"]
+      "required": [
+        "itemid",
+        "skillid",
+        "bonus"
+      ]
     },
     "phrase": {
       "type": "object",
@@ -2657,7 +3208,10 @@
           }
         }
       },
-      "required": ["name", "isdeleted"]
+      "required": [
+        "name",
+        "isdeleted"
+      ]
     },
     "phrasevariation": {
       "type": "object",
@@ -2681,7 +3235,10 @@
           }
         }
       },
-      "required": ["name", "phraseid"]
+      "required": [
+        "name",
+        "phraseid"
+      ]
     },
     "phrasevariationterm": {
       "type": "object",
@@ -2693,7 +3250,10 @@
           "type": "string"
         },
         "phrasevariationid": {
-          "type": ["string", "null"]
+          "type": [
+            "string",
+            "null"
+          ]
         },
         "phraseid": {
           "type": "string"
@@ -2712,7 +3272,10 @@
           ]
         }
       },
-      "required": ["name", "phraseid"]
+      "required": [
+        "name",
+        "phraseid"
+      ]
     },
     "raceadventure": {
       "type": "object",
@@ -2733,7 +3296,10 @@
           "$ref": "#/definitions/race"
         }
       },
-      "required": ["raceid", "adventureid"]
+      "required": [
+        "raceid",
+        "adventureid"
+      ]
     }
   },
   "type": "object",
@@ -2817,7 +3383,7 @@
       "$ref": "#/definitions/runtime"
     },
     "skill": {
-      "$ref": "#/definitions/skill"
+      "$ref": "#/definitions/Skill"
     },
     "useritem": {
       "$ref": "#/definitions/useritem"
