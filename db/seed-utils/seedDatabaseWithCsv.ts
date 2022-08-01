@@ -41,7 +41,7 @@ const parseCsvFile = async (filePath: string, tableName: string) => {
       record_delimiter: "|",
       relax_quotes: true,
       columns: (header) => {
-        return header.map((label) => label.toLowerCase())
+        return header.map((label) => _.camelCase(label).replace("ID", "Id"))
       },
       cast: (value, context) => {
         if (context.header) return value
@@ -85,7 +85,7 @@ const coerceValue = (tableName: string, columnName: string, value: any) => {
       if (value.length === 38 && _.startsWith(value, "{") && _.endsWith(value, "}")) {
         return value.slice(1, -1)
       }
-      if (columnName.includes("id") && value === "") {
+      if (columnName.includes("Id") && value === "") {
         return null
       }
     default:
