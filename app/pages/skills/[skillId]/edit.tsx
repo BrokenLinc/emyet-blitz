@@ -1,10 +1,13 @@
-import { Suspense } from "react"
-import { Head, Link, useRouter, useQuery, useMutation, useParam, BlitzPage, Routes } from "blitz"
-import Layout from "app/core/layouts/Layout"
+import React, { Suspense } from "react"
+import { useRouter, useQuery, useMutation, useParam, BlitzPage, Routes } from "blitz"
+import * as UI from "@chakra-ui/react"
+
+import { AdminLayout } from "app/core/layouts/AdminLayout"
 import getSkill from "app/skills/queries/getSkill"
 import updateSkill from "app/skills/mutations/updateSkill"
-import { SkillForm, FORM_ERROR } from "app/skills/components/SkillForm"
+import { SkillForm } from "app/skills/components/SkillForm"
 import skillValidations from "app/skills/validations"
+import { FORM_ERROR } from "app/core/components/Form"
 
 export const EditSkill = () => {
   const router = useRouter()
@@ -20,54 +23,39 @@ export const EditSkill = () => {
   const [updateSkillMutation] = useMutation(updateSkill)
 
   return (
-    <>
-      <Head>
-        <title>Edit Skill {skill.id}</title>
-      </Head>
-
-      <div>
-        <h1>Edit Skill {skill.id}</h1>
-        <pre>{JSON.stringify(skill, null, 2)}</pre>
-
-        <SkillForm
-          schema={skillValidations.Update}
-          initialValues={skill}
-          submitLabel="Update Skill"
-          onSubmit={async (values) => {
-            try {
-              const updated = await updateSkillMutation(values)
-              await setQueryData(updated)
-              router.push(Routes.ShowSkillPage({ skillId: updated.id }))
-            } catch (error: any) {
-              console.error(error)
-              return {
-                [FORM_ERROR]: error.toString(),
-              }
+    <React.Fragment>
+      <UI.Heading mb={6}>Edit Skill: {skill.name}</UI.Heading>
+      <SkillForm
+        mode="edit"
+        schema={skillValidations.Update}
+        initialValues={skill}
+        submitLabel="Update Skill"
+        onSubmit={async (values) => {
+          try {
+            const updated = await updateSkillMutation(values)
+            await setQueryData(updated)
+            router.push(Routes.ShowSkillPage({ skillId: updated.id }))
+          } catch (error: any) {
+            console.error(error)
+            return {
+              [FORM_ERROR]: error.toString(),
             }
-          }}
-        />
-      </div>
-    </>
+          }
+        }}
+      />
+    </React.Fragment>
   )
 }
 
 const EditSkillPage: BlitzPage = () => {
   return (
-    <div>
-      <Suspense fallback={<div>Loading...</div>}>
-        <EditSkill />
-      </Suspense>
-
-      <p>
-        <Link href={Routes.SkillsPage()}>
-          <a>Skills</a>
-        </Link>
-      </p>
-    </div>
+    <Suspense fallback={<div>Loading...</div>}>
+      <EditSkill />
+    </Suspense>
   )
 }
 
 EditSkillPage.authenticate = true
-EditSkillPage.getLayout = (page) => <Layout>{page}</Layout>
+EditSkillPage.getLayout = (page) => <AdminLayout>{page}</AdminLayout>
 
 export default EditSkillPage

@@ -26,6 +26,7 @@ const optionalParams = z
 
 /*
  * Generic code
+ * TODO: figure out how to move this out of the file
  */
 
 export const Create = z.object({}).merge(requiredParams).merge(optionalParams)

@@ -11,6 +11,7 @@ export interface FormProps<S extends z.ZodType<any, any>> extends UI.StackProps 
   schema?: S
   onSubmit: (values: z.infer<S>) => Promise<void | OnSubmitResult>
   initialValues?: UseFormProps<z.infer<S>>["defaultValues"]
+  mode?: "edit" | "create"
 }
 
 interface OnSubmitResult {

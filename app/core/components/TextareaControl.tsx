@@ -22,6 +22,7 @@ export const TextareaControl = React.forwardRef<UI.TextareaProps, TextareaContro
       <UI.FormControl isInvalid={!!error} {...formControlProps}>
         <UI.FormLabel {...labelProps}>{label}</UI.FormLabel>
         <UI.Textarea
+          height="152px"
           isDisabled={formState.isSubmitting}
           {...form.register(name)}
           {...textareaProps}

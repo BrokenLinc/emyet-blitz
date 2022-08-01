@@ -16,6 +16,7 @@ const controlRole: Role = "ADMIN"
 
 /*
  * Generic code
+ * TODO: figure out how to move this out of the file
  */
 
 export interface GetManyInput extends Pick<FindManyArgs, "where" | "orderBy" | "skip" | "take"> {}
