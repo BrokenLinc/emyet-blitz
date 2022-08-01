@@ -1,8 +1,5 @@
 TRUNCATE
 
-"User",
-"Session",
-"Token",
 "activity",
 "activityresult",
 "adventure",
