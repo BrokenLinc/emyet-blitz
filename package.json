@@ -9,7 +9,11 @@
     "lint": "eslint --ignore-path .gitignore --ext .js,.ts,.tsx .",
     "test": "jest",
     "test:watch": "jest --watch",
-    "prepare:disabled": "husky install"
+    "prepare:disabled": "husky install",
+    "db:push": "blitz prisma db push",
+    "prisma:migrate:dev": "blitz prisma migrate dev",
+    "prisma:generate": "prisma generate",
+    "db:seed": "blitz db seed"
   },
   "prisma": {
     "schema": "db/schema.prisma"
