@@ -8,13 +8,26 @@ import {
   useQueryErrorResetBoundary,
 } from "blitz"
 import LoginForm from "app/auth/components/LoginForm"
-import { ChakraProvider } from "@chakra-ui/react"
+import { ChakraProvider, extendTheme } from "@chakra-ui/react"
 
 export default function App({ Component, pageProps }: AppProps) {
   const getLayout = Component.getLayout || ((page) => page)
 
   return (
-    <ChakraProvider>
+    <ChakraProvider
+      theme={extendTheme({
+        styles: {
+          global: {
+            [".highlighter"]: { bg: "green.200", borderRadius: "sm" },
+            // https://github.com/FortAwesome/react-fontawesome/issues/512
+            [".svg-inline--fa"]: {
+              h: "1em",
+              verticalAlign: "-0.125em",
+            },
+          },
+        },
+      })}
+    >
       <ErrorBoundary
         FallbackComponent={RootErrorFallback}
         onReset={useQueryErrorResetBoundary().reset}
