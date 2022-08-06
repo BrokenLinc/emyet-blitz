@@ -168,7 +168,7 @@
         "userId"
       ]
     },
-    "activity": {
+    "Activity": {
       "type": "object",
       "properties": {
         "id": {
@@ -183,58 +183,58 @@
             "null"
           ]
         },
-        "characterlevelmin": {
+        "characterLevelMin": {
           "type": "integer"
         },
-        "characterlevelmax": {
+        "characterLevelMax": {
           "type": "integer"
         },
-        "skillid": {
+        "skillId": {
           "type": [
             "string",
             "null"
           ]
         },
-        "skillidrequiredvalue": {
+        "skillIdRequiredValue": {
           "type": [
             "integer",
             "null"
           ]
         },
-        "pvpchance": {
+        "pvpChance": {
           "type": "integer"
         },
-        "racerestrictiontype": {
+        "raceRestrictionType": {
           "type": "integer"
         },
-        "raceid": {
+        "raceId": {
           "type": [
             "string",
             "null"
           ]
         },
-        "careerrestrictiontype": {
+        "careerRestrictionType": {
           "type": "integer"
         },
-        "careerid": {
+        "careerId": {
           "type": [
             "string",
             "null"
           ]
         },
-        "imageid": {
+        "imageId": {
           "type": [
             "string",
             "null"
           ]
         },
-        "imagebackgroundcolor": {
+        "imageBackgroundColor": {
           "type": [
             "string",
             "null"
           ]
         },
-        "isdeleted": {
+        "isDeleted": {
           "type": "boolean"
         },
         "notes": {
@@ -249,13 +249,13 @@
             "null"
           ]
         },
-        "singlebattleintroscript": {
+        "singleBattleIntroScript": {
           "type": [
             "string",
             "null"
           ]
         },
-        "groupbattleintroscript": {
+        "groupBattleIntroScript": {
           "type": [
             "string",
             "null"
@@ -264,7 +264,7 @@
         "career": {
           "anyOf": [
             {
-              "$ref": "#/definitions/career"
+              "$ref": "#/definitions/Career"
             },
             {
               "type": "null"
@@ -274,7 +274,7 @@
         "image": {
           "anyOf": [
             {
-              "$ref": "#/definitions/image"
+              "$ref": "#/definitions/Image"
             },
             {
               "type": "null"
@@ -284,7 +284,7 @@
         "race": {
           "anyOf": [
             {
-              "$ref": "#/definitions/race"
+              "$ref": "#/definitions/Race"
             },
             {
               "type": "null"
@@ -304,21 +304,21 @@
         "characters": {
           "type": "array",
           "items": {
-            "$ref": "#/definitions/character"
+            "$ref": "#/definitions/Character"
           }
         }
       },
       "required": [
         "name",
-        "characterlevelmin",
-        "characterlevelmax",
-        "pvpchance",
-        "racerestrictiontype",
-        "careerrestrictiontype",
-        "isdeleted"
+        "characterLevelMin",
+        "characterLevelMax",
+        "pvpChance",
+        "raceRestrictionType",
+        "careerRestrictionType",
+        "isDeleted"
       ]
     },
-    "activityresult": {
+    "ActivityResult": {
       "type": "object",
       "properties": {
         "id": {
@@ -330,7 +330,7 @@
             "null"
           ]
         },
-        "battleturns": {
+        "battleTurns": {
           "type": [
             "string",
             "null"
@@ -348,78 +348,78 @@
             "null"
           ]
         },
-        "pvpwins": {
+        "pvpWins": {
           "type": [
             "integer",
             "null"
           ]
         },
-        "pvplosses": {
+        "pvpLosses": {
           "type": [
             "integer",
             "null"
           ]
         },
-        "customitemid1": {
+        "customItemId1": {
           "type": [
             "string",
             "null"
           ]
         },
-        "customitemid2": {
+        "customItemId2": {
           "type": [
             "string",
             "null"
           ]
         },
-        "activityid": {
+        "activityId": {
           "type": "string"
         },
-        "featid": {
+        "featId": {
           "type": [
             "string",
             "null"
           ]
         },
-        "skillid": {
+        "skillId": {
           "type": [
             "string",
             "null"
           ]
         },
-        "isnewskill": {
+        "isNewSkill": {
           "type": [
             "boolean",
             "null"
           ]
         },
-        "resultscalculateddate": {
+        "resultsCalculatedDate": {
           "type": [
             "string",
             "null"
           ],
           "format": "date-time"
         },
-        "resultsallocateddate": {
+        "resultsAllocatedDate": {
           "type": [
             "string",
             "null"
           ],
           "format": "date-time"
         },
-        "characterid": {
+        "characterId": {
           "type": [
             "string",
             "null"
           ]
         },
-        "issuccess": {
+        "isSuccess": {
           "type": [
             "boolean",
             "null"
           ]
         },
-        "battleevents": {
+        "battleEvents": {
           "type": [
             "string",
             "null"
@@ -428,27 +428,27 @@
         "character": {
           "anyOf": [
             {
-              "$ref": "#/definitions/character"
+              "$ref": "#/definitions/Character"
             },
             {
               "type": "null"
             }
           ]
         },
-        "customitem1": {
+        "customItem1": {
           "anyOf": [
             {
-              "$ref": "#/definitions/customitem"
+              "$ref": "#/definitions/CustomItem"
             },
             {
               "type": "null"
             }
           ]
         },
-        "customitem2": {
+        "customItem2": {
           "anyOf": [
             {
-              "$ref": "#/definitions/customitem"
+              "$ref": "#/definitions/CustomItem"
             },
             {
               "type": "null"
@@ -458,7 +458,7 @@
         "feat": {
           "anyOf": [
             {
-              "$ref": "#/definitions/feat"
+              "$ref": "#/definitions/Feat"
             },
             {
               "type": "null"
@@ -479,10 +479,10 @@
       "required": [
         "cash",
         "experience",
-        "activityid"
+        "activityId"
       ]
     },
-    "adventure": {
+    "Adventure": {
       "type": "object",
       "properties": {
         "id": {
@@ -494,16 +494,16 @@
             "null"
           ]
         },
-        "activityid": {
+        "activityId": {
           "type": "string"
         },
-        "itemidrequired": {
+        "itemIdRequired": {
           "type": [
             "string",
             "null"
           ]
         },
-        "itemconsumedonsuccess": {
+        "itemConsumedOnSuccess": {
           "type": "boolean"
         },
         "gender": {
@@ -512,130 +512,130 @@
             "null"
           ]
         },
-        "introductionscript": {
+        "introductionScript": {
           "type": [
             "string",
             "null"
           ]
         },
-        "adventurechecktypeid": {
+        "adventureCheckTypeId": {
           "type": "string"
         },
-        "fighttargettypeidcheck": {
+        "fightTargetTypeIdCheck": {
           "type": [
             "string",
             "null"
           ]
         },
-        "raceidfightcheck": {
+        "raceIdFightCheck": {
           "type": [
             "string",
             "null"
           ]
         },
-        "careeridfightcheck": {
+        "careerIdFightCheck": {
           "type": [
             "string",
             "null"
           ]
         },
-        "masknamefightcheck": {
+        "maskNameFightCheck": {
           "type": [
             "string",
             "null"
           ]
         },
-        "levelfightcheck": {
+        "levelFightCheck": {
           "type": [
             "integer",
             "null"
           ]
         },
-        "usecharacterimagefightcheck": {
+        "useCharacterImageFightCheck": {
           "type": [
             "boolean",
             "null"
           ]
         },
-        "maskimagebgcolorfightcheck": {
+        "maskImageBgColorFightCheck": {
           "type": [
             "string",
             "null"
           ]
         },
-        "imageidmaskfightcheck": {
+        "imageIdMaskFightCheck": {
           "type": [
             "string",
             "null"
           ]
         },
-        "skillidcheck": {
+        "skillIdCheck": {
           "type": [
             "string",
             "null"
           ]
         },
-        "skillvaluecheck": {
+        "skillValueCheck": {
           "type": [
             "integer",
             "null"
           ]
         },
-        "failurescript": {
+        "failureScript": {
           "type": [
             "string",
             "null"
           ]
         },
-        "successscript": {
+        "successScript": {
           "type": [
             "string",
             "null"
           ]
         },
-        "itemidreward": {
+        "itemIdReward": {
           "type": [
             "string",
             "null"
           ]
         },
-        "cashreward": {
+        "cashReward": {
           "type": "integer"
         },
-        "itemtypeiddrop": {
+        "itemTypeIdDrop": {
           "type": [
             "string",
             "null"
           ]
         },
-        "itemdropany": {
+        "itemDropAny": {
           "type": "boolean"
         },
-        "itemdroprelated": {
+        "itemDropRelated": {
           "type": "boolean"
         },
-        "itemdropkeywords": {
+        "itemDropKeywords": {
           "type": [
             "string",
             "null"
           ]
         },
-        "isdeleted": {
+        "isDeleted": {
           "type": "boolean"
         },
-        "featidreward": {
+        "featIdReward": {
           "type": [
             "string",
             "null"
           ]
         },
-        "adventurechecktype": {
-          "$ref": "#/definitions/adventurechecktype"
+        "adventureCheckType": {
+          "$ref": "#/definitions/AdventureCheckType"
         },
         "career": {
           "anyOf": [
             {
-              "$ref": "#/definitions/career"
+              "$ref": "#/definitions/Career"
             },
             {
               "type": "null"
@@ -645,17 +645,17 @@
         "feat": {
           "anyOf": [
             {
-              "$ref": "#/definitions/feat"
+              "$ref": "#/definitions/Feat"
             },
             {
               "type": "null"
             }
           ]
         },
-        "fighttargettype": {
+        "fightTargetType": {
           "anyOf": [
             {
-              "$ref": "#/definitions/fighttargettype"
+              "$ref": "#/definitions/FightTargetType"
             },
             {
               "type": "null"
@@ -665,37 +665,37 @@
         "image": {
           "anyOf": [
             {
-              "$ref": "#/definitions/image"
+              "$ref": "#/definitions/Image"
             },
             {
               "type": "null"
             }
           ]
         },
-        "itemrequired": {
+        "itemRequired": {
           "anyOf": [
             {
-              "$ref": "#/definitions/item"
+              "$ref": "#/definitions/Item"
             },
             {
               "type": "null"
             }
           ]
         },
-        "itemreward": {
+        "itemReward": {
           "anyOf": [
             {
-              "$ref": "#/definitions/item"
+              "$ref": "#/definitions/Item"
             },
             {
               "type": "null"
             }
           ]
         },
-        "itemtype": {
+        "itemType": {
           "anyOf": [
             {
-              "$ref": "#/definitions/itemtype"
+              "$ref": "#/definitions/ItemType"
             },
             {
               "type": "null"
@@ -705,7 +705,7 @@
         "race": {
           "anyOf": [
             {
-              "$ref": "#/definitions/race"
+              "$ref": "#/definitions/Race"
             },
             {
               "type": "null"
@@ -722,61 +722,61 @@
             }
           ]
         },
-        "careeradventure": {
+        "careerAdventure": {
           "type": "array",
           "items": {
-            "$ref": "#/definitions/careeradventure"
+            "$ref": "#/definitions/CareerAdventure"
           }
         },
-        "raceadventure": {
+        "raceAdventure": {
           "type": "array",
           "items": {
-            "$ref": "#/definitions/raceadventure"
+            "$ref": "#/definitions/RaceAdventure"
           }
         }
       },
       "required": [
-        "activityid",
-        "itemconsumedonsuccess",
-        "adventurechecktypeid",
-        "cashreward",
-        "itemdropany",
-        "itemdroprelated",
-        "isdeleted"
+        "activityId",
+        "itemConsumedOnSuccess",
+        "adventureCheckTypeId",
+        "cashReward",
+        "itemDropAny",
+        "itemDropRelated",
+        "isDeleted"
       ]
     },
-    "battlepool": {
+    "BattlePool": {
       "type": "object",
       "properties": {
         "id": {
           "type": "string"
         },
-        "characterid": {
+        "characterId": {
           "type": "string"
         },
-        "groupid": {
+        "groupId": {
           "type": [
             "string",
             "null"
           ]
         },
-        "characterlevel": {
+        "characterLevel": {
           "type": "integer"
         },
-        "battlelevel": {
+        "battleLevel": {
           "type": "number"
         },
-        "dateadded": {
+        "dateAdded": {
           "type": "string",
           "format": "date-time"
         },
         "character": {
-          "$ref": "#/definitions/character"
+          "$ref": "#/definitions/Character"
         },
         "group": {
           "anyOf": [
             {
-              "$ref": "#/definitions/group"
+              "$ref": "#/definitions/Group"
             },
             {
               "type": "null"
@@ -785,13 +785,13 @@
         }
       },
       "required": [
-        "characterid",
-        "characterlevel",
-        "battlelevel",
-        "dateadded"
+        "characterId",
+        "characterLevel",
+        "battleLevel",
+        "dateAdded"
       ]
     },
-    "career": {
+    "Career": {
       "type": "object",
       "properties": {
         "id": {
@@ -812,43 +812,43 @@
             "null"
           ]
         },
-        "isdeleted": {
+        "isDeleted": {
           "type": "boolean"
         },
-        "gameid": {
+        "gameId": {
           "type": "integer"
         },
-        "itemid1": {
+        "itemId1": {
           "type": [
             "string",
             "null"
           ]
         },
-        "itemid2": {
+        "itemId2": {
           "type": [
             "string",
             "null"
           ]
         },
-        "skillid1": {
+        "skillId1": {
           "type": [
             "string",
             "null"
           ]
         },
-        "skillid2": {
+        "skillId2": {
           "type": [
             "string",
             "null"
           ]
         },
-        "featid1": {
+        "featId1": {
           "type": [
             "string",
             "null"
           ]
         },
-        "featid2": {
+        "featId2": {
           "type": [
             "string",
             "null"
@@ -857,7 +857,7 @@
         "feat1": {
           "anyOf": [
             {
-              "$ref": "#/definitions/feat"
+              "$ref": "#/definitions/Feat"
             },
             {
               "type": "null"
@@ -867,7 +867,7 @@
         "feat2": {
           "anyOf": [
             {
-              "$ref": "#/definitions/feat"
+              "$ref": "#/definitions/Feat"
             },
             {
               "type": "null"
@@ -877,7 +877,7 @@
         "item1": {
           "anyOf": [
             {
-              "$ref": "#/definitions/item"
+              "$ref": "#/definitions/Item"
             },
             {
               "type": "null"
@@ -887,7 +887,7 @@
         "item2": {
           "anyOf": [
             {
-              "$ref": "#/definitions/item"
+              "$ref": "#/definitions/Item"
             },
             {
               "type": "null"
@@ -917,61 +917,61 @@
         "activities": {
           "type": "array",
           "items": {
-            "$ref": "#/definitions/activity"
+            "$ref": "#/definitions/Activity"
           }
         },
         "adventure": {
           "type": "array",
           "items": {
-            "$ref": "#/definitions/adventure"
+            "$ref": "#/definitions/Adventure"
           }
         },
-        "careeradventure": {
+        "careerAdventure": {
           "type": "array",
           "items": {
-            "$ref": "#/definitions/careeradventure"
+            "$ref": "#/definitions/CareerAdventure"
           }
         },
-        "careerrace": {
+        "careerRace": {
           "type": "array",
           "items": {
-            "$ref": "#/definitions/careerrace"
+            "$ref": "#/definitions/CareerRace"
           }
         },
         "characters": {
           "type": "array",
           "items": {
-            "$ref": "#/definitions/character"
+            "$ref": "#/definitions/Character"
           }
         },
         "feat": {
           "type": "array",
           "items": {
-            "$ref": "#/definitions/feat"
+            "$ref": "#/definitions/Feat"
           }
         },
         "feats1": {
           "type": "array",
           "items": {
-            "$ref": "#/definitions/feat"
+            "$ref": "#/definitions/Feat"
           }
         },
         "feats2": {
           "type": "array",
           "items": {
-            "$ref": "#/definitions/feat"
+            "$ref": "#/definitions/Feat"
           }
         },
         "image": {
           "type": "array",
           "items": {
-            "$ref": "#/definitions/image"
+            "$ref": "#/definitions/Image"
           }
         },
         "item": {
           "type": "array",
           "items": {
-            "$ref": "#/definitions/item"
+            "$ref": "#/definitions/Item"
           }
         },
         "skill": {
@@ -983,91 +983,91 @@
       },
       "required": [
         "name",
-        "isdeleted",
-        "gameid"
+        "isDeleted",
+        "gameId"
       ]
     },
-    "careerrace": {
+    "CareerRace": {
       "type": "object",
       "properties": {
         "id": {
           "type": "string"
         },
-        "careerid": {
+        "careerId": {
           "type": "string"
         },
-        "raceid": {
+        "raceId": {
           "type": "string"
         },
-        "maleweight": {
+        "maleWeight": {
           "type": "integer"
         },
-        "femaleweight": {
+        "femaleWeight": {
           "type": "integer"
         },
-        "malename": {
+        "maleName": {
           "type": "string"
         },
-        "femalename": {
+        "femaleName": {
           "type": "string"
         },
         "bio": {
           "type": "string"
         },
-        "malebio": {
+        "maleBio": {
           "type": "string"
         },
-        "femalebio": {
+        "femaleBio": {
           "type": "string"
         },
-        "flavortext": {
+        "flavorText": {
           "type": "string"
         },
         "career": {
-          "$ref": "#/definitions/career"
+          "$ref": "#/definitions/Career"
         },
         "race": {
-          "$ref": "#/definitions/race"
+          "$ref": "#/definitions/Race"
         },
-        "characterforhire": {
+        "characterForHire": {
           "type": "array",
           "items": {
-            "$ref": "#/definitions/characterforhire"
+            "$ref": "#/definitions/CharacterForHire"
           }
         }
       },
       "required": [
-        "careerid",
-        "raceid",
-        "maleweight",
-        "femaleweight",
-        "malename",
-        "femalename",
+        "careerId",
+        "raceId",
+        "maleWeight",
+        "femaleWeight",
+        "maleName",
+        "femaleName",
         "bio",
-        "malebio",
-        "femalebio",
-        "flavortext"
+        "maleBio",
+        "femaleBio",
+        "flavorText"
       ]
     },
-    "character": {
+    "Character": {
       "type": "object",
       "properties": {
         "id": {
           "type": "string"
         },
-        "userid": {
+        "userId": {
           "type": "string"
         },
-        "careerid": {
+        "careerId": {
           "type": "string"
         },
-        "raceid": {
+        "raceId": {
           "type": "string"
         },
-        "imageid": {
+        "imageId": {
           "type": "string"
         },
-        "levelid": {
+        "levelId": {
           "type": "string"
         },
         "name": {
@@ -1082,69 +1082,69 @@
         "health": {
           "type": "integer"
         },
-        "maxhealth": {
+        "maxHealth": {
           "type": "integer"
         },
         "biography": {
           "type": "string"
         },
-        "activityresult": {
+        "activityResult": {
           "type": [
             "string",
             "null"
           ]
         },
-        "isdeleted": {
+        "isDeleted": {
           "type": "boolean"
         },
-        "datecreated": {
+        "dateCreated": {
           "type": "string",
           "format": "date-time"
         },
-        "skillpoints": {
+        "skillPoints": {
           "type": "integer"
         },
-        "activityresultid": {
+        "activityResultId": {
           "type": [
             "string",
             "null"
           ]
         },
-        "activityid": {
+        "activityId": {
           "type": [
             "string",
             "null"
           ]
         },
-        "pvpwins": {
+        "pvpWins": {
           "type": "integer"
         },
-        "pvplosses": {
+        "pvpLosses": {
           "type": "integer"
         },
-        "pvprating": {
+        "pvpRating": {
           "type": "number"
         },
-        "isnpc": {
+        "isNpc": {
           "type": "boolean"
         },
-        "groupid": {
+        "groupId": {
           "type": [
             "string",
             "null"
           ]
         },
-        "datelastactivityselected": {
+        "dateLastActivitySelected": {
           "type": "string",
           "format": "date-time"
         },
-        "isretired": {
+        "isRetired": {
           "type": "boolean"
         },
         "activity": {
           "anyOf": [
             {
-              "$ref": "#/definitions/activity"
+              "$ref": "#/definitions/Activity"
             },
             {
               "type": "null"
@@ -1152,166 +1152,166 @@
           ]
         },
         "career": {
-          "$ref": "#/definitions/career"
+          "$ref": "#/definitions/Career"
         },
         "image": {
-          "$ref": "#/definitions/image"
+          "$ref": "#/definitions/Image"
         },
         "level": {
-          "$ref": "#/definitions/characterlevel"
+          "$ref": "#/definitions/CharacterLevel"
         },
         "race": {
-          "$ref": "#/definitions/race"
+          "$ref": "#/definitions/Race"
         },
-        "activityresults": {
+        "activityResults": {
           "type": "array",
           "items": {
-            "$ref": "#/definitions/activityresult"
+            "$ref": "#/definitions/ActivityResult"
           }
         },
-        "battlepool": {
+        "battlePool": {
           "type": "array",
           "items": {
-            "$ref": "#/definitions/battlepool"
+            "$ref": "#/definitions/BattlePool"
           }
         },
-        "characterfeat": {
+        "characterFeat": {
           "type": "array",
           "items": {
-            "$ref": "#/definitions/characterfeat"
+            "$ref": "#/definitions/CharacterFeat"
           }
         },
-        "charactergroup": {
+        "characterGroup": {
           "type": "array",
           "items": {
-            "$ref": "#/definitions/charactergroup"
+            "$ref": "#/definitions/CharacterGroup"
           }
         },
-        "characterskill": {
+        "characterSkill": {
           "type": "array",
           "items": {
-            "$ref": "#/definitions/characterskill"
+            "$ref": "#/definitions/CharacterSkill"
           }
         },
-        "useritem": {
+        "userItem": {
           "type": "array",
           "items": {
-            "$ref": "#/definitions/useritem"
+            "$ref": "#/definitions/UserItem"
           }
         }
       },
       "required": [
-        "userid",
-        "careerid",
-        "raceid",
-        "imageid",
-        "levelid",
+        "userId",
+        "careerId",
+        "raceId",
+        "imageId",
+        "levelId",
         "name",
         "experience",
         "gender",
         "health",
-        "maxhealth",
+        "maxHealth",
         "biography",
-        "isdeleted",
-        "datecreated",
-        "skillpoints",
-        "pvpwins",
-        "pvplosses",
-        "pvprating",
-        "isnpc",
-        "datelastactivityselected",
-        "isretired"
+        "isDeleted",
+        "dateCreated",
+        "skillPoints",
+        "pvpWins",
+        "pvpLosses",
+        "pvpRating",
+        "isNpc",
+        "dateLastActivitySelected",
+        "isRetired"
       ]
     },
-    "characterfeat": {
+    "CharacterFeat": {
       "type": "object",
       "properties": {
         "id": {
           "type": "string"
         },
-        "characterid": {
+        "characterId": {
           "type": "string"
         },
-        "featid": {
+        "featId": {
           "type": "string"
         },
         "rank": {
           "type": "integer"
         },
-        "isequipped": {
+        "isEquipped": {
           "type": "boolean"
         },
         "character": {
-          "$ref": "#/definitions/character"
+          "$ref": "#/definitions/Character"
         },
         "feat": {
-          "$ref": "#/definitions/feat"
+          "$ref": "#/definitions/Feat"
         }
       },
       "required": [
-        "characterid",
-        "featid",
+        "characterId",
+        "featId",
         "rank",
-        "isequipped"
+        "isEquipped"
       ]
     },
-    "charactergroup": {
+    "CharacterGroup": {
       "type": "object",
       "properties": {
         "id": {
           "type": "string"
         },
-        "characterid": {
+        "characterId": {
           "type": "string"
         },
-        "groupid": {
+        "groupId": {
           "type": "string"
         },
         "character": {
-          "$ref": "#/definitions/character"
+          "$ref": "#/definitions/Character"
         },
         "group": {
-          "$ref": "#/definitions/group"
+          "$ref": "#/definitions/Group"
         }
       },
       "required": [
-        "characterid",
-        "groupid"
+        "characterId",
+        "groupId"
       ]
     },
-    "characterskill": {
+    "CharacterSkill": {
       "type": "object",
       "properties": {
         "id": {
           "type": "string"
         },
-        "characterid": {
+        "characterId": {
           "type": "string"
         },
-        "skillid": {
+        "skillId": {
           "type": "string"
         },
         "value": {
           "type": "integer"
         },
-        "freepointvalue": {
+        "freePointValue": {
           "type": "integer"
         },
         "character": {
-          "$ref": "#/definitions/character"
+          "$ref": "#/definitions/Character"
         },
         "skill": {
           "$ref": "#/definitions/Skill"
         }
       },
       "required": [
-        "characterid",
-        "skillid",
+        "characterId",
+        "skillId",
         "value",
-        "freepointvalue"
+        "freePointValue"
       ]
     },
-    "customitem": {
+    "CustomItem": {
       "type": "object",
       "properties": {
         "id": {
@@ -1332,43 +1332,43 @@
             "null"
           ]
         },
-        "flavortext": {
+        "flavorText": {
           "type": [
             "string",
             "null"
           ]
         },
-        "notrade": {
+        "noTrade": {
           "type": "boolean"
         },
         "item": {
-          "$ref": "#/definitions/item"
+          "$ref": "#/definitions/Item"
         },
-        "activityresults1": {
+        "activityResults1": {
           "type": "array",
           "items": {
-            "$ref": "#/definitions/activityresult"
+            "$ref": "#/definitions/ActivityResult"
           }
         },
-        "activityresults2": {
+        "activityResults2": {
           "type": "array",
           "items": {
-            "$ref": "#/definitions/activityresult"
+            "$ref": "#/definitions/ActivityResult"
           }
         },
-        "useritem": {
+        "userItem": {
           "type": "array",
           "items": {
-            "$ref": "#/definitions/useritem"
+            "$ref": "#/definitions/UserItem"
           }
         }
       },
       "required": [
         "itemid",
-        "notrade"
+        "noTrade"
       ]
     },
-    "effect": {
+    "Effect": {
       "type": "object",
       "properties": {
         "id": {
@@ -1380,7 +1380,7 @@
             "null"
           ]
         },
-        "effectdurationtypeid": {
+        "effectDurationTypeId": {
           "type": [
             "string",
             "null"
@@ -1392,81 +1392,81 @@
             "null"
           ]
         },
-        "attackmodifier": {
+        "attackModifier": {
           "type": "integer"
         },
-        "attackkeyword": {
+        "attackKeyword": {
           "type": [
             "string",
             "null"
           ]
         },
-        "defensemodifier": {
+        "defenseModifier": {
           "type": "integer"
         },
-        "defensekeyword": {
+        "defenseKeyword": {
           "type": [
             "string",
             "null"
           ]
         },
-        "damagehealing": {
+        "damageHealing": {
           "type": "integer"
         },
-        "armormodifier": {
+        "armorModifier": {
           "type": "integer"
         },
-        "weapondamagemodifier": {
+        "weaponDamageModifier": {
           "type": "integer"
         },
-        "isdeleted": {
+        "isDeleted": {
           "type": "boolean"
         },
-        "effectdurationtype": {
+        "effectDurationType": {
           "anyOf": [
             {
-              "$ref": "#/definitions/effectdurationtype"
+              "$ref": "#/definitions/EffectDurationType"
             },
             {
               "type": "null"
             }
           ]
         },
-        "effectskillbonus": {
+        "effectSkillBonus": {
           "type": "array",
           "items": {
-            "$ref": "#/definitions/effectskillbonus"
+            "$ref": "#/definitions/EffectSkillBonus"
           }
         },
-        "effectspecialmechaniccombo": {
+        "effectSpecialMechanicCombo": {
           "type": "array",
           "items": {
-            "$ref": "#/definitions/effectspecialmechaniccombo"
+            "$ref": "#/definitions/EffectSpecialMechanicCombo"
           }
         },
         "feats1": {
           "type": "array",
           "items": {
-            "$ref": "#/definitions/feat"
+            "$ref": "#/definitions/Feat"
           }
         },
         "feats2": {
           "type": "array",
           "items": {
-            "$ref": "#/definitions/feat"
+            "$ref": "#/definitions/Feat"
           }
         }
       },
       "required": [
-        "attackmodifier",
-        "defensemodifier",
-        "damagehealing",
-        "armormodifier",
-        "weapondamagemodifier",
-        "isdeleted"
+        "attackModifier",
+        "defenseModifier",
+        "damageHealing",
+        "armorModifier",
+        "weaponDamageModifier",
+        "isDeleted"
       ]
     },
-    "feat": {
+    "Feat": {
       "type": "object",
       "properties": {
         "id": {
@@ -1484,19 +1484,19 @@
             "null"
           ]
         },
-        "featcastmodeid": {
+        "featCastModeId": {
           "type": [
             "string",
             "null"
           ]
         },
-        "reactiveevent": {
+        "reactiveEvent": {
           "type": [
             "string",
             "null"
           ]
         },
-        "featreactiveeventinitiatorid": {
+        "featReactiveEventInitiatorId": {
           "type": [
             "string",
             "null"
@@ -1505,145 +1505,145 @@
         "cooldown": {
           "type": "integer"
         },
-        "skillid": {
+        "skillId": {
           "type": [
             "string",
             "null"
           ]
         },
-        "skillrequiredvalue": {
+        "skillRequiredValue": {
           "type": [
             "integer",
             "null"
           ]
         },
-        "featspecialmechanicid": {
+        "featSpecialMechanicId": {
           "type": [
             "string",
             "null"
           ]
         },
-        "cashprize": {
+        "cashPrize": {
           "type": "integer"
         },
-        "feattargettypeidtarget1": {
+        "featTargetTypeIdTarget1": {
           "type": [
             "string",
             "null"
           ]
         },
-        "gendertarget1": {
+        "genderTarget1": {
           "type": [
             "integer",
             "null"
           ]
         },
-        "damagehealingtarget1": {
+        "damageHealingTarget1": {
           "type": "integer"
         },
-        "racerestrictiontypetarget1": {
+        "raceRestrictionTypeTarget1": {
           "type": "integer"
         },
-        "raceidtarget1": {
+        "raceIdTarget1": {
           "type": [
             "string",
             "null"
           ]
         },
-        "careerrestrictiontypetarget1": {
+        "careerRestrictionTypeTarget1": {
           "type": "integer"
         },
-        "careeridtarget1": {
+        "careerIdTarget1": {
           "type": [
             "string",
             "null"
           ]
         },
-        "effectidtarget1": {
+        "effectIdTarget1": {
           "type": [
             "string",
             "null"
           ]
         },
-        "feattargettypeidtarget2": {
+        "featTargetTypeIdTarget2": {
           "type": [
             "string",
             "null"
           ]
         },
-        "gendertarget2": {
+        "genderTarget2": {
           "type": [
             "integer",
             "null"
           ]
         },
-        "damagehealingtarget2": {
+        "damageHealingTarget2": {
           "type": "integer"
         },
-        "racerestrictiontypetarget2": {
+        "raceRestrictionTypeTarget2": {
           "type": "integer"
         },
-        "raceidtarget2": {
+        "raceIdTarget2": {
           "type": [
             "string",
             "null"
           ]
         },
-        "careerrestrictiontypetarget2": {
+        "careerRestrictionTypeTarget2": {
           "type": "integer"
         },
-        "careeridtarget2": {
+        "careerIdTarget2": {
           "type": [
             "string",
             "null"
           ]
         },
-        "effectidtarget2": {
+        "effectIdTarget2": {
           "type": [
             "string",
             "null"
           ]
         },
-        "target1onlyscript": {
+        "target1OnlyScript": {
           "type": "string"
         },
-        "target2onlyscript": {
+        "target2OnlyScript": {
           "type": "string"
         },
-        "successscript": {
+        "successScript": {
           "type": "string"
         },
-        "failurescript": {
+        "failureScript": {
           "type": "string"
         },
-        "isdeleted": {
+        "isDeleted": {
           "type": "boolean"
         },
-        "imageid": {
+        "imageId": {
           "type": [
             "string",
             "null"
           ]
         },
-        "racerestrictiontype": {
+        "raceRestrictionType": {
           "type": [
             "integer",
             "null"
           ]
         },
-        "raceid": {
+        "raceId": {
           "type": [
             "string",
             "null"
           ]
         },
-        "careerrestrictiontype": {
+        "careerRestrictionType": {
           "type": [
             "integer",
             "null"
           ]
         },
-        "careerid": {
+        "careerId": {
           "type": [
             "string",
             "null"
@@ -1661,196 +1661,196 @@
         "career": {
           "anyOf": [
             {
-              "$ref": "#/definitions/career"
+              "$ref": "#/definitions/Career"
             },
             {
               "type": "null"
             }
           ]
         },
-        "career_careerTofeat_careeridtarget1": {
+        "career_careerToFeat_careerIdTarget1": {
           "anyOf": [
             {
-              "$ref": "#/definitions/career"
+              "$ref": "#/definitions/Career"
             },
             {
               "type": "null"
             }
           ]
         },
-        "career_careerTofeat_careeridtarget2": {
+        "career_careerToFeat_careerIdTarget2": {
           "anyOf": [
             {
-              "$ref": "#/definitions/career"
+              "$ref": "#/definitions/Career"
             },
             {
               "type": "null"
             }
           ]
         },
-        "effect_effectTofeat_effectidtarget1": {
+        "effect_effectToFeat_effectIdTarget1": {
           "anyOf": [
             {
-              "$ref": "#/definitions/effect"
+              "$ref": "#/definitions/Effect"
             },
             {
               "type": "null"
             }
           ]
         },
-        "effect_effectTofeat_effectidtarget2": {
+        "effect_effectToFeat_effectIdTarget2": {
           "anyOf": [
             {
-              "$ref": "#/definitions/effect"
+              "$ref": "#/definitions/Effect"
             },
             {
               "type": "null"
             }
           ]
         },
-        "featcastmode": {
+        "featCastMode": {
           "anyOf": [
             {
-              "$ref": "#/definitions/featcastmode"
+              "$ref": "#/definitions/FeatCastMode"
             },
             {
               "type": "null"
             }
           ]
         },
-        "featreactiveeventinitiator": {
+        "featReactiveEventInitiator": {
           "anyOf": [
             {
-              "$ref": "#/definitions/featreactiveeventinitiator"
+              "$ref": "#/definitions/FeatReactiveEventInitiator"
             },
             {
               "type": "null"
             }
           ]
         },
-        "featspecialmechanic": {
+        "featSpecialMechanic": {
           "anyOf": [
             {
-              "$ref": "#/definitions/featspecialmechanic"
+              "$ref": "#/definitions/FeatSpecialMechanic"
             },
             {
               "type": "null"
             }
           ]
         },
-        "feattargettype_feat_feattargettypeidtarget1Tofeattargettype": {
+        "featTargetType_feat_featTargetTypeIdTarget1ToFeatTargetType": {
           "anyOf": [
             {
-              "$ref": "#/definitions/feattargettype"
+              "$ref": "#/definitions/FeatTargetType"
             },
             {
               "type": "null"
             }
           ]
         },
-        "feattargettype_feat_feattargettypeidtarget2Tofeattargettype": {
+        "featTargetType_feat_featTargetTypeIdTarget2ToFeatTargetType": {
           "anyOf": [
             {
-              "$ref": "#/definitions/feattargettype"
+              "$ref": "#/definitions/FeatTargetType"
             },
             {
               "type": "null"
             }
           ]
         },
-        "race_feat_raceidtarget1Torace": {
+        "race_feat_raceIdTarget1ToRace": {
           "anyOf": [
             {
-              "$ref": "#/definitions/race"
+              "$ref": "#/definitions/Race"
             },
             {
               "type": "null"
             }
           ]
         },
-        "race_feat_raceidtarget2Torace": {
+        "race_feat_raceIdTarget2ToRace": {
           "anyOf": [
             {
-              "$ref": "#/definitions/race"
+              "$ref": "#/definitions/Race"
             },
             {
               "type": "null"
             }
           ]
         },
-        "activityresults": {
+        "activityResults": {
           "type": "array",
           "items": {
-            "$ref": "#/definitions/activityresult"
+            "$ref": "#/definitions/ActivityResult"
           }
         },
         "adventure": {
           "type": "array",
           "items": {
-            "$ref": "#/definitions/adventure"
+            "$ref": "#/definitions/Adventure"
           }
         },
-        "career_career_featid1Tofeat": {
+        "career_career_featId1ToFeat": {
           "type": "array",
           "items": {
-            "$ref": "#/definitions/career"
+            "$ref": "#/definitions/Career"
           }
         },
-        "career_career_featid2Tofeat": {
+        "career_career_featId2ToFeat": {
           "type": "array",
           "items": {
-            "$ref": "#/definitions/career"
+            "$ref": "#/definitions/Career"
           }
         },
-        "characterfeat": {
+        "characterFeat": {
           "type": "array",
           "items": {
-            "$ref": "#/definitions/characterfeat"
+            "$ref": "#/definitions/CharacterFeat"
           }
         },
         "item": {
           "type": "array",
           "items": {
-            "$ref": "#/definitions/item"
+            "$ref": "#/definitions/Item"
           }
         },
-        "race_featTorace_featid1": {
+        "race_featToRace_featId1": {
           "type": "array",
           "items": {
-            "$ref": "#/definitions/race"
+            "$ref": "#/definitions/Race"
           }
         },
-        "race_featTorace_featid2": {
+        "race_featToRace_featId2": {
           "type": "array",
           "items": {
-            "$ref": "#/definitions/race"
+            "$ref": "#/definitions/Race"
           }
         }
       },
       "required": [
         "cooldown",
-        "cashprize",
-        "damagehealingtarget1",
-        "racerestrictiontypetarget1",
-        "careerrestrictiontypetarget1",
-        "damagehealingtarget2",
-        "racerestrictiontypetarget2",
-        "careerrestrictiontypetarget2",
-        "target1onlyscript",
-        "target2onlyscript",
-        "successscript",
-        "failurescript",
-        "isdeleted",
+        "cashPrize",
+        "damageHealingTarget1",
+        "raceRestrictionTypeTarget1",
+        "careerRestrictionTypeTarget1",
+        "damageHealingTarget2",
+        "raceRestrictionTypeTarget2",
+        "careerRestrictionTypeTarget2",
+        "target1OnlyScript",
+        "target2OnlyScript",
+        "successScript",
+        "failureScript",
+        "isDeleted",
         "level"
       ]
     },
-    "forumcategory": {
+    "ForumCategory": {
       "type": "object",
       "properties": {
         "id": {
           "type": "string"
         },
-        "cssclass": {
+        "cssClass": {
           "type": [
             "string",
             "null"
@@ -1862,45 +1862,45 @@
             "null"
           ]
         },
-        "creationdate": {
+        "creationDate": {
           "type": "string",
           "format": "date-time"
         },
-        "isdeleted": {
+        "isDeleted": {
           "type": "boolean"
         },
-        "displaypriority": {
+        "displayPriority": {
           "type": [
             "integer",
             "null"
           ]
         },
-        "islocked": {
+        "isLocked": {
           "type": "boolean"
         },
-        "forumthread": {
+        "forumThread": {
           "type": "array",
           "items": {
-            "$ref": "#/definitions/forumthread"
+            "$ref": "#/definitions/ForumThread"
           }
         }
       },
       "required": [
-        "creationdate",
-        "isdeleted",
-        "islocked"
+        "creationDate",
+        "isDeleted",
+        "isLocked"
       ]
     },
-    "forumpost": {
+    "ForumPost": {
       "type": "object",
       "properties": {
         "id": {
           "type": "string"
         },
-        "userid": {
+        "userId": {
           "type": "string"
         },
-        "forumthreadid": {
+        "forumThreadId": {
           "type": "string"
         },
         "content": {
@@ -1909,34 +1909,34 @@
             "null"
           ]
         },
-        "creationdate": {
+        "creationDate": {
           "type": "string",
           "format": "date-time"
         },
-        "isdeleted": {
+        "isDeleted": {
           "type": "boolean"
         },
-        "forumthread": {
-          "$ref": "#/definitions/forumthread"
+        "forumThread": {
+          "$ref": "#/definitions/ForumThread"
         }
       },
       "required": [
-        "userid",
-        "forumthreadid",
-        "creationdate",
-        "isdeleted"
+        "userId",
+        "forumThreadId",
+        "creationDate",
+        "isDeleted"
       ]
     },
-    "forumthread": {
+    "ForumThread": {
       "type": "object",
       "properties": {
         "id": {
           "type": "string"
         },
-        "userid": {
+        "userId": {
           "type": "string"
         },
-        "forumcategoryid": {
+        "forumCategoryId": {
           "type": "string"
         },
         "content": {
@@ -1945,17 +1945,17 @@
             "null"
           ]
         },
-        "islocked": {
+        "isLocked": {
           "type": "boolean"
         },
-        "issticky": {
+        "isSticky": {
           "type": "boolean"
         },
-        "creationdate": {
+        "creationDate": {
           "type": "string",
           "format": "date-time"
         },
-        "isdeleted": {
+        "isDeleted": {
           "type": "boolean"
         },
         "title": {
@@ -1964,26 +1964,26 @@
             "null"
           ]
         },
-        "forumcategory": {
-          "$ref": "#/definitions/forumcategory"
+        "forumCategory": {
+          "$ref": "#/definitions/ForumCategory"
         },
-        "forumpost": {
+        "forumPost": {
           "type": "array",
           "items": {
-            "$ref": "#/definitions/forumpost"
+            "$ref": "#/definitions/ForumPost"
           }
         }
       },
       "required": [
-        "userid",
-        "forumcategoryid",
-        "islocked",
-        "issticky",
-        "creationdate",
-        "isdeleted"
+        "userId",
+        "forumCategoryId",
+        "isLocked",
+        "isSticky",
+        "creationDate",
+        "isDeleted"
       ]
     },
-    "gender": {
+    "Gender": {
       "type": "object",
       "properties": {
         "id": {
@@ -1998,23 +1998,23 @@
         "image": {
           "type": "array",
           "items": {
-            "$ref": "#/definitions/image"
+            "$ref": "#/definitions/Image"
           }
         }
       },
       "required": []
     },
-    "group": {
+    "Group": {
       "type": "object",
       "properties": {
         "id": {
           "type": "string"
         },
-        "startdatetime": {
+        "startDateTime": {
           "type": "string",
           "format": "date-time"
         },
-        "enddatetime": {
+        "endDateTime": {
           "type": [
             "string",
             "null"
@@ -2030,31 +2030,31 @@
         "losses": {
           "type": "integer"
         },
-        "runtimes": {
+        "runTimes": {
           "type": "integer"
         },
-        "battlepool": {
+        "battlePool": {
           "type": "array",
           "items": {
-            "$ref": "#/definitions/battlepool"
+            "$ref": "#/definitions/BattlePool"
           }
         },
-        "charactergroup": {
+        "characterGroup": {
           "type": "array",
           "items": {
-            "$ref": "#/definitions/charactergroup"
+            "$ref": "#/definitions/CharacterGroup"
           }
         }
       },
       "required": [
-        "startdatetime",
+        "startDateTime",
         "duration",
         "wins",
         "losses",
-        "runtimes"
+        "runTimes"
       ]
     },
-    "item": {
+    "Item": {
       "type": "object",
       "properties": {
         "id": {
@@ -2066,13 +2066,13 @@
             "null"
           ]
         },
-        "itemtypeid": {
+        "itemTypeId": {
           "type": "string"
         },
-        "characterlevel": {
+        "characterLevel": {
           "type": "integer"
         },
-        "flavortext": {
+        "flavorText": {
           "type": [
             "string",
             "null"
@@ -2093,7 +2093,7 @@
         "attack": {
           "type": "integer"
         },
-        "attackkeyword": {
+        "attackKeyword": {
           "type": [
             "string",
             "null"
@@ -2102,22 +2102,22 @@
         "damage": {
           "type": "integer"
         },
-        "damagevariance": {
+        "damageVariance": {
           "type": "number"
         },
-        "hitscript": {
+        "hitScript": {
           "type": [
             "string",
             "null"
           ]
         },
-        "critscript": {
+        "critScript": {
           "type": [
             "string",
             "null"
           ]
         },
-        "missscript": {
+        "missScript": {
           "type": [
             "string",
             "null"
@@ -2126,28 +2126,28 @@
         "defense": {
           "type": "integer"
         },
-        "defensekeyword": {
+        "defenseKeyword": {
           "type": [
             "string",
             "null"
           ]
         },
-        "defendscript": {
+        "defendScript": {
           "type": [
             "string",
             "null"
           ]
         },
-        "isdeleted": {
+        "isDeleted": {
           "type": "boolean"
         },
-        "imageid": {
+        "imageId": {
           "type": [
             "string",
             "null"
           ]
         },
-        "imagebackgroundcolor": {
+        "imageBackgroundColor": {
           "type": [
             "string",
             "null"
@@ -2159,43 +2159,43 @@
             "null"
           ]
         },
-        "racerestrictiontype": {
+        "raceRestrictionType": {
           "type": "integer"
         },
-        "raceid": {
+        "raceId": {
           "type": [
             "string",
             "null"
           ]
         },
-        "careerrestrictiontype": {
+        "careerRestrictionType": {
           "type": "integer"
         },
-        "careerid": {
+        "careerId": {
           "type": [
             "string",
             "null"
           ]
         },
-        "notrade": {
+        "noTrade": {
           "type": "boolean"
         },
-        "featid": {
+        "featId": {
           "type": [
             "string",
             "null"
           ]
         },
-        "notradeafterequip": {
+        "noTradeAfterEquip": {
           "type": "boolean"
         },
-        "isvisibleininventory": {
+        "isVisibleInInventory": {
           "type": "boolean"
         },
         "career": {
           "anyOf": [
             {
-              "$ref": "#/definitions/career"
+              "$ref": "#/definitions/Career"
             },
             {
               "type": "null"
@@ -2205,7 +2205,7 @@
         "feat": {
           "anyOf": [
             {
-              "$ref": "#/definitions/feat"
+              "$ref": "#/definitions/Feat"
             },
             {
               "type": "null"
@@ -2215,89 +2215,89 @@
         "image": {
           "anyOf": [
             {
-              "$ref": "#/definitions/image"
+              "$ref": "#/definitions/Image"
             },
             {
               "type": "null"
             }
           ]
         },
-        "itemtype": {
-          "$ref": "#/definitions/itemtype"
+        "itemType": {
+          "$ref": "#/definitions/ItemType"
         },
-        "adventuresrequired": {
+        "adventuresRequired": {
           "type": "array",
           "items": {
-            "$ref": "#/definitions/adventure"
+            "$ref": "#/definitions/Adventure"
           }
         },
-        "adventuresrewarded": {
+        "adventuresRewarded": {
           "type": "array",
           "items": {
-            "$ref": "#/definitions/adventure"
+            "$ref": "#/definitions/Adventure"
           }
         },
         "careers1": {
           "type": "array",
           "items": {
-            "$ref": "#/definitions/career"
+            "$ref": "#/definitions/Career"
           }
         },
         "careers2": {
           "type": "array",
           "items": {
-            "$ref": "#/definitions/career"
+            "$ref": "#/definitions/Career"
           }
         },
-        "customitem": {
+        "customItem": {
           "type": "array",
           "items": {
-            "$ref": "#/definitions/customitem"
+            "$ref": "#/definitions/CustomItem"
           }
         },
-        "itemequippableinslot": {
+        "itemEquippableInSlot": {
           "type": "array",
           "items": {
-            "$ref": "#/definitions/itemequippableinslot"
+            "$ref": "#/definitions/ItemEquippableInSlot"
           }
         },
-        "itemskillbonus": {
+        "itemSkillBonus": {
           "type": "array",
           "items": {
-            "$ref": "#/definitions/itemskillbonus"
+            "$ref": "#/definitions/ItemSkillBonus"
           }
         },
         "races1": {
           "type": "array",
           "items": {
-            "$ref": "#/definitions/race"
+            "$ref": "#/definitions/Race"
           }
         },
         "races2": {
           "type": "array",
           "items": {
-            "$ref": "#/definitions/race"
+            "$ref": "#/definitions/Race"
           }
         }
       },
       "required": [
-        "itemtypeid",
-        "characterlevel",
+        "itemTypeId",
+        "characterLevel",
         "healing",
         "armor",
         "attack",
         "damage",
-        "damagevariance",
+        "damageVariance",
         "defense",
-        "isdeleted",
-        "racerestrictiontype",
-        "careerrestrictiontype",
-        "notrade",
-        "notradeafterequip",
-        "isvisibleininventory"
+        "isDeleted",
+        "raceRestrictionType",
+        "careerRestrictionType",
+        "noTrade",
+        "noTradeAfterEquip",
+        "isVisibleInInventory"
       ]
     },
-    "itemslot": {
+    "ItemSlot": {
       "type": "object",
       "properties": {
         "id": {
@@ -2309,22 +2309,22 @@
             "null"
           ]
         },
-        "itemequippableinslot": {
+        "itemEquippableInSlot": {
           "type": "array",
           "items": {
-            "$ref": "#/definitions/itemequippableinslot"
+            "$ref": "#/definitions/ItemEquippableInSlot"
           }
         },
-        "useritem": {
+        "userItem": {
           "type": "array",
           "items": {
-            "$ref": "#/definitions/useritem"
+            "$ref": "#/definitions/UserItem"
           }
         }
       },
       "required": []
     },
-    "itemtype": {
+    "ItemType": {
       "type": "object",
       "properties": {
         "id": {
@@ -2333,28 +2333,28 @@
         "name": {
           "type": "string"
         },
-        "isdeleted": {
+        "isDeleted": {
           "type": "boolean"
         },
         "adventure": {
           "type": "array",
           "items": {
-            "$ref": "#/definitions/adventure"
+            "$ref": "#/definitions/Adventure"
           }
         },
         "item": {
           "type": "array",
           "items": {
-            "$ref": "#/definitions/item"
+            "$ref": "#/definitions/Item"
           }
         }
       },
       "required": [
         "name",
-        "isdeleted"
+        "isDeleted"
       ]
     },
-    "race": {
+    "Race": {
       "type": "object",
       "properties": {
         "id": {
@@ -2363,40 +2363,40 @@
         "name": {
           "type": "string"
         },
-        "isdeleted": {
+        "isDeleted": {
           "type": "boolean"
         },
-        "itemid1": {
+        "itemId1": {
           "type": [
             "string",
             "null"
           ]
         },
-        "itemid2": {
+        "itemId2": {
           "type": [
             "string",
             "null"
           ]
         },
-        "skillid1": {
+        "skillId1": {
           "type": [
             "string",
             "null"
           ]
         },
-        "skillid2": {
+        "skillId2": {
           "type": [
             "string",
             "null"
           ]
         },
-        "featid1": {
+        "featId1": {
           "type": [
             "string",
             "null"
           ]
         },
-        "featid2": {
+        "featId2": {
           "type": [
             "string",
             "null"
@@ -2405,7 +2405,7 @@
         "feat1": {
           "anyOf": [
             {
-              "$ref": "#/definitions/feat"
+              "$ref": "#/definitions/Feat"
             },
             {
               "type": "null"
@@ -2415,7 +2415,7 @@
         "feat2": {
           "anyOf": [
             {
-              "$ref": "#/definitions/feat"
+              "$ref": "#/definitions/Feat"
             },
             {
               "type": "null"
@@ -2425,7 +2425,7 @@
         "item1": {
           "anyOf": [
             {
-              "$ref": "#/definitions/item"
+              "$ref": "#/definitions/Item"
             },
             {
               "type": "null"
@@ -2435,7 +2435,7 @@
         "item2": {
           "anyOf": [
             {
-              "$ref": "#/definitions/item"
+              "$ref": "#/definitions/Item"
             },
             {
               "type": "null"
@@ -2465,58 +2465,58 @@
         "activities": {
           "type": "array",
           "items": {
-            "$ref": "#/definitions/activity"
+            "$ref": "#/definitions/Activity"
           }
         },
         "adventure": {
           "type": "array",
           "items": {
-            "$ref": "#/definitions/adventure"
+            "$ref": "#/definitions/Adventure"
           }
         },
-        "careerrace": {
+        "careerRace": {
           "type": "array",
           "items": {
-            "$ref": "#/definitions/careerrace"
+            "$ref": "#/definitions/CareerRace"
           }
         },
         "characters": {
           "type": "array",
           "items": {
-            "$ref": "#/definitions/character"
+            "$ref": "#/definitions/Character"
           }
         },
         "feats1": {
           "type": "array",
           "items": {
-            "$ref": "#/definitions/feat"
+            "$ref": "#/definitions/Feat"
           }
         },
         "feats2": {
           "type": "array",
           "items": {
-            "$ref": "#/definitions/feat"
+            "$ref": "#/definitions/Feat"
           }
         },
         "image": {
           "type": "array",
           "items": {
-            "$ref": "#/definitions/image"
+            "$ref": "#/definitions/Image"
           }
         },
-        "raceadventure": {
+        "raceAdventure": {
           "type": "array",
           "items": {
-            "$ref": "#/definitions/raceadventure"
+            "$ref": "#/definitions/RaceAdventure"
           }
         }
       },
       "required": [
         "name",
-        "isdeleted"
+        "isDeleted"
       ]
     },
-    "runtime": {
+    "Runtime": {
       "type": "object",
       "properties": {
         "id": {
@@ -2564,7 +2564,7 @@
         "career": {
           "anyOf": [
             {
-              "$ref": "#/definitions/career"
+              "$ref": "#/definitions/Career"
             },
             {
               "type": "null"
@@ -2574,61 +2574,61 @@
         "activities": {
           "type": "array",
           "items": {
-            "$ref": "#/definitions/activity"
+            "$ref": "#/definitions/Activity"
           }
         },
-        "activityresults": {
+        "activityResults": {
           "type": "array",
           "items": {
-            "$ref": "#/definitions/activityresult"
+            "$ref": "#/definitions/ActivityResult"
           }
         },
         "adventure": {
           "type": "array",
           "items": {
-            "$ref": "#/definitions/adventure"
+            "$ref": "#/definitions/Adventure"
           }
         },
         "careers1": {
           "type": "array",
           "items": {
-            "$ref": "#/definitions/career"
+            "$ref": "#/definitions/Career"
           }
         },
         "careers2": {
           "type": "array",
           "items": {
-            "$ref": "#/definitions/career"
+            "$ref": "#/definitions/Career"
           }
         },
-        "characterskill": {
+        "characterSkill": {
           "type": "array",
           "items": {
-            "$ref": "#/definitions/characterskill"
+            "$ref": "#/definitions/CharacterSkill"
           }
         },
-        "effectskillbonus": {
+        "effectSkillBonus": {
           "type": "array",
           "items": {
-            "$ref": "#/definitions/effectskillbonus"
+            "$ref": "#/definitions/EffectSkillBonus"
           }
         },
-        "itemskillbonus": {
+        "itemSkillBonus": {
           "type": "array",
           "items": {
-            "$ref": "#/definitions/itemskillbonus"
+            "$ref": "#/definitions/ItemSkillBonus"
           }
         },
         "races1": {
           "type": "array",
           "items": {
-            "$ref": "#/definitions/race"
+            "$ref": "#/definitions/Race"
           }
         },
         "races2": {
           "type": "array",
           "items": {
-            "$ref": "#/definitions/race"
+            "$ref": "#/definitions/Race"
           }
         }
       },
@@ -2639,31 +2639,31 @@
         "gameId"
       ]
     },
-    "useritem": {
+    "UserItem": {
       "type": "object",
       "properties": {
         "id": {
           "type": "string"
         },
-        "userid": {
+        "userId": {
           "type": "string"
         },
-        "customitemid": {
+        "customItemId": {
           "type": "string"
         },
-        "characterid": {
+        "characterId": {
           "type": [
             "string",
             "null"
           ]
         },
-        "itemslotid": {
+        "itemSlotId": {
           "type": [
             "string",
             "null"
           ]
         },
-        "itemslotvariation": {
+        "itemSlotVariation": {
           "type": [
             "integer",
             "null"
@@ -2672,20 +2672,20 @@
         "character": {
           "anyOf": [
             {
-              "$ref": "#/definitions/character"
+              "$ref": "#/definitions/Character"
             },
             {
               "type": "null"
             }
           ]
         },
-        "customitem": {
-          "$ref": "#/definitions/customitem"
+        "customItem": {
+          "$ref": "#/definitions/CustomItem"
         },
-        "itemslot": {
+        "itemSlot": {
           "anyOf": [
             {
-              "$ref": "#/definitions/itemslot"
+              "$ref": "#/definitions/ItemSlot"
             },
             {
               "type": "null"
@@ -2694,11 +2694,11 @@
         }
       },
       "required": [
-        "userid",
-        "customitemid"
+        "userId",
+        "customItemId"
       ]
     },
-    "adventurechecktype": {
+    "AdventureCheckType": {
       "type": "object",
       "properties": {
         "id": {
@@ -2710,7 +2710,7 @@
         "adventure": {
           "type": "array",
           "items": {
-            "$ref": "#/definitions/adventure"
+            "$ref": "#/definitions/Adventure"
           }
         }
       },
@@ -2718,65 +2718,65 @@
         "name"
       ]
     },
-    "careeradventure": {
+    "CareerAdventure": {
       "type": "object",
       "properties": {
         "id": {
           "type": "string"
         },
-        "careerid": {
+        "careerId": {
           "type": "string"
         },
-        "adventureid": {
+        "adventureId": {
           "type": "string"
         },
         "adventure": {
-          "$ref": "#/definitions/adventure"
+          "$ref": "#/definitions/Adventure"
         },
         "career": {
-          "$ref": "#/definitions/career"
+          "$ref": "#/definitions/Career"
         }
       },
       "required": [
-        "careerid",
-        "adventureid"
+        "careerId",
+        "adventureId"
       ]
     },
-    "characterforhire": {
+    "CharacterForHire": {
       "type": "object",
       "properties": {
         "id": {
           "type": "string"
         },
-        "userid": {
+        "userId": {
           "type": "string"
         },
-        "careerraceid": {
+        "careerRaceId": {
           "type": "string"
         },
         "gender": {
           "type": "integer"
         },
-        "expirationdate": {
+        "expirationDate": {
           "type": "string",
           "format": "date-time"
         },
-        "ishired": {
+        "isHired": {
           "type": "boolean"
         },
-        "careerrace": {
-          "$ref": "#/definitions/careerrace"
+        "careerRace": {
+          "$ref": "#/definitions/CareerRace"
         }
       },
       "required": [
-        "userid",
-        "careerraceid",
+        "userId",
+        "careerRaceId",
         "gender",
-        "expirationdate",
-        "ishired"
+        "expirationDate",
+        "isHired"
       ]
     },
-    "characterlevel": {
+    "CharacterLevel": {
       "type": "object",
       "properties": {
         "id": {
@@ -2785,22 +2785,22 @@
         "level": {
           "type": "integer"
         },
-        "maxexperience": {
+        "maxExperience": {
           "type": "integer"
         },
         "characters": {
           "type": "array",
           "items": {
-            "$ref": "#/definitions/character"
+            "$ref": "#/definitions/Character"
           }
         }
       },
       "required": [
         "level",
-        "maxexperience"
+        "maxExperience"
       ]
     },
-    "effectdurationtype": {
+    "EffectDurationType": {
       "type": "object",
       "properties": {
         "id": {
@@ -2815,41 +2815,41 @@
         "effects": {
           "type": "array",
           "items": {
-            "$ref": "#/definitions/effect"
+            "$ref": "#/definitions/Effect"
           }
         }
       },
       "required": []
     },
-    "effectskillbonus": {
+    "EffectSkillBonus": {
       "type": "object",
       "properties": {
         "id": {
           "type": "string"
         },
-        "effectid": {
+        "effectId": {
           "type": "string"
         },
-        "skillid": {
+        "skillId": {
           "type": "string"
         },
         "bonus": {
           "type": "integer"
         },
         "effect": {
-          "$ref": "#/definitions/effect"
+          "$ref": "#/definitions/Effect"
         },
         "skill": {
           "$ref": "#/definitions/Skill"
         }
       },
       "required": [
-        "effectid",
-        "skillid",
+        "effectId",
+        "skillId",
         "bonus"
       ]
     },
-    "effectspecialmechanic": {
+    "EffectSpecialMechanic": {
       "type": "object",
       "properties": {
         "id": {
@@ -2861,40 +2861,40 @@
             "null"
           ]
         },
-        "effectspecialmechaniccombo": {
+        "effectSpecialMechanicCombo": {
           "type": "array",
           "items": {
-            "$ref": "#/definitions/effectspecialmechaniccombo"
+            "$ref": "#/definitions/EffectSpecialMechanicCombo"
           }
         }
       },
       "required": []
     },
-    "effectspecialmechaniccombo": {
+    "EffectSpecialMechanicCombo": {
       "type": "object",
       "properties": {
         "id": {
           "type": "string"
         },
-        "effectid": {
+        "effectId": {
           "type": "string"
         },
-        "effectspecialmechanicid": {
+        "effectSpecialMechanicId": {
           "type": "string"
         },
         "effect": {
-          "$ref": "#/definitions/effect"
+          "$ref": "#/definitions/Effect"
         },
-        "effectspecialmechanic": {
-          "$ref": "#/definitions/effectspecialmechanic"
+        "effectSpecialMechanic": {
+          "$ref": "#/definitions/EffectSpecialMechanic"
         }
       },
       "required": [
-        "effectid",
-        "effectspecialmechanicid"
+        "effectId",
+        "effectSpecialMechanicId"
       ]
     },
-    "featcastmode": {
+    "FeatCastMode": {
       "type": "object",
       "properties": {
         "id": {
@@ -2909,13 +2909,13 @@
         "feat": {
           "type": "array",
           "items": {
-            "$ref": "#/definitions/feat"
+            "$ref": "#/definitions/Feat"
           }
         }
       },
       "required": []
     },
-    "featreactiveeventinitiator": {
+    "FeatReactiveEventInitiator": {
       "type": "object",
       "properties": {
         "id": {
@@ -2930,13 +2930,13 @@
         "feat": {
           "type": "array",
           "items": {
-            "$ref": "#/definitions/feat"
+            "$ref": "#/definitions/Feat"
           }
         }
       },
       "required": []
     },
-    "featspecialmechanic": {
+    "FeatSpecialMechanic": {
       "type": "object",
       "properties": {
         "id": {
@@ -2951,13 +2951,13 @@
         "feat": {
           "type": "array",
           "items": {
-            "$ref": "#/definitions/feat"
+            "$ref": "#/definitions/Feat"
           }
         }
       },
       "required": []
     },
-    "feattargettype": {
+    "FeatTargetType": {
       "type": "object",
       "properties": {
         "id": {
@@ -2972,19 +2972,19 @@
         "feats1": {
           "type": "array",
           "items": {
-            "$ref": "#/definitions/feat"
+            "$ref": "#/definitions/Feat"
           }
         },
         "feats2": {
           "type": "array",
           "items": {
-            "$ref": "#/definitions/feat"
+            "$ref": "#/definitions/Feat"
           }
         }
       },
       "required": []
     },
-    "fighttargettype": {
+    "FightTargetType": {
       "type": "object",
       "properties": {
         "id": {
@@ -2996,7 +2996,7 @@
         "adventure": {
           "type": "array",
           "items": {
-            "$ref": "#/definitions/adventure"
+            "$ref": "#/definitions/Adventure"
           }
         }
       },
@@ -3004,34 +3004,34 @@
         "name"
       ]
     },
-    "image": {
+    "Image": {
       "type": "object",
       "properties": {
         "id": {
           "type": "string"
         },
-        "imagecategoryid": {
+        "imageCategoryId": {
           "type": "string"
         },
         "filename": {
           "type": "string"
         },
-        "isdeleted": {
+        "isDeleted": {
           "type": "boolean"
         },
-        "raceid": {
+        "raceId": {
           "type": [
             "string",
             "null"
           ]
         },
-        "careerid": {
+        "careerId": {
           "type": [
             "string",
             "null"
           ]
         },
-        "genderid": {
+        "genderId": {
           "type": [
             "string",
             "null"
@@ -3046,7 +3046,7 @@
         "career": {
           "anyOf": [
             {
-              "$ref": "#/definitions/career"
+              "$ref": "#/definitions/Career"
             },
             {
               "type": "null"
@@ -3056,20 +3056,20 @@
         "genderEntity": {
           "anyOf": [
             {
-              "$ref": "#/definitions/gender"
+              "$ref": "#/definitions/Gender"
             },
             {
               "type": "null"
             }
           ]
         },
-        "imagecategory": {
-          "$ref": "#/definitions/imagecategory"
+        "imageCategory": {
+          "$ref": "#/definitions/ImageCategory"
         },
         "race": {
           "anyOf": [
             {
-              "$ref": "#/definitions/race"
+              "$ref": "#/definitions/Race"
             },
             {
               "type": "null"
@@ -3079,35 +3079,35 @@
         "activities": {
           "type": "array",
           "items": {
-            "$ref": "#/definitions/activity"
+            "$ref": "#/definitions/Activity"
           }
         },
         "adventure": {
           "type": "array",
           "items": {
-            "$ref": "#/definitions/adventure"
+            "$ref": "#/definitions/Adventure"
           }
         },
         "characters": {
           "type": "array",
           "items": {
-            "$ref": "#/definitions/character"
+            "$ref": "#/definitions/Character"
           }
         },
         "item": {
           "type": "array",
           "items": {
-            "$ref": "#/definitions/item"
+            "$ref": "#/definitions/Item"
           }
         }
       },
       "required": [
-        "imagecategoryid",
+        "imageCategoryId",
         "filename",
-        "isdeleted"
+        "isDeleted"
       ]
     },
-    "imagecategory": {
+    "ImageCategory": {
       "type": "object",
       "properties": {
         "id": {
@@ -3116,74 +3116,74 @@
         "name": {
           "type": "string"
         },
-        "isdeleted": {
+        "isDeleted": {
           "type": "boolean"
         },
         "image": {
           "type": "array",
           "items": {
-            "$ref": "#/definitions/image"
+            "$ref": "#/definitions/Image"
           }
         }
       },
       "required": [
         "name",
-        "isdeleted"
+        "isDeleted"
       ]
     },
-    "itemequippableinslot": {
+    "ItemEquippableInSlot": {
       "type": "object",
       "properties": {
         "id": {
           "type": "string"
         },
-        "itemid": {
+        "itemId": {
           "type": "string"
         },
-        "itemslotid": {
+        "itemSlotId": {
           "type": "string"
         },
         "item": {
-          "$ref": "#/definitions/item"
+          "$ref": "#/definitions/Item"
         },
-        "itemslot": {
-          "$ref": "#/definitions/itemslot"
+        "itemSlot": {
+          "$ref": "#/definitions/ItemSlot"
         }
       },
       "required": [
-        "itemid",
-        "itemslotid"
+        "itemId",
+        "itemSlotId"
       ]
     },
-    "itemskillbonus": {
+    "ItemSkillBonus": {
       "type": "object",
       "properties": {
         "id": {
           "type": "string"
         },
-        "itemid": {
+        "itemId": {
           "type": "string"
         },
-        "skillid": {
+        "skillId": {
           "type": "string"
         },
         "bonus": {
           "type": "integer"
         },
         "item": {
-          "$ref": "#/definitions/item"
+          "$ref": "#/definitions/Item"
         },
         "skill": {
           "$ref": "#/definitions/Skill"
         }
       },
       "required": [
-        "itemid",
-        "skillid",
+        "itemId",
+        "skillId",
         "bonus"
       ]
     },
-    "phrase": {
+    "Phrase": {
       "type": "object",
       "properties": {
         "id": {
@@ -3192,28 +3192,28 @@
         "name": {
           "type": "string"
         },
-        "isdeleted": {
+        "isDeleted": {
           "type": "boolean"
         },
-        "phrasevariation": {
+        "phraseVariation": {
           "type": "array",
           "items": {
-            "$ref": "#/definitions/phrasevariation"
+            "$ref": "#/definitions/PhraseVariation"
           }
         },
-        "phrasevariationterm": {
+        "phraseVariationTerm": {
           "type": "array",
           "items": {
-            "$ref": "#/definitions/phrasevariationterm"
+            "$ref": "#/definitions/PhraseVariationTerm"
           }
         }
       },
       "required": [
         "name",
-        "isdeleted"
+        "isDeleted"
       ]
     },
-    "phrasevariation": {
+    "PhraseVariation": {
       "type": "object",
       "properties": {
         "id": {
@@ -3222,25 +3222,25 @@
         "name": {
           "type": "string"
         },
-        "phraseid": {
+        "phraseId": {
           "type": "string"
         },
         "phrase": {
-          "$ref": "#/definitions/phrase"
+          "$ref": "#/definitions/Phrase"
         },
-        "phrasevariationterm": {
+        "phraseVariationTerm": {
           "type": "array",
           "items": {
-            "$ref": "#/definitions/phrasevariationterm"
+            "$ref": "#/definitions/PhraseVariationTerm"
           }
         }
       },
       "required": [
         "name",
-        "phraseid"
+        "phraseId"
       ]
     },
-    "phrasevariationterm": {
+    "PhraseVariationTerm": {
       "type": "object",
       "properties": {
         "id": {
@@ -3249,22 +3249,22 @@
         "name": {
           "type": "string"
         },
-        "phrasevariationid": {
+        "phraseVariationId": {
           "type": [
             "string",
             "null"
           ]
         },
-        "phraseid": {
+        "phraseId": {
           "type": "string"
         },
         "phrase": {
-          "$ref": "#/definitions/phrase"
+          "$ref": "#/definitions/Phrase"
         },
-        "phrasevariation": {
+        "phraseVariation": {
           "anyOf": [
             {
-              "$ref": "#/definitions/phrasevariation"
+              "$ref": "#/definitions/PhraseVariation"
             },
             {
               "type": "null"
@@ -3274,31 +3274,31 @@
       },
       "required": [
         "name",
-        "phraseid"
+        "phraseId"
       ]
     },
-    "raceadventure": {
+    "RaceAdventure": {
       "type": "object",
       "properties": {
         "id": {
           "type": "string"
         },
-        "raceid": {
+        "raceId": {
           "type": "string"
         },
-        "adventureid": {
+        "adventureId": {
           "type": "string"
         },
         "adventure": {
-          "$ref": "#/definitions/adventure"
+          "$ref": "#/definitions/Adventure"
         },
         "race": {
-          "$ref": "#/definitions/race"
+          "$ref": "#/definitions/Race"
         }
       },
       "required": [
-        "raceid",
-        "adventureid"
+        "raceId",
+        "adventureId"
       ]
     }
   },
@@ -3314,142 +3314,142 @@
       "$ref": "#/definitions/Token"
     },
     "activity": {
-      "$ref": "#/definitions/activity"
+      "$ref": "#/definitions/Activity"
     },
-    "activityresult": {
-      "$ref": "#/definitions/activityresult"
+    "activityResult": {
+      "$ref": "#/definitions/ActivityResult"
     },
     "adventure": {
-      "$ref": "#/definitions/adventure"
+      "$ref": "#/definitions/Adventure"
     },
-    "battlepool": {
-      "$ref": "#/definitions/battlepool"
+    "battlePool": {
+      "$ref": "#/definitions/BattlePool"
     },
     "career": {
-      "$ref": "#/definitions/career"
+      "$ref": "#/definitions/Career"
     },
-    "careerrace": {
-      "$ref": "#/definitions/careerrace"
+    "careerRace": {
+      "$ref": "#/definitions/CareerRace"
     },
     "character": {
-      "$ref": "#/definitions/character"
+      "$ref": "#/definitions/Character"
     },
-    "characterfeat": {
-      "$ref": "#/definitions/characterfeat"
+    "characterFeat": {
+      "$ref": "#/definitions/CharacterFeat"
     },
-    "charactergroup": {
-      "$ref": "#/definitions/charactergroup"
+    "characterGroup": {
+      "$ref": "#/definitions/CharacterGroup"
     },
-    "characterskill": {
-      "$ref": "#/definitions/characterskill"
+    "characterSkill": {
+      "$ref": "#/definitions/CharacterSkill"
     },
-    "customitem": {
-      "$ref": "#/definitions/customitem"
+    "customItem": {
+      "$ref": "#/definitions/CustomItem"
     },
     "effect": {
-      "$ref": "#/definitions/effect"
+      "$ref": "#/definitions/Effect"
     },
     "feat": {
-      "$ref": "#/definitions/feat"
+      "$ref": "#/definitions/Feat"
     },
-    "forumcategory": {
-      "$ref": "#/definitions/forumcategory"
+    "forumCategory": {
+      "$ref": "#/definitions/ForumCategory"
     },
-    "forumpost": {
-      "$ref": "#/definitions/forumpost"
+    "forumPost": {
+      "$ref": "#/definitions/ForumPost"
     },
-    "forumthread": {
-      "$ref": "#/definitions/forumthread"
+    "forumThread": {
+      "$ref": "#/definitions/ForumThread"
     },
     "gender": {
-      "$ref": "#/definitions/gender"
+      "$ref": "#/definitions/Gender"
     },
     "group": {
-      "$ref": "#/definitions/group"
+      "$ref": "#/definitions/Group"
     },
     "item": {
-      "$ref": "#/definitions/item"
+      "$ref": "#/definitions/Item"
     },
-    "itemslot": {
-      "$ref": "#/definitions/itemslot"
+    "itemSlot": {
+      "$ref": "#/definitions/ItemSlot"
     },
-    "itemtype": {
-      "$ref": "#/definitions/itemtype"
+    "itemType": {
+      "$ref": "#/definitions/ItemType"
     },
     "race": {
-      "$ref": "#/definitions/race"
+      "$ref": "#/definitions/Race"
     },
     "runtime": {
-      "$ref": "#/definitions/runtime"
+      "$ref": "#/definitions/Runtime"
     },
     "skill": {
       "$ref": "#/definitions/Skill"
     },
-    "useritem": {
-      "$ref": "#/definitions/useritem"
+    "userItem": {
+      "$ref": "#/definitions/UserItem"
     },
-    "adventurechecktype": {
-      "$ref": "#/definitions/adventurechecktype"
+    "adventureCheckType": {
+      "$ref": "#/definitions/AdventureCheckType"
     },
-    "careeradventure": {
-      "$ref": "#/definitions/careeradventure"
+    "careerAdventure": {
+      "$ref": "#/definitions/CareerAdventure"
     },
-    "characterforhire": {
-      "$ref": "#/definitions/characterforhire"
+    "characterForHire": {
+      "$ref": "#/definitions/CharacterForHire"
     },
-    "characterlevel": {
-      "$ref": "#/definitions/characterlevel"
+    "characterLevel": {
+      "$ref": "#/definitions/CharacterLevel"
     },
-    "effectdurationtype": {
-      "$ref": "#/definitions/effectdurationtype"
+    "effectDurationType": {
+      "$ref": "#/definitions/EffectDurationType"
     },
-    "effectskillbonus": {
-      "$ref": "#/definitions/effectskillbonus"
+    "effectSkillBonus": {
+      "$ref": "#/definitions/EffectSkillBonus"
     },
-    "effectspecialmechanic": {
-      "$ref": "#/definitions/effectspecialmechanic"
+    "effectSpecialMechanic": {
+      "$ref": "#/definitions/EffectSpecialMechanic"
     },
-    "effectspecialmechaniccombo": {
-      "$ref": "#/definitions/effectspecialmechaniccombo"
+    "effectSpecialMechanicCombo": {
+      "$ref": "#/definitions/EffectSpecialMechanicCombo"
     },
-    "featcastmode": {
-      "$ref": "#/definitions/featcastmode"
+    "featCastMode": {
+      "$ref": "#/definitions/FeatCastMode"
     },
-    "featreactiveeventinitiator": {
-      "$ref": "#/definitions/featreactiveeventinitiator"
+    "featReactiveEventInitiator": {
+      "$ref": "#/definitions/FeatReactiveEventInitiator"
     },
-    "featspecialmechanic": {
-      "$ref": "#/definitions/featspecialmechanic"
+    "featSpecialMechanic": {
+      "$ref": "#/definitions/FeatSpecialMechanic"
     },
-    "feattargettype": {
-      "$ref": "#/definitions/feattargettype"
+    "featTargetType": {
+      "$ref": "#/definitions/FeatTargetType"
     },
-    "fighttargettype": {
-      "$ref": "#/definitions/fighttargettype"
+    "fightTargetType": {
+      "$ref": "#/definitions/FightTargetType"
     },
     "image": {
-      "$ref": "#/definitions/image"
+      "$ref": "#/definitions/Image"
     },
-    "imagecategory": {
-      "$ref": "#/definitions/imagecategory"
+    "imageCategory": {
+      "$ref": "#/definitions/ImageCategory"
     },
-    "itemequippableinslot": {
-      "$ref": "#/definitions/itemequippableinslot"
+    "itemEquippableInSlot": {
+      "$ref": "#/definitions/ItemEquippableInSlot"
     },
-    "itemskillbonus": {
-      "$ref": "#/definitions/itemskillbonus"
+    "itemSkillBonus": {
+      "$ref": "#/definitions/ItemSkillBonus"
     },
     "phrase": {
-      "$ref": "#/definitions/phrase"
+      "$ref": "#/definitions/Phrase"
     },
-    "phrasevariation": {
-      "$ref": "#/definitions/phrasevariation"
+    "phraseVariation": {
+      "$ref": "#/definitions/PhraseVariation"
     },
-    "phrasevariationterm": {
-      "$ref": "#/definitions/phrasevariationterm"
+    "phraseVariationTerm": {
+      "$ref": "#/definitions/PhraseVariationTerm"
     },
-    "raceadventure": {
-      "$ref": "#/definitions/raceadventure"
+    "raceAdventure": {
+      "$ref": "#/definitions/RaceAdventure"
     }
   }
 }

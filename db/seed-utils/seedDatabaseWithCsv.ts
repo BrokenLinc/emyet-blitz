@@ -15,6 +15,9 @@ export const seedDatabaseWithCsv = async (csvPath = "./db/seed-csv") => {
       const tableName = file.split(".")[0]
       if (!tableName) continue
 
+      // One table at a time
+      // if (tableName !== "Activity") continue
+
       console.log(`Parsing ${file}...`)
       const records = await parseCsvFile(filePath, tableName)
       console.log(`Parsed ${records.length} records from ${file}`)
@@ -41,7 +44,7 @@ const parseCsvFile = async (filePath: string, tableName: string) => {
       record_delimiter: "|",
       relax_quotes: true,
       columns: (header) => {
-        return header.map((label) => _.camelCase(label).replace("ID", "Id"))
+        return header.map((label) => _.camelCase(label).replace("ID", "Id").replace("pvP", "pvp"))
       },
       cast: (value, context) => {
         if (context.header) return value
