@@ -8,6 +8,7 @@ import updateSkill from "app/skills/mutations/updateSkill"
 import { SkillForm } from "app/skills/components/SkillForm"
 import skillValidations from "app/skills/validations"
 import { FORM_ERROR } from "app/core/components/Form"
+// import deleteSkill from "app/skills/mutations/deleteSkill"
 
 export const EditSkill = () => {
   const router = useRouter()
@@ -21,10 +22,23 @@ export const EditSkill = () => {
     }
   )
   const [updateSkillMutation] = useMutation(updateSkill)
+  // const [deleteSkillMutation] = useMutation(deleteSkill)
+
+  // const handleDeleteClick = async () => {
+  //   if (window.confirm("This will be deleted")) {
+  //     await deleteSkillMutation({ id: skill.id })
+  //     router.push(Routes.SkillsPage())
+  //   }
+  // }
 
   return (
     <React.Fragment>
-      <UI.Heading mb={6}>Edit Skill: {skill.name}</UI.Heading>
+      <UI.HStack justifyContent="space-between" alignItems="center">
+        <UI.Heading mb={6}>Edit Skill: {skill.name}</UI.Heading>
+        {/* <UI.Button variant="outline" colorScheme="red" size="sm" onClick={handleDeleteClick}>
+          Delete permanently
+        </UI.Button> */}
+      </UI.HStack>
       <SkillForm
         mode="edit"
         schema={skillValidations.Update}
@@ -34,7 +48,7 @@ export const EditSkill = () => {
           try {
             const updated = await updateSkillMutation(values)
             await setQueryData(updated)
-            router.push(Routes.ShowSkillPage({ skillId: updated.id }))
+            router.push(Routes.SkillsPage({ skillId: updated.id }))
           } catch (error: any) {
             console.error(error)
             return {

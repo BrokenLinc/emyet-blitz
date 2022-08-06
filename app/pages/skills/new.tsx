@@ -1,10 +1,11 @@
 import React from "react"
-import { Link, useRouter, useMutation, BlitzPage, Routes } from "blitz"
+import { useRouter, useMutation, BlitzPage, Routes } from "blitz"
+import * as UI from "@chakra-ui/react"
+
 import { AdminLayout } from "app/core/layouts/AdminLayout"
 import createSkill from "app/skills/mutations/createSkill"
 import { SkillForm } from "app/skills/components/SkillForm"
 import { AdminOnly } from "app/components/AdminOnly"
-import * as UI from "@chakra-ui/react"
 import skillValidations from "app/skills/validations"
 import { FORM_ERROR } from "app/core/components/Form"
 
@@ -21,7 +22,7 @@ const NewSkillPage: BlitzPage = () => {
         onSubmit={async (values) => {
           try {
             const skill = await createSkillMutation(values)
-            router.push(Routes.ShowSkillPage({ skillId: skill.id }))
+            router.push(Routes.SkillsPage({ skillId: skill.id }))
           } catch (error: any) {
             console.error(error)
             return {
