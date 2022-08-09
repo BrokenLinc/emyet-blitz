@@ -6,7 +6,7 @@ import { AdminLayout } from "app/core/layouts/AdminLayout"
 import getSkill from "app/skills/queries/getSkill"
 import updateSkill from "app/skills/mutations/updateSkill"
 import { SkillForm } from "app/skills/components/SkillForm"
-import skillValidations from "app/skills/validations"
+import skillValidations from "app/skills/helpers/validations"
 import { FORM_ERROR } from "app/core/components/Form"
 // import deleteSkill from "app/skills/mutations/deleteSkill"
 

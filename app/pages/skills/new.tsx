@@ -6,7 +6,7 @@ import { AdminLayout } from "app/core/layouts/AdminLayout"
 import createSkill from "app/skills/mutations/createSkill"
 import { SkillForm } from "app/skills/components/SkillForm"
 import { AdminOnly } from "app/components/AdminOnly"
-import skillValidations from "app/skills/validations"
+import skillValidations from "app/skills/helpers/validations"
 import { FORM_ERROR } from "app/core/components/Form"
 
 const NewSkillPage: BlitzPage = () => {

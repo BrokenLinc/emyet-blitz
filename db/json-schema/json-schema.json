@@ -5,7 +5,8 @@
       "type": "object",
       "properties": {
         "id": {
-          "type": "integer"
+          "type": "integer",
+          "description": "2 The ID of the user."
         },
         "createdAt": {
           "type": "string",
