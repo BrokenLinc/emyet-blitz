@@ -1,6 +1,9 @@
 import { BlitzConfig, sessionMiddleware, simpleRolesIsAuthorized } from "blitz"
 
 const config: BlitzConfig = {
+  codegen: {
+    templateDir: "./templates",
+  },
   middleware: [
     sessionMiddleware({
       cookiePrefix: "emyet-blitz",
