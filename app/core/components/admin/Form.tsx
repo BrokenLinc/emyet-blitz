@@ -7,7 +7,7 @@ import * as UI from "@chakra-ui/react"
 export interface FormProps<S extends z.ZodType<any, any>> extends UI.StackProps {
   formProps?: Omit<PropsWithoutRef<JSX.IntrinsicElements["form"]>, "onSubmit">
   children?: ReactNode
-  submitLabel: string
+  submitText: string
   schema?: S
   onSubmit: (values: z.infer<S>) => Promise<void | OnSubmitResult>
   initialValues?: UseFormProps<z.infer<S>>["defaultValues"]
@@ -24,7 +24,7 @@ export const FORM_ERROR = "FORM_ERROR"
 export function Form<S extends z.ZodType<any, any>>({
   formProps,
   children,
-  submitLabel = "Save",
+  submitText = "Save",
   schema,
   initialValues,
   onSubmit,
@@ -61,7 +61,7 @@ export function Form<S extends z.ZodType<any, any>>({
           {formError ? <UI.Alert colorScheme="red">{formError}</UI.Alert> : null}
 
           <UI.Button type="submit" isDisabled={form.formState.isSubmitting}>
-            {submitLabel}
+            {submitText}
           </UI.Button>
         </UI.VStack>
       </form>

@@ -1,7 +1,7 @@
 import { z } from "zod"
 import _ from "lodash"
 
-import { Form, FormProps } from "app/core/components/Form"
+import { Form, FormProps } from "app/core/components/admin/Form"
 import { InputControl } from "./InputControl"
 import { CheckboxControl } from "./CheckboxControl"
 import { TextareaControl } from "./TextareaControl"

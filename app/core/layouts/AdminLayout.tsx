@@ -66,3 +66,5 @@ export const AdminLayout: BlitzLayout<{ title?: string; children?: React.ReactNo
     </React.Fragment>
   )
 }
+
+export default AdminLayout
