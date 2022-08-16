@@ -2,9 +2,9 @@ import { z } from "zod"
 import _ from "lodash"
 
 import { Form, FormProps } from "app/core/components/Form"
-import { InputControl } from "app/core/components/InputControl"
-import { CheckboxControl } from "app/core/components/CheckboxControl"
-import { TextareaControl } from "app/core/components/TextareaControl"
+import { InputControl } from "./InputControl"
+import { CheckboxControl } from "./CheckboxControl"
+import { TextareaControl } from "./TextareaControl"
 export { FORM_ERROR } from "app/core/components/Form"
 
 import jsonSchema from "../../../../db/json-schema/json-schema.json"

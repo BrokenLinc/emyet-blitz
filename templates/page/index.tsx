@@ -15,7 +15,7 @@ if (process.env.parentModel) {
 import Layout from "app/core/layouts/Layout"
 import get__ModelNames__ from "app/__modelNamesPath__/queries/get__ModelNames__"
 
-const ITEMS_PER_PAGE = 100
+const ITEMS_PER_PAGE = 99
 
 export const __ModelNames__List = () => {
   const router = useRouter()

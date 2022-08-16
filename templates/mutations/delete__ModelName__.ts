@@ -1,6 +1,5 @@
 import { resolver } from "@blitzjs/rpc"
 import db from "db"
-import { z } from "zod"
 import { __ModelName__Model } from "db/zod"
 
 const Delete__ModelName__ = __ModelName__Model.pick({ id: true })
