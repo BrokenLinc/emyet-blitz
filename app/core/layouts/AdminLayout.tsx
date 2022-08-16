@@ -60,6 +60,7 @@ export const AdminLayout: BlitzLayout<{ title?: string; children?: React.ReactNo
           </UI.List>
         </UI.Box>
         <UI.Box gridArea="content" p={6}>
+          {title ? <UI.Heading mb={6}>{title}</UI.Heading> : null}
           {children}
         </UI.Box>
       </UI.Grid>
