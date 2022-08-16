@@ -1,7 +1,8 @@
-import { resolver, SecurePassword } from "blitz"
+import { SecurePassword } from "@blitzjs/auth"
+import { resolver } from "@blitzjs/rpc"
 import db from "db"
-import { Signup } from "app/auth/validations"
 import { Role } from "types"
+import { Signup } from "../validations"
 
 export default resolver.pipe(resolver.zod(Signup), async ({ email, password }, ctx) => {
   const hashedPassword = await SecurePassword.hash(password.trim())

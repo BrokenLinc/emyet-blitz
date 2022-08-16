@@ -1,15 +1,15 @@
-import { BlitzPage, useMutation } from "blitz"
 import Layout from "app/core/layouts/Layout"
 import { LabeledTextField } from "app/core/components/LabeledTextField"
 import { Form, FORM_ERROR } from "app/core/components/Form"
 import { ForgotPassword } from "app/auth/validations"
 import forgotPassword from "app/auth/mutations/forgotPassword"
+import { useMutation } from "@blitzjs/rpc"
 
-const ForgotPasswordPage: BlitzPage = () => {
+const ForgotPasswordPage = () => {
   const [forgotPasswordMutation, { isSuccess }] = useMutation(forgotPassword)
 
   return (
-    <div>
+    <Layout title="Forgot Your Password?">
       <h1>Forgot your password?</h1>
 
       {isSuccess ? (
@@ -38,11 +38,8 @@ const ForgotPasswordPage: BlitzPage = () => {
           <LabeledTextField name="email" label="Email" placeholder="Email" />
         </Form>
       )}
-    </div>
+    </Layout>
   )
 }
-
-ForgotPasswordPage.redirectAuthenticatedTo = "/"
-ForgotPasswordPage.getLayout = (page) => <Layout title="Forgot Your Password?">{page}</Layout>
 
 export default ForgotPasswordPage
