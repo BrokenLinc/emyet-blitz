@@ -18,10 +18,15 @@ export const InputControl = React.forwardRef<UI.InputProps, InputControlProps>(
         formState.errors[name].join(", ")
       : formState.errors[name]?.message || formState.errors[name]
 
+    const registrationProps =
+      inputProps?.type === "number"
+        ? form.register(name, { valueAsNumber: true })
+        : form.register(name)
+
     return (
       <UI.FormControl isInvalid={!!error} {...formControlProps}>
         <UI.FormLabel {...labelProps}>{label}</UI.FormLabel>
-        <UI.Input isDisabled={formState.isSubmitting} {...form.register(name)} {...inputProps} />
+        <UI.Input isDisabled={formState.isSubmitting} {...registrationProps} {...inputProps} />
         <UI.FormErrorMessage>{error}</UI.FormErrorMessage>
       </UI.FormControl>
     )

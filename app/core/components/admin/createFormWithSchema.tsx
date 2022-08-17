@@ -23,7 +23,7 @@ export function createFormWithSchema(tableName: keyof typeof jsonSchema.definiti
 
       if (type === "boolean") {
         return <CheckboxControl name={name} label={label} />
-      } else if (["int", "number", "decimal", "float"].includes(type)) {
+      } else if (["integer", "number", "decimal", "float"].includes(type)) {
         return <InputControl inputProps={{ type: "number" }} name={name} label={label} />
       } else if (type === "string") {
         if (meta.multiline) {
