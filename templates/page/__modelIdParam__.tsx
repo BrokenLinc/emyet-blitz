@@ -1,50 +1,56 @@
-import {Suspense} from "react"
-import {Routes} from '@blitzjs/next'
-import Head from "next/head"
-import Link from 'next/link'
+import React from "react"
+import { Routes } from "@blitzjs/next"
+import Link from "next/link"
 import { useRouter } from "next/router"
-import {useQuery, useMutation} from '@blitzjs/rpc'
-import {useParam} from '@blitzjs/next'
+import { useQuery, useMutation } from "@blitzjs/rpc"
+import { useParam } from "@blitzjs/next"
+import * as UI from "@chakra-ui/react"
 
-import Layout from "app/core/layouts/Layout"
-import get__ModelName__ from "app/__modelNamesPath__/queries/get__ModelName__"
-import delete__ModelName__ from "app/__modelNamesPath__/mutations/delete__ModelName__"
+import AdminLayout from "app/core/layouts/AdminLayout"
+import get__ModelName__ from "app/__modelNames__/queries/get__ModelName__"
+import delete__ModelName__ from "app/__modelNames__/mutations/delete__ModelName__"
 
 export const __ModelName__ = () => {
   const router = useRouter()
-  const __modelId__ = useParam("__modelId__", "number")
+  const __modelName__Id = useParam("__modelName__Id", "number") || 0
   if (process.env.parentModel) {
     const __parentModelId__ = useParam("__parentModelId__", "number")
   }
   const [delete__ModelName__Mutation] = useMutation(delete__ModelName__)
-  const [__modelName__] = useQuery(get__ModelName__, {id: __modelId__} )
+  const [__modelName__] = useQuery(get__ModelName__, { id: __modelName__Id })
 
   return (
     <>
-      <Head>
-        <title>__ModelName__ {__modelName__.id}</title>
-      </Head>
+      <UI.Code p={4} mb={6} borderRadius="md" shadow="inner">
+        {JSON.stringify(__modelName__, null, 2)}
+      </UI.Code>
 
-      <div>
-        <h1>__ModelName__ {__modelName__.id}</h1>
-        <pre>{JSON.stringify(__modelName__, null, 2)}</pre>
-
+      <UI.HStack>
         <if condition="parentModel">
-          <Link href={Routes.Edit__ModelName__Page({ __parentModelId__: __parentModelId__!, __modelId__: __modelName__.id })}>
-            <a>Edit</a>
+          <Link
+            href={Routes.Edit__ModelName__Page({
+              __parentModelId__: __parentModelId__!,
+              __modelId__: __modelName__.id,
+            })}
+          >
+            <UI.Button>Edit</UI.Button>
           </Link>
           <else>
-            <Link href={Routes.Edit__ModelName__Page({ __modelId__: __modelName__.id })}>
-              <a>Edit</a>
+            <Link
+              href={Routes.Edit__ModelName__Page({ __modelName__Id: __modelName__.id })}
+              passHref
+            >
+              <UI.Button>Edit</UI.Button>
             </Link>
           </else>
         </if>
 
-        <button
-          type="button"
+        <UI.Button
+          colorScheme="red"
+          variant="outline"
           onClick={async () => {
             if (window.confirm("This will be deleted")) {
-              await delete__ModelName__Mutation({id: __modelName__.id})
+              await delete__ModelName__Mutation({ id: __modelName__.id })
               if (process.env.parentModel) {
                 router.push(Routes.__ModelNames__Page({ __parentModelId__: __parentModelId__! }))
               } else {
@@ -52,43 +58,24 @@ export const __ModelName__ = () => {
               }
             }
           }}
-          style={{marginLeft: "0.5rem"}}
         >
           Delete
-        </button>
-      </div>
+        </UI.Button>
+      </UI.HStack>
     </>
   )
 }
 
 const Show__ModelName__Page = () => {
-  if (process.env.parentModel) {
-    const __parentModelId__ = useParam("__parentModelId__", "number")
-  }
-
   return (
-    <div>
-      <p>
-        <if condition="parentModel">
-          <Link href={Routes.__ModelNames__Page({ __parentModelId__: __parentModelId__! })}>
-            <a>__ModelNames__</a>
-          </Link>
-          <else>
-            <Link href={Routes.__ModelNames__Page()}>
-              <a>__ModelNames__</a>
-            </Link>
-          </else>
-        </if>
-      </p>
-
-      <Suspense fallback={<div>Loading...</div>}>
+    <AdminLayout title="__ModelName__ Details">
+      <React.Suspense fallback={<div>Loading...</div>}>
         <__ModelName__ />
-      </Suspense>
-    </div>
+      </React.Suspense>
+    </AdminLayout>
   )
 }
 
 Show__ModelName__Page.authenticate = true
-Show__ModelName__Page.getLayout = (page) => <Layout>{page}</Layout>
 
 export default Show__ModelName__Page
