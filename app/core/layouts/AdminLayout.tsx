@@ -51,7 +51,7 @@ export const AdminLayout: BlitzLayout<{ title?: string; children?: React.ReactNo
           <UI.List>
             {sideBarItems.map((item) => (
               <UI.ListItem key={item.label}>
-                <UI.HStack spacing={1}>
+                <UI.HStack spacing={2}>
                   <Link href={item.href} passHref>
                     <UI.Link>{item.label}</UI.Link>
                   </Link>
