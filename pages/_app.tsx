@@ -4,8 +4,6 @@ import React from "react"
 import { withBlitz } from "app/blitz-client"
 import { ChakraProvider, extendTheme } from "@chakra-ui/react"
 
-const theme = extendTheme()
-
 function RootErrorFallback({ error }: ErrorFallbackProps) {
   if (error instanceof AuthenticationError) {
     return <div>Error: You are not authenticated</div>
@@ -28,7 +26,20 @@ function RootErrorFallback({ error }: ErrorFallbackProps) {
 
 function MyApp({ Component, pageProps }: AppProps) {
   return (
-    <ChakraProvider theme={theme}>
+    <ChakraProvider
+      theme={extendTheme({
+        styles: {
+          global: {
+            [".highlighter"]: { bg: "green.200", borderRadius: "sm" },
+            // https://github.com/FortAwesome/react-fontawesome/issues/512
+            [".svg-inline--fa"]: {
+              h: "1em",
+              verticalAlign: "-0.125em",
+            },
+          },
+        },
+      })}
+    >
       <ErrorBoundary FallbackComponent={RootErrorFallback}>
         <Component {...pageProps} />
       </ErrorBoundary>

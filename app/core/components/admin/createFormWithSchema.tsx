@@ -22,14 +22,14 @@ export function createFormWithSchema(tableName: keyof typeof jsonSchema.definiti
       const meta = getSchemaMeta(tableName, name)
 
       if (type === "boolean") {
-        return <CheckboxControl name={name} label={label} />
+        return <CheckboxControl key={name} name={name} label={label} />
       } else if (["integer", "number", "decimal", "float"].includes(type)) {
-        return <InputControl inputProps={{ type: "number" }} name={name} label={label} />
+        return <InputControl key={name} inputProps={{ type: "number" }} name={name} label={label} />
       } else if (type === "string") {
         if (meta.multiline) {
-          return <TextareaControl name={name} label={label} />
+          return <TextareaControl key={name} name={name} label={label} />
         }
-        return <InputControl name={name} label={label} />
+        return <InputControl key={name} name={name} label={label} />
       }
     })
 

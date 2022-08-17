@@ -113,11 +113,17 @@ export const AdminList: React.FC<UI.SimpleGridProps> = (gridProps) => {
   return <UI.SimpleGrid minChildWidth="280px" spacing={4} {...gridProps} />
 }
 
-export const AdminListItem: React.FC<
-  UI.StackProps & { title: string; search?: string; isDeleted?: boolean }
-> = ({ title, search = "", isDeleted, children, ...stackProps }) => {
+export const AdminListItem = React.forwardRef<
+  HTMLDivElement,
+  UI.StackProps & {
+    title: string
+    search?: string
+    isDeleted?: boolean
+  }
+>(({ title, search = "", isDeleted, children, ...stackProps }, ref) => {
   return (
     <UI.VStack
+      ref={ref}
       as="a"
       alignItems="start"
       bg="gray.50"
@@ -137,7 +143,7 @@ export const AdminListItem: React.FC<
       </UI.Box>
     </UI.VStack>
   )
-}
+})
 
 export const Pagination: React.FC<{ hasMore?: boolean }> = ({ hasMore }) => {
   const page = useRouterPage()
@@ -158,7 +164,7 @@ export const AdminSearch: React.FC<UI.InputGroupProps & { searchFields: string[]
   ...inputGroupProps
 }) => {
   const search = useRouterSearch(searchFields)
-  const [searchInputValue, setSearchInputValue] = React.useState("")
+  const [searchInputValue, setSearchInputValue] = React.useState(search.value)
 
   const handleSearchChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     setSearchInputValue(e.target.value)
