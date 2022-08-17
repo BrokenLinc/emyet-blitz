@@ -12,7 +12,7 @@ import { AnimalModel as Model } from "db/zod"
 const ModelName = "__ModelName__"
 const modelNameId = "__modelName__Id"
 const schema = Model.omit({ id: true })
-const getShowPage = (id: string) => Routes.Show__ModelName__Page({ [modelNameId]: id })
+const getShowPage = (id: number) => Routes.Show__ModelName__Page({ [modelNameId]: id })
 
 export const EditItem = () => {
   const router = useRouter()

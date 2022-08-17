@@ -13,7 +13,7 @@ import deleteItem from "app/animals/mutations/deleteAnimal"
 const ModelName = "__ModelName__"
 const modelNameId = "__modelName__Id"
 const getIndexRoute = () => Routes.__ModelNames__Page()
-const getEditRoute = (id: string) => Routes.Edit__ModelName__Page({ [modelNameId]: id })
+const getEditRoute = (id: number) => Routes.Edit__ModelName__Page({ [modelNameId]: id })
 
 export const ItemDetails = () => {
   const router = useRouter()

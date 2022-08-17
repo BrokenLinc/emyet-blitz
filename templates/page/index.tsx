@@ -13,7 +13,7 @@ import {
 } from "app/core/components/admin/AdminComponents"
 
 const ModelNames = "__ModelNames__"
-const getShowRoute = (id: string) => Routes.Show__ModelName__Page({ __modelName__Id: id })
+const getShowRoute = (id: number) => Routes.Show__ModelName__Page({ __modelName__Id: id })
 
 const ItemList = () => {
   const page = useRouterPage()

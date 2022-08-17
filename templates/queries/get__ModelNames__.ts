@@ -3,7 +3,6 @@ import { resolver } from "@blitzjs/rpc"
 import db, { Prisma } from "db"
 
 const table = db.__modelName__
-const modelNames = "__modelNames__"
 type FindManyArgs = Prisma.__ModelName__FindManyArgs
 
 interface GetItemInput extends Pick<FindManyArgs, "where" | "orderBy" | "skip" | "take"> {}
@@ -20,7 +19,7 @@ export default resolver.pipe(
     })
 
     return {
-      [modelNames]: items,
+      items,
       nextPage,
       hasMore,
       count,
