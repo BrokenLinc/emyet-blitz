@@ -2,7 +2,7 @@
 
 This is a [Blitz.js](https://github.com/blitz-js/blitz) app.
 
-# ****name****
+# ****emyet-blitz****
 
 ## Getting Started
 
@@ -39,6 +39,8 @@ yarn test
 Blitz comes with a test setup using [Jest](https://jestjs.io/) and [react-testing-library](https://testing-library.com/).
 
 ## Commands
+
+> **Important!** Until the custom template configuration is fixed, you'll need to override the `templateDir` field in the blitz node module folder. Navigate to [`node_modules/blitz/dist/chunks/generate.cjs, Line 180`](./node_modules/blitz/dist/chunks/generate.cjs#L180) and add `templateDir: './templates',`.
 
 Blitz comes with a powerful CLI that is designed to make development easy and fast. You can install it with `npm i -g blitz`
 
