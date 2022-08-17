@@ -29,7 +29,7 @@ export const EditItem = () => {
 
   return (
     <ItemForm
-      submitText={`Update ${ModelName}`}
+      submitText="Update"
       schema={schema}
       initialValues={item}
       onSubmit={async (values) => {

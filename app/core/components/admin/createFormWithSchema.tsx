@@ -8,6 +8,7 @@ import { TextareaControl } from "./TextareaControl"
 export { FORM_ERROR } from "app/core/components/Form"
 
 import jsonSchema from "../../../../db/json-schema/json-schema.json"
+import getSchemaMeta from "./getSchemaMeta"
 
 export function createFormWithSchema(tableName: keyof typeof jsonSchema.definitions) {
   function SchemaForm<S extends z.ZodType<any, any>>(props: FormProps<S>) {
@@ -18,13 +19,14 @@ export function createFormWithSchema(tableName: keyof typeof jsonSchema.definiti
       if (!type) return null
 
       const label = _.startCase(name)
+      const meta = getSchemaMeta(tableName, name)
 
       if (type === "boolean") {
         return <CheckboxControl name={name} label={label} />
       } else if (["int", "number", "decimal", "float"].includes(type)) {
         return <InputControl inputProps={{ type: "number" }} name={name} label={label} />
       } else if (type === "string") {
-        if (name.includes("script")) {
+        if (meta.multiline) {
           return <TextareaControl name={name} label={label} />
         }
         return <InputControl name={name} label={label} />
