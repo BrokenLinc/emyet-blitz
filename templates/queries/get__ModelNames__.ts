@@ -1,23 +1,26 @@
-import {paginate} from "blitz"
+import { paginate } from "blitz"
 import { resolver } from "@blitzjs/rpc"
-import db, {Prisma} from "db"
+import db, { Prisma } from "db"
 
-interface Get__ModelNames__Input
-  extends Pick<Prisma.__ModelName__FindManyArgs, "where" | "orderBy" | "skip" | "take"> {}
+const table = db.__modelName__
+const modelNames = "__modelNames__"
+type FindManyArgs = Prisma.__ModelName__FindManyArgs
+
+interface GetItemInput extends Pick<FindManyArgs, "where" | "orderBy" | "skip" | "take"> {}
 
 export default resolver.pipe(
   resolver.authorize(),
-  async ({where, orderBy, skip = 0, take = 100}: Get__ModelNames__Input) => {
+  async ({ where, orderBy, skip = 0, take = 100 }: GetItemInput) => {
     // TODO: in multi-tenant app, you must add validation to ensure correct tenant
-    const {items: __modelNames__, hasMore, nextPage, count} = await paginate({
+    const { items, hasMore, nextPage, count } = await paginate({
       skip,
       take,
-      count: () => db.__modelName__.count({where}),
-      query: (paginateArgs) => db.__modelName__.findMany({...paginateArgs, where, orderBy}),
+      count: () => table.count({ where }),
+      query: (paginateArgs) => table.findMany({ ...paginateArgs, where, orderBy }),
     })
 
     return {
-      __modelNames__,
+      [modelNames]: items,
       nextPage,
       hasMore,
       count,

@@ -7,55 +7,38 @@ import { useParam } from "@blitzjs/next"
 import * as UI from "@chakra-ui/react"
 
 import AdminLayout from "app/core/layouts/AdminLayout"
-import get__ModelName__ from "app/__modelNames__/queries/get__ModelName__"
-import delete__ModelName__ from "app/__modelNames__/mutations/delete__ModelName__"
+import getItem from "app/animals/queries/getAnimal"
+import deleteItem from "app/animals/mutations/deleteAnimal"
 
-export const __ModelName__ = () => {
+const ModelName = "__ModelName__"
+const modelNameId = "__modelNames__Id"
+const getIndexRoute = () => Routes.__ModelNames__Page()
+const getEditRoute = (id: string) => Routes.Edit__ModelName__Page({ [modelNameId]: id })
+
+export const ItemDetails = () => {
   const router = useRouter()
-  const __modelName__Id = useParam("__modelName__Id", "number") || 0
-  if (process.env.parentModel) {
-    const __parentModelId__ = useParam("__parentModelId__", "number")
-  }
-  const [delete__ModelName__Mutation] = useMutation(delete__ModelName__)
-  const [__modelName__] = useQuery(get__ModelName__, { id: __modelName__Id })
+  const itemId = useParam(modelNameId, "number") || 0
+  const [deleteItemMutation] = useMutation(deleteItem)
+  const [item] = useQuery(getItem, { id: itemId })
 
   return (
     <>
       <UI.Code p={4} mb={6} borderRadius="md" shadow="inner">
-        {JSON.stringify(__modelName__, null, 2)}
+        {JSON.stringify(item, null, 2)}
       </UI.Code>
 
       <UI.HStack>
-        <if condition="parentModel">
-          <Link
-            href={Routes.Edit__ModelName__Page({
-              __parentModelId__: __parentModelId__!,
-              __modelId__: __modelName__.id,
-            })}
-          >
-            <UI.Button>Edit</UI.Button>
-          </Link>
-          <else>
-            <Link
-              href={Routes.Edit__ModelName__Page({ __modelName__Id: __modelName__.id })}
-              passHref
-            >
-              <UI.Button>Edit</UI.Button>
-            </Link>
-          </else>
-        </if>
+        <Link href={getEditRoute(item.id)} passHref>
+          <UI.Button>Edit</UI.Button>
+        </Link>
 
         <UI.Button
           colorScheme="red"
           variant="outline"
           onClick={async () => {
             if (window.confirm("This will be deleted")) {
-              await delete__ModelName__Mutation({ id: __modelName__.id })
-              if (process.env.parentModel) {
-                router.push(Routes.__ModelNames__Page({ __parentModelId__: __parentModelId__! }))
-              } else {
-                router.push(Routes.__ModelNames__Page())
-              }
+              await deleteItemMutation({ id: item.id })
+              router.push(getIndexRoute())
             }
           }}
         >
@@ -66,16 +49,16 @@ export const __ModelName__ = () => {
   )
 }
 
-const Show__ModelName__Page = () => {
+const Show__ModalName__Page = () => {
   return (
-    <AdminLayout title="__ModelName__ Details">
+    <AdminLayout title={`${ModelName} Details`}>
       <React.Suspense fallback={<div>Loading...</div>}>
-        <__ModelName__ />
+        <ItemDetails />
       </React.Suspense>
     </AdminLayout>
   )
 }
 
-Show__ModelName__Page.authenticate = true
+Show__ModalName__Page.authenticate = true
 
-export default Show__ModelName__Page
+export default Show__ModalName__Page

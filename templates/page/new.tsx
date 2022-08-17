@@ -1,44 +1,30 @@
 import { Routes } from "@blitzjs/next"
 import { useRouter } from "next/router"
 import { useMutation } from "@blitzjs/rpc"
-if (process.env.parentModel) {
-  import { useParam } from "@blitzjs/next"
-}
 
 import AdminLayout from "app/core/layouts/AdminLayout"
-import create__ModelName__ from "app/__modelNames__/mutations/create__ModelName__"
-import { __ModelName__Form, FORM_ERROR } from "app/__modelNames__/components/__ModelName__Form"
-import { __ModelName__Model } from "db/zod"
+import createItem from "app/animals/mutations/createAnimal"
+import ItemForm, { FORM_ERROR } from "app/animals/components/AnimalForm"
+import { AnimalModel as Model } from "db/zod"
 
-const Create__ModelName__ = __ModelName__Model.omit({ id: true })
+const ModelName = "__ModelName__"
+const modelNameId = "__modelName__Id"
+const schema = Model.omit({ id: true })
+const getShowRoute = (id: string) => Routes.Show__ModelName__Page({ [modelNameId]: id })
 
 const New__ModelName__Page = () => {
   const router = useRouter()
-  if (process.env.parentModel) {
-    const __parentModelId__ = useParam("__parentModelId__", "number")
-  }
-  const [create__ModelName__Mutation] = useMutation(create__ModelName__)
+  const [createMutation] = useMutation(createItem)
 
   return (
-    <AdminLayout title="Create New __ModelName__">
-      <__ModelName__Form
-        submitText="Create __ModelName__"
-        schema={Create__ModelName__}
+    <AdminLayout title={`Create New ${ModelName}`}>
+      <ItemForm
+        submitText="Create"
+        schema={schema}
         onSubmit={async (values) => {
           try {
-            const __modelName__ = await create__ModelName__Mutation(
-              process.env.parentModel
-                ? { ...values, __parentModelId__: __parentModelId__! }
-                : values
-            )
-            router.push(
-              process.env.parentModel
-                ? Routes.Show__ModelName__Page({
-                    __parentModelId__: __parentModelId__!,
-                    __modelId__: __modelName__.id,
-                  })
-                : Routes.Show__ModelName__Page({ __modelId__: __modelName__.id })
-            )
+            const item = await createMutation(values)
+            router.push(getShowRoute(item.id))
           } catch (error: any) {
             console.error(error)
             return {

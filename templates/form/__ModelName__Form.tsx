@@ -1,4 +1,6 @@
 import { createFormWithSchema } from "app/core/components/admin/createFormWithSchema"
 export { FORM_ERROR } from "app/core/components/Form"
 
-export const __ModelName__Form = createFormWithSchema("__ModelName__")
+const __ModelName__Form = createFormWithSchema("__ModelName__")
+
+export default __ModelName__Form

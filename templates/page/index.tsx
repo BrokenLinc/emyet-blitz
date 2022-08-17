@@ -4,7 +4,7 @@ import Link from "next/link"
 import { usePaginatedQuery } from "@blitzjs/rpc"
 
 import AdminLayout from "app/core/layouts/AdminLayout"
-import get__ModelNames__ from "app/__modelNames__/queries/get__ModelNames__"
+import getItems from "app/animals/queries/getAnimals"
 import {
   AdminList,
   AdminListItem,
@@ -12,19 +12,22 @@ import {
   useRouterPage,
 } from "app/core/components/admin/AdminComponents"
 
-export const __ModelNames__List = () => {
+const ModelNames = "__ModelNames__"
+const getShowRoute = (id: string) => Routes.Show__ModelName__Page({ __modelName__Id: id })
+
+const ItemList = () => {
   const page = useRouterPage()
-  const [{ __modelNames__, hasMore }] = usePaginatedQuery(get__ModelNames__, {
+  const [{ items, hasMore }] = usePaginatedQuery(getItems, {
     ...page.queryParams,
     orderBy: { id: "asc" },
   })
 
-  return __modelNames__.length ? (
+  return items.length ? (
     <React.Fragment>
       <AdminList mb={4}>
-        {__modelNames__.map((__modelName__) => (
-          <Link href={Routes.Show__ModelName__Page({ __modelName__Id: __modelName__.id })} passHref>
-            <AdminListItem key={__modelName__.id} title={__modelName__.name} />
+        {items.map((item) => (
+          <Link href={getShowRoute(item.id)} passHref>
+            <AdminListItem key={item.id} title={item.name} />
           </Link>
         ))}
       </AdminList>
@@ -37,9 +40,9 @@ export const __ModelNames__List = () => {
 
 const __ModelNames__Page = () => {
   return (
-    <AdminLayout title="__ModelNames__">
+    <AdminLayout title={ModelNames}>
       <React.Suspense fallback={<div>Loading...</div>}>
-        <__ModelNames__List />
+        <ItemList />
       </React.Suspense>
     </AdminLayout>
   )
