@@ -11,7 +11,7 @@ import getItem from "app/animals/queries/getAnimal"
 import deleteItem from "app/animals/mutations/deleteAnimal"
 
 const ModelName = "__ModelName__"
-const modelNameId = "__modelNames__Id"
+const modelNameId = "__modelName__Id"
 const getIndexRoute = () => Routes.__ModelNames__Page()
 const getEditRoute = (id: string) => Routes.Edit__ModelName__Page({ [modelNameId]: id })
 
@@ -49,7 +49,7 @@ export const ItemDetails = () => {
   )
 }
 
-const Show__ModalName__Page = () => {
+const Show__ModelName__Page = () => {
   return (
     <AdminLayout title={`${ModelName} Details`}>
       <React.Suspense fallback={<div>Loading...</div>}>
@@ -59,6 +59,6 @@ const Show__ModalName__Page = () => {
   )
 }
 
-Show__ModalName__Page.authenticate = true
+Show__ModelName__Page.authenticate = true
 
-export default Show__ModalName__Page
+export default Show__ModelName__Page
