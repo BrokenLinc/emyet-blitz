@@ -1,36 +1,37 @@
 import React from "react"
-import { Routes, useParam } from "@blitzjs/next"
+import { useParam } from "@blitzjs/next"
 import { useRouter } from "next/router"
 import { useQuery, useMutation } from "@blitzjs/rpc"
 
 import AdminLayout from "app/core/layouts/AdminLayout"
-import getItem from "app/animals/queries/getAnimal"
-import updateItem from "app/animals/mutations/updateAnimal"
-import ItemForm, { FORM_ERROR } from "app/animals/components/AnimalForm"
-import { AnimalModel as Model } from "db/zod"
 
-const ModelName = "__ModelName__"
-const modelNameId = "__modelName__Id"
-const schema = Model.omit({ id: true })
-const getShowPage = (id: number) => Routes.Show__ModelName__Page({ [modelNameId]: id })
+import {
+  modelString,
+  modelRouteHelpers,
+  modelSchema,
+  modelMutations,
+  modelQueries,
+  modelValidators,
+} from "app/__modelNames__/components/__modelName__Helpers"
+import ItemForm, { FORM_ERROR } from "app/__modelNames__/components/__ModelName__Form"
 
 export const EditItem = () => {
   const router = useRouter()
-  const itemId = useParam(modelNameId, "number") || 0
+  const itemId = useParam(modelString.nameId, "number") || 0
   const [item, { setQueryData }] = useQuery(
-    getItem,
+    modelQueries.getItem,
     { id: itemId },
     {
       // This ensures the query never refreshes and overwrites the form data while the user is editing.
       staleTime: Infinity,
     }
   )
-  const [updateItemMutation] = useMutation(updateItem)
+  const [updateItemMutation] = useMutation(modelMutations.updateItem)
 
   return (
     <ItemForm
-      submitText="Update"
-      schema={schema}
+      submitText={`Update ${modelString.Name}`}
+      schema={modelValidators.update}
       initialValues={item}
       onSubmit={async (values) => {
         try {
@@ -39,7 +40,7 @@ export const EditItem = () => {
             ...values,
           })
           await setQueryData(updatedItem)
-          router.push(getShowPage(updatedItem.id))
+          router.push(modelRouteHelpers.getShowRoute(updatedItem.id))
         } catch (error: any) {
           console.error(error)
           return {
@@ -53,7 +54,7 @@ export const EditItem = () => {
 
 const Edit__ModelName__Page = () => {
   return (
-    <AdminLayout title={`Edit ${ModelName}`}>
+    <AdminLayout title={`Edit ${modelString.Name}`}>
       <React.Suspense fallback={<div>Loading...</div>}>
         <EditItem />
       </React.Suspense>

@@ -1,5 +1,4 @@
 import React from "react"
-import { Routes } from "@blitzjs/next"
 import Link from "next/link"
 import { useRouter } from "next/router"
 import { useQuery, useMutation } from "@blitzjs/rpc"
@@ -7,19 +6,21 @@ import { useParam } from "@blitzjs/next"
 import * as UI from "@chakra-ui/react"
 
 import AdminLayout from "app/core/layouts/AdminLayout"
-import getItem from "app/animals/queries/getAnimal"
-import deleteItem from "app/animals/mutations/deleteAnimal"
 
-const ModelName = "__ModelName__"
-const modelNameId = "__modelName__Id"
-const getIndexRoute = () => Routes.__ModelNames__Page()
-const getEditRoute = (id: number) => Routes.Edit__ModelName__Page({ [modelNameId]: id })
+import {
+  modelString,
+  modelRouteHelpers,
+  modelSchema,
+  modelMutations,
+  modelQueries,
+  modelValidators,
+} from "app/__modelNames__/components/__modelName__Helpers"
 
 export const ItemDetails = () => {
   const router = useRouter()
-  const itemId = useParam(modelNameId, "number") || 0
-  const [deleteItemMutation] = useMutation(deleteItem)
-  const [item] = useQuery(getItem, { id: itemId })
+  const itemId = useParam(modelString.nameId, "number") || 0
+  const [deleteItemMutation] = useMutation(modelMutations.deleteItem)
+  const [item] = useQuery(modelQueries.getItem, { id: itemId })
 
   return (
     <>
@@ -28,7 +29,7 @@ export const ItemDetails = () => {
       </UI.Code>
 
       <UI.HStack>
-        <Link href={getEditRoute(item.id)} passHref>
+        <Link href={modelRouteHelpers.getEditRoute(item.id)} passHref>
           <UI.Button>Edit</UI.Button>
         </Link>
 
@@ -38,7 +39,7 @@ export const ItemDetails = () => {
           onClick={async () => {
             if (window.confirm("This will be deleted")) {
               await deleteItemMutation({ id: item.id })
-              router.push(getIndexRoute())
+              router.push(modelRouteHelpers.getIndexRoute())
             }
           }}
         >
@@ -51,7 +52,7 @@ export const ItemDetails = () => {
 
 const Show__ModelName__Page = () => {
   return (
-    <AdminLayout title={`${ModelName} Details`}>
+    <AdminLayout title={`${modelString.Name} Details`}>
       <React.Suspense fallback={<div>Loading...</div>}>
         <ItemDetails />
       </React.Suspense>
