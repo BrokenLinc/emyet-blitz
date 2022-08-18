@@ -38,6 +38,13 @@ function MyApp({ Component, pageProps }: AppProps) {
             },
           },
         },
+        components: {
+          Link: {
+            baseStyle: {
+              color: "blue.400",
+            },
+          },
+        },
       })}
     >
       <ErrorBoundary FallbackComponent={RootErrorFallback}>
