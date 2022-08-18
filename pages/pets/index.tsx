@@ -20,7 +20,7 @@ import {
   modelMutations,
   modelQueries,
   modelValidators,
-} from "app/animals/components/animalHelpers"
+} from "app/pets/components/petHelpers"
 
 const ItemList = () => {
   const page = useRouterPage()
@@ -43,7 +43,6 @@ const ItemList = () => {
                 {modelSchema.columns.map((column) => (
                   <UI.Th key={column}>{_.startCase(column)}</UI.Th>
                 ))}
-                <UI.Th />
               </UI.Tr>
             </UI.Thead>
             <UI.Tbody>
@@ -55,7 +54,7 @@ const ItemList = () => {
                     </UI.Td>
                   ))}
                   <UI.Td>
-                    <UI.HStack spacing={2} justifyContent="end">
+                    <UI.HStack spacing={2}>
                       <Link href={modelRouteHelpers.getShowRoute(item.id)} passHref>
                         <UI.Link>Details</UI.Link>
                       </Link>
@@ -85,7 +84,7 @@ const ItemList = () => {
   )
 }
 
-const AnimalsPage = () => {
+const PetsPage = () => {
   return (
     <AdminLayout title={modelString.Names}>
       <React.Suspense fallback={<UI.Spinner />}>
@@ -98,4 +97,4 @@ const AnimalsPage = () => {
   )
 }
 
-export default AnimalsPage
+export default PetsPage

@@ -1,10 +1,13 @@
+import React from "react"
 import { z } from "zod"
 import _ from "lodash"
+import * as UI from "@chakra-ui/react"
 
 import { Form, FormProps } from "app/core/components/admin/Form"
 import { InputControl } from "./InputControl"
 import { CheckboxControl } from "./CheckboxControl"
 import { TextareaControl } from "./TextareaControl"
+import { ModelSelectControl } from "./ModelSelectControl"
 export { FORM_ERROR } from "app/core/components/Form"
 
 import jsonSchema from "../../../../db/json-schema/json-schema.json"
@@ -15,11 +18,23 @@ export function createFormWithSchema(tableName: keyof typeof jsonSchema.definiti
     const controls = _.map(jsonSchema.definitions[tableName].properties, (property, name) => {
       if (name.includes("id")) return null
 
-      const type = _.flatten([property["type"]])[0]
+      // const $ref = property["$ref"]
+      // if ($ref) {
+      //   // TODO: tailor by tableName
+      //   return <ModelSelectControl key="animal" name="animalId" label="Animal" />
+      // }
+
+      const [type, secondaryType] = _.flatten([property["type"]])
+      const required = secondaryType !== "null"
       if (!type) return null
 
-      const label = _.startCase(name)
+      let label = _.startCase(name)
       const meta = getSchemaMeta(tableName, name)
+
+      if (meta.model) {
+        label = _.trim(label, " Id")
+        return <ModelSelectControl key={name} name={name} label={label} required={required} />
+      }
 
       if (type === "boolean") {
         return <CheckboxControl key={name} name={name} label={label} />
@@ -33,7 +48,11 @@ export function createFormWithSchema(tableName: keyof typeof jsonSchema.definiti
       }
     })
 
-    return <Form<S> {...props}>{controls}</Form>
+    return (
+      <React.Suspense fallback={<UI.Spinner />}>
+        <Form<S> {...props}>{controls}</Form>
+      </React.Suspense>
+    )
   }
   return SchemaForm
 }

@@ -17,7 +17,9 @@ generator zod {
 
 // https://www.npmjs.com/package/prisma-json-schema-generator
 generator jsonSchema {
-  provider = "prisma-json-schema-generator"
+  provider                 = "prisma-json-schema-generator"
+  keepRelationScalarFields = "true"
+  includeRequiredFields    = "true"
 }
 
 // --------------------------------------
@@ -76,8 +78,20 @@ model Animal {
   name        String
   /// { "multiline": true, "searchable": true }
   description String
-  /// { "column": true, "filter": "range" }
+  /// { "column": true }
   numLegs     Int
-  /// { "column": true, "filter": "select" }
+  /// { "column": true }
   isFurry     Boolean
+  Pet         Pet[]
+}
+
+model Pet {
+  /// { "adminMenu": true }
+  id       Int     @id @default(autoincrement())
+  /// { "column": true, "searchable": true }
+  name     String
+  /// { "column": true }
+  animal   Animal? @relation(fields: [animalId], references: [id])
+  /// { "model": "Animal" }
+  animalId Int?
 }

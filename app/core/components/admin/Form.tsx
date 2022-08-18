@@ -37,20 +37,27 @@ export function Form<S extends z.ZodType<any, any>>({
   })
   const [formError, setFormError] = useState<string | null>(null)
 
-  const handleFormSubmit = form.handleSubmit(async (_values) => {
-    const values = schema ? schema.parse(_values) : _values
-    const result = (await onSubmit(values)) || {}
-    for (const [key, value] of Object.entries(result)) {
-      if (key === FORM_ERROR) {
-        setFormError(value)
-      } else {
-        form.setError(key as any, {
-          type: "submit",
-          message: value,
-        })
+  const handleFormSubmit = form.handleSubmit(
+    async (_values) => {
+      const values = schema ? schema.parse(_values) : _values
+      const result = (await onSubmit(values)) || {}
+      for (const [key, value] of Object.entries(result)) {
+        if (key === FORM_ERROR) {
+          setFormError(value)
+        } else {
+          form.setError(key as any, {
+            type: "submit",
+            message: value,
+          })
+        }
       }
+    },
+    (e) => {
+      console.log(e)
     }
-  })
+  )
+
+  console.log(form.watch())
 
   return (
     <FormProvider {...form}>

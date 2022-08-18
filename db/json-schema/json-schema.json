@@ -16,13 +16,19 @@
           "format": "date-time"
         },
         "name": {
-          "type": ["string", "null"]
+          "type": [
+            "string",
+            "null"
+          ]
         },
         "email": {
           "type": "string"
         },
         "hashedPassword": {
-          "type": ["string", "null"]
+          "type": [
+            "string",
+            "null"
+          ]
         },
         "role": {
           "type": "string",
@@ -40,7 +46,11 @@
             "$ref": "#/definitions/Session"
           }
         }
-      }
+      },
+      "required": [
+        "updatedAt",
+        "email"
+      ]
     },
     "Session": {
       "type": "object",
@@ -57,23 +67,38 @@
           "format": "date-time"
         },
         "expiresAt": {
-          "type": ["string", "null"],
+          "type": [
+            "string",
+            "null"
+          ],
           "format": "date-time"
         },
         "handle": {
           "type": "string"
         },
         "hashedSessionToken": {
-          "type": ["string", "null"]
+          "type": [
+            "string",
+            "null"
+          ]
         },
         "antiCSRFToken": {
-          "type": ["string", "null"]
+          "type": [
+            "string",
+            "null"
+          ]
         },
         "publicData": {
-          "type": ["string", "null"]
+          "type": [
+            "string",
+            "null"
+          ]
         },
         "privateData": {
-          "type": ["string", "null"]
+          "type": [
+            "string",
+            "null"
+          ]
         },
         "user": {
           "anyOf": [
@@ -84,8 +109,18 @@
               "type": "null"
             }
           ]
+        },
+        "userId": {
+          "type": [
+            "integer",
+            "null"
+          ]
         }
-      }
+      },
+      "required": [
+        "updatedAt",
+        "handle"
+      ]
     },
     "Token": {
       "type": "object",
@@ -106,7 +141,9 @@
         },
         "type": {
           "type": "string",
-          "enum": ["RESET_PASSWORD"]
+          "enum": [
+            "RESET_PASSWORD"
+          ]
         },
         "expiresAt": {
           "type": "string",
@@ -117,8 +154,19 @@
         },
         "user": {
           "$ref": "#/definitions/User"
+        },
+        "userId": {
+          "type": "integer"
         }
-      }
+      },
+      "required": [
+        "updatedAt",
+        "hashedToken",
+        "type",
+        "expiresAt",
+        "sentTo",
+        "userId"
+      ]
     },
     "Animal": {
       "type": "object",
@@ -137,13 +185,58 @@
         },
         "numLegs": {
           "type": "integer",
-          "description": "{ \"column\": true, \"filter\": \"range\" }"
+          "description": "{ \"column\": true }"
         },
         "isFurry": {
           "type": "boolean",
-          "description": "{ \"column\": true, \"filter\": \"select\" }"
+          "description": "{ \"column\": true }"
+        },
+        "Pet": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/Pet"
+          }
         }
-      }
+      },
+      "required": [
+        "name",
+        "description",
+        "numLegs",
+        "isFurry"
+      ]
+    },
+    "Pet": {
+      "type": "object",
+      "properties": {
+        "id": {
+          "type": "integer",
+          "description": "{ \"adminMenu\": true }"
+        },
+        "name": {
+          "type": "string",
+          "description": "{ \"column\": true, \"searchable\": true }"
+        },
+        "animal": {
+          "anyOf": [
+            {
+              "$ref": "#/definitions/Animal"
+            },
+            {
+              "type": "null"
+            }
+          ]
+        },
+        "animalId": {
+          "type": [
+            "integer",
+            "null"
+          ],
+          "description": "{ \"model\": \"Animal\" }"
+        }
+      },
+      "required": [
+        "name"
+      ]
     }
   },
   "type": "object",
@@ -159,6 +252,9 @@
     },
     "animal": {
       "$ref": "#/definitions/Animal"
+    },
+    "pet": {
+      "$ref": "#/definitions/Pet"
     }
   }
 }

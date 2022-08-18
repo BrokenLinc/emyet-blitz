@@ -2,11 +2,11 @@
  * Enums
  */
 export enum modelString {
-  Name = "Animal",
-  Names = "Animals",
-  name = "animal",
-  names = "animals",
-  nameId = "animalId",
+  Name = "Pet",
+  Names = "Pets",
+  name = "pet",
+  names = "pets",
+  nameId = "petId",
 }
 
 /**
@@ -22,26 +22,24 @@ export const modelSchema = {
 /**
  * Mutations & Queries
  */
-import createItem from "app/animals/mutations/createAnimal"
-import deleteItem from "app/animals/mutations/deleteAnimal"
-import updateItem from "app/animals/mutations/updateAnimal"
+import createItem from "app/pets/mutations/createPet"
+import deleteItem from "app/pets/mutations/deletePet"
+import updateItem from "app/pets/mutations/updatePet"
 export const modelMutations = { createItem, deleteItem, updateItem }
 
-import getItem from "app/animals/queries/getAnimal"
-import getItems from "app/animals/queries/getAnimals"
+import getItem from "app/pets/queries/getPet"
+import getItems from "app/pets/queries/getPets"
 export const modelQueries = { getItem, getItems }
 
 /**
  * Validators
  */
-import { AnimalModel as Model } from "db/zod"
+import { PetModel as Model } from "db/zod"
 export const modelValidators = {
   create: Model.omit({ id: true }),
   update: Model.omit({ id: true }),
   delete: Model.pick({ id: true }),
 }
-
-console.log(Model)
 
 /**
  * Routes

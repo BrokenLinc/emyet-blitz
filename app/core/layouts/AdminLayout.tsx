@@ -17,7 +17,7 @@ const sideBarItems = _.reduce(
       ? [
           ...acc,
           {
-            label: modelName,
+            label: pluralize(modelName),
             href: Routes[`${pluralize(modelName)}Page`](),
             newHref: Routes[`New${modelName}Page`](),
           },
