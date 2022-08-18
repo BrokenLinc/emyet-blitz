@@ -16,19 +16,13 @@
           "format": "date-time"
         },
         "name": {
-          "type": [
-            "string",
-            "null"
-          ]
+          "type": ["string", "null"]
         },
         "email": {
           "type": "string"
         },
         "hashedPassword": {
-          "type": [
-            "string",
-            "null"
-          ]
+          "type": ["string", "null"]
         },
         "role": {
           "type": "string",
@@ -63,38 +57,23 @@
           "format": "date-time"
         },
         "expiresAt": {
-          "type": [
-            "string",
-            "null"
-          ],
+          "type": ["string", "null"],
           "format": "date-time"
         },
         "handle": {
           "type": "string"
         },
         "hashedSessionToken": {
-          "type": [
-            "string",
-            "null"
-          ]
+          "type": ["string", "null"]
         },
         "antiCSRFToken": {
-          "type": [
-            "string",
-            "null"
-          ]
+          "type": ["string", "null"]
         },
         "publicData": {
-          "type": [
-            "string",
-            "null"
-          ]
+          "type": ["string", "null"]
         },
         "privateData": {
-          "type": [
-            "string",
-            "null"
-          ]
+          "type": ["string", "null"]
         },
         "user": {
           "anyOf": [
@@ -127,9 +106,7 @@
         },
         "type": {
           "type": "string",
-          "enum": [
-            "RESET_PASSWORD"
-          ]
+          "enum": ["RESET_PASSWORD"]
         },
         "expiresAt": {
           "type": "string",
@@ -140,6 +117,31 @@
         },
         "user": {
           "$ref": "#/definitions/User"
+        }
+      }
+    },
+    "Animal": {
+      "type": "object",
+      "properties": {
+        "id": {
+          "type": "integer",
+          "description": "{ \"adminMenu\": true }"
+        },
+        "name": {
+          "type": "string",
+          "description": "{ \"column\": true, \"searchable\": true }"
+        },
+        "description": {
+          "type": "string",
+          "description": "{ \"multiline\": true, \"searchable\": true }"
+        },
+        "numLegs": {
+          "type": "integer",
+          "description": "{ \"column\": true, \"filter\": \"range\" }"
+        },
+        "isFurry": {
+          "type": "boolean",
+          "description": "{ \"column\": true, \"filter\": \"select\" }"
         }
       }
     }
@@ -154,6 +156,9 @@
     },
     "token": {
       "$ref": "#/definitions/Token"
+    },
+    "animal": {
+      "$ref": "#/definitions/Animal"
     }
   }
 }
