@@ -2,6 +2,8 @@ import React from "react"
 import { useFormContext } from "react-hook-form"
 import * as UI from "@chakra-ui/react"
 
+import { getFieldError } from "./getFieldError"
+
 export interface InputControlProps extends UI.FormControlProps {
   name: string
   label: string
@@ -13,10 +15,7 @@ export const InputControl = React.forwardRef<UI.InputProps, InputControlProps>(
   ({ name, label, labelProps, inputProps, ...formControlProps }, ref) => {
     const { formState, ...form } = useFormContext()
 
-    const error = Array.isArray(formState.errors[name])
-      ? // @ts-ignore // TODO: solve this
-        formState.errors[name].join(", ")
-      : formState.errors[name]?.message || formState.errors[name]
+    const error = getFieldError(formState.errors, name)
 
     const registrationProps =
       inputProps?.type === "number"

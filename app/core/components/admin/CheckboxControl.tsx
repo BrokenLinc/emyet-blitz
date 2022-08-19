@@ -2,6 +2,8 @@ import React from "react"
 import { Controller, useFormContext } from "react-hook-form"
 import * as UI from "@chakra-ui/react"
 
+import { getFieldError } from "./getFieldError"
+
 export interface CheckboxControlProps extends UI.FormControlProps {
   name: string
   label: string
@@ -13,10 +15,7 @@ export const CheckboxControl = React.forwardRef<UI.CheckboxProps, CheckboxContro
   ({ name, label, labelProps, checkboxProps, ...formControlProps }, ref) => {
     const { formState, ...form } = useFormContext()
 
-    const error = Array.isArray(formState.errors[name])
-      ? // @ts-ignore // TODO: solve this
-        formState.errors[name].join(", ")
-      : formState.errors[name]?.message || formState.errors[name]
+    const error = getFieldError(formState.errors, name)
 
     return (
       <UI.FormControl isInvalid={!!error} {...formControlProps}>
