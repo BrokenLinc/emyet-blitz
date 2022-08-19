@@ -6,14 +6,12 @@ import Link from "next/link"
 import _ from "lodash"
 import pluralize from "pluralize"
 
-import jsonSchema from "../../../db/json-schema/json-schema.json"
-import getSchemaMeta from "../components/admin/getSchemaMeta"
+import { schema } from "../schema"
 
 const sideBarItems = _.reduce(
-  Object.keys(jsonSchema.definitions),
-  (acc, modelName) => {
-    const isIncluded = getSchemaMeta(modelName).adminMenu
-    return isIncluded
+  schema.definitions,
+  (acc, model, modelName) => {
+    return model.meta.adminMenu
       ? [
           ...acc,
           {

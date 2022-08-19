@@ -20,7 +20,7 @@ import {
   modelMutations,
   modelQueries,
   modelValidators,
-} from "app/pets/components/petHelpers"
+} from "app/farms/components/farmHelpers"
 
 const ItemList = () => {
   const page = useRouterPage()
@@ -89,7 +89,7 @@ const ItemList = () => {
   )
 }
 
-const PetsPage = () => {
+const FarmsPage = () => {
   return (
     <AdminLayout title={modelString.Names}>
       <React.Suspense fallback={<UI.Spinner />}>
@@ -102,4 +102,4 @@ const PetsPage = () => {
   )
 }
 
-export default PetsPage
+export default FarmsPage

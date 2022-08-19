@@ -1,11 +1,10 @@
-import jsonSchema from "../../db/json-schema/json-schema.json"
-import getSchemaMeta from "./components/admin/getSchemaMeta"
+import _ from "lodash"
+import { schema } from "./schema"
 
-const getColumnFields = (ModelName: keyof typeof jsonSchema.definitions) => {
-  const model = jsonSchema.definitions[ModelName]
-  const columnFields = Object.keys(model.properties).filter((propertyName) => {
-    const meta = getSchemaMeta(ModelName, propertyName)
-    return meta.column
+const getColumnFields = (modelName: keyof typeof schema.definitions) => {
+  const model = schema.definitions[modelName]
+  const columnFields = _.filter(model.properties, (property) => {
+    return property.meta.column
   })
   return columnFields
 }

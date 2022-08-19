@@ -41,7 +41,7 @@ const ItemList = () => {
             <UI.Thead>
               <UI.Tr>
                 {modelSchema.columns.map((column) => (
-                  <UI.Th key={column}>{_.startCase(column)}</UI.Th>
+                  <UI.Th key={column.key}>{column.label}</UI.Th>
                 ))}
                 <UI.Th />
               </UI.Tr>
@@ -49,9 +49,13 @@ const ItemList = () => {
             <UI.Tbody>
               {items.map((item) => (
                 <UI.Tr key={item.id}>
-                  {modelSchema.columns.map((column) => (
-                    <UI.Td key={column}>
-                      <HighlightText search={search.value}>{item[column]}</HighlightText>
+                  {_.map(modelSchema.columns, (column) => (
+                    <UI.Td key={column.key}>
+                      {column.meta.searchable ? (
+                        <HighlightText search={search.value}>{item[column.key]}</HighlightText>
+                      ) : (
+                        <React.Fragment>{JSON.stringify(item[column.key])}</React.Fragment>
+                      )}
                     </UI.Td>
                   ))}
                   <UI.Td>
@@ -70,8 +74,8 @@ const ItemList = () => {
             </UI.Tbody>
             <UI.Tfoot>
               <UI.Tr>
-                {modelSchema.columns.map((column) => (
-                  <UI.Th key={column}>{_.startCase(column)}</UI.Th>
+                {_.map(modelSchema.columns, (column) => (
+                  <UI.Th key={column.key}>{column.label}</UI.Th>
                 ))}
               </UI.Tr>
             </UI.Tfoot>

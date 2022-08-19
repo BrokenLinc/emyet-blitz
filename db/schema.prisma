@@ -71,6 +71,14 @@ enum TokenType {
   RESET_PASSWORD
 }
 
+model Farm {
+  /// { "adminMenu": true }
+  id   Int    @id @default(autoincrement())
+  /// { "column": true, "searchable": true }
+  name String
+  Pets Pet[]
+}
+
 model Animal {
   /// { "adminMenu": true }
   id          Int     @id @default(autoincrement())
@@ -92,6 +100,7 @@ model Pet {
   name     String
   /// { "column": true }
   animal   Animal? @relation(fields: [animalId], references: [id])
-  /// { "model": "Animal" }
+  /// { "relation": "animal" }
   animalId Int?
+  Farms    Farm[]
 }

@@ -168,6 +168,28 @@
         "userId"
       ]
     },
+    "Farm": {
+      "type": "object",
+      "properties": {
+        "id": {
+          "type": "integer",
+          "description": "{ \"adminMenu\": true }"
+        },
+        "name": {
+          "type": "string",
+          "description": "{ \"column\": true, \"searchable\": true }"
+        },
+        "Pets": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/Pet"
+          }
+        }
+      },
+      "required": [
+        "name"
+      ]
+    },
     "Animal": {
       "type": "object",
       "properties": {
@@ -231,7 +253,13 @@
             "integer",
             "null"
           ],
-          "description": "{ \"model\": \"Animal\" }"
+          "description": "{ \"relation\": \"animal\" }"
+        },
+        "Farms": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/Farm"
+          }
         }
       },
       "required": [
@@ -249,6 +277,9 @@
     },
     "token": {
       "$ref": "#/definitions/Token"
+    },
+    "farm": {
+      "$ref": "#/definitions/Farm"
     },
     "animal": {
       "$ref": "#/definitions/Animal"

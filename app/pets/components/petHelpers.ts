@@ -1,3 +1,5 @@
+import { schema } from "app/core/schema"
+
 /**
  * Enums
  */
@@ -12,12 +14,7 @@ export enum modelString {
 /**
  * Schema
  */
-import getColumnFields from "app/core/getColumnFields"
-import getSearchFields from "app/core/getSearchFields"
-export const modelSchema = {
-  columns: getColumnFields(modelString.Name),
-  searchFields: getSearchFields(modelString.Name),
-}
+export const modelSchema = schema.definitions[modelString.Name]
 
 /**
  * Mutations & Queries

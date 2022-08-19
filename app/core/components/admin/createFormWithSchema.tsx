@@ -10,30 +10,25 @@ import { TextareaControl } from "./TextareaControl"
 import { ModelSelectControl } from "./ModelSelectControl"
 export { FORM_ERROR } from "app/core/components/Form"
 
-import jsonSchema from "../../../../db/json-schema/json-schema.json"
-import getSchemaMeta from "./getSchemaMeta"
+import { schema } from "app/core/schema"
 
-export function createFormWithSchema(tableName: keyof typeof jsonSchema.definitions) {
+export function createFormWithSchema(modelName: keyof typeof schema.definitions) {
   function SchemaForm<S extends z.ZodType<any, any>>(props: FormProps<S>) {
-    const controls = _.map(jsonSchema.definitions[tableName].properties, (property, name) => {
-      if (name.includes("id")) return null
-
-      // const $ref = property["$ref"]
-      // if ($ref) {
-      //   // TODO: tailor by tableName
-      //   return <ModelSelectControl key="animal" name="animalId" label="Animal" />
-      // }
-
-      const [type, secondaryType] = _.flatten([property["type"]])
-      const required = secondaryType !== "null"
+    const controls = _.map(schema.definitions[modelName].properties, (property, name) => {
+      const { label, meta, required, type, relatedModel } = property
       if (!type) return null
+      if (name === "id") return null
 
-      let label = _.startCase(name)
-      const meta = getSchemaMeta(tableName, name)
-
-      if (meta.model) {
-        label = _.trim(label, " Id")
-        return <ModelSelectControl key={name} name={name} label={label} required={required} />
+      if (relatedModel) {
+        return (
+          <ModelSelectControl
+            model={relatedModel}
+            key={name}
+            name={name}
+            label={label}
+            required={required}
+          />
+        )
       }
 
       if (type === "boolean") {

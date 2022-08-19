@@ -57,8 +57,6 @@ export function Form<S extends z.ZodType<any, any>>({
     }
   )
 
-  console.log(form.watch())
-
   return (
     <FormProvider {...form}>
       <form onSubmit={handleFormSubmit} {...formProps}>

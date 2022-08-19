@@ -4,11 +4,11 @@ import { schema } from "app/core/schema"
  * Enums
  */
 export enum modelString {
-  Name = "Animal",
-  Names = "Animals",
-  name = "animal",
-  names = "animals",
-  nameId = "animalId",
+  Name = "Farm",
+  Names = "Farms",
+  name = "farm",
+  names = "farms",
+  nameId = "farmId",
 }
 
 /**
@@ -19,19 +19,19 @@ export const modelSchema = schema.definitions[modelString.Name]
 /**
  * Mutations & Queries
  */
-import createItem from "app/animals/mutations/createAnimal"
-import deleteItem from "app/animals/mutations/deleteAnimal"
-import updateItem from "app/animals/mutations/updateAnimal"
+import createItem from "app/farms/mutations/createFarm"
+import deleteItem from "app/farms/mutations/deleteFarm"
+import updateItem from "app/farms/mutations/updateFarm"
 export const modelMutations = { createItem, deleteItem, updateItem }
 
-import getItem from "app/animals/queries/getAnimal"
-import getItems from "app/animals/queries/getAnimals"
+import getItem from "app/farms/queries/getFarm"
+import getItems from "app/farms/queries/getFarms"
 export const modelQueries = { getItem, getItems }
 
 /**
  * Validators
  */
-import { AnimalModel as Model } from "db/zod"
+import { FarmModel as Model } from "db/zod"
 export const modelValidators = {
   create: Model.omit({ id: true }),
   update: Model.omit({ id: true }),
