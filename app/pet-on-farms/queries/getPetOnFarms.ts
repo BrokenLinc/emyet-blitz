@@ -2,8 +2,8 @@ import { paginate } from "blitz"
 import { resolver } from "@blitzjs/rpc"
 import db, { Prisma } from "db"
 
-const table = db.animal
-type FindManyArgs = Prisma.AnimalFindManyArgs
+const table = db.petOnFarm
+type FindManyArgs = Prisma.PetOnFarmFindManyArgs
 
 interface GetItemInput
   extends Pick<FindManyArgs, "where" | "orderBy" | "skip" | "take" | "include"> {}

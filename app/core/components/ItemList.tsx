@@ -3,10 +3,10 @@ import Link from "next/link"
 import { usePaginatedQuery } from "@blitzjs/rpc"
 import * as UI from "@chakra-ui/react"
 import _ from "lodash"
+import { paginate, RouteUrlObject } from "blitz"
 
-import AdminLayout from "app/core/layouts/AdminLayout"
+import { schema } from "app/core/schema"
 import {
-  AdminSearch,
   Pagination,
   useRouterPage,
   useRouterSearch,
@@ -15,16 +15,31 @@ import { HighlightText } from "app/core/components/admin"
 import { getItemLabel } from "app/core/getItemLabel"
 import { getModelReferenceColumns } from "app/core/getModelReferenceColumns"
 
-import {
-  modelString,
+type ModelQueries = {
+  getItems: (...args: unknown[]) => ReturnType<typeof paginate>
+}
+type ModelRouteHelpers = {
+  getEditRoute: (id: number) => RouteUrlObject
+  getIndexRoute: () => RouteUrlObject
+  getShowRoute: (id: number) => RouteUrlObject
+}
+type SchemaDefinition = typeof schema.definitions
+type ModelSchemaKey = keyof SchemaDefinition
+type ModelSchema = SchemaDefinition[ModelSchemaKey]
+
+export function ItemList<
+  Q extends ModelQueries,
+  R extends ModelRouteHelpers,
+  S extends ModelSchema
+>({
+  modelQueries,
   modelRouteHelpers,
   modelSchema,
-  modelMutations,
-  modelQueries,
-  modelValidators,
-} from "app/animals/components/animalHelpers"
-
-const ItemList = () => {
+}: {
+  modelQueries: Q
+  modelRouteHelpers: R
+  modelSchema: S
+}) {
   const page = useRouterPage()
   const search = useRouterSearch(modelSchema.searchFields)
   const [{ items, hasMore }] = usePaginatedQuery(modelQueries.getItems, {
@@ -36,7 +51,7 @@ const ItemList = () => {
     orderBy: { id: "asc" },
   })
 
-  return items.length ? (
+  return (items as any[]).length ? (
     <React.Fragment>
       <UI.Box p={2} border="1px solid" borderColor="gray.200" borderRadius="lg" mb={4}>
         <UI.TableContainer>
@@ -50,7 +65,7 @@ const ItemList = () => {
               </UI.Tr>
             </UI.Thead>
             <UI.Tbody>
-              {items.map((item) => (
+              {(items as any[]).map((item) => (
                 <UI.Tr key={item.id}>
                   {_.map(modelSchema.columns, (column) => {
                     const label = getItemLabel(item[column.key])
@@ -94,18 +109,3 @@ const ItemList = () => {
     <React.Fragment>No records found.</React.Fragment>
   )
 }
-
-const AnimalsPage = () => {
-  return (
-    <AdminLayout title={modelString.Names}>
-      <React.Suspense fallback={<UI.Spinner />}>
-        {modelSchema.searchFields.length > 0 ? (
-          <AdminSearch searchFields={modelSchema.searchFields} mb={4} />
-        ) : null}
-        <ItemList />
-      </React.Suspense>
-    </AdminLayout>
-  )
-}
-
-export default AnimalsPage

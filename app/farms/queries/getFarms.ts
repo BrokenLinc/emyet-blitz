@@ -5,17 +5,18 @@ import db, { Prisma } from "db"
 const table = db.farm
 type FindManyArgs = Prisma.FarmFindManyArgs
 
-interface GetItemInput extends Pick<FindManyArgs, "where" | "orderBy" | "skip" | "take"> {}
+interface GetItemInput
+  extends Pick<FindManyArgs, "where" | "orderBy" | "skip" | "take" | "include"> {}
 
 export default resolver.pipe(
   resolver.authorize(),
-  async ({ where, orderBy, skip = 0, take = 100 }: GetItemInput) => {
+  async ({ where, skip = 0, take = 100, ...restInput }: GetItemInput) => {
     // TODO: in multi-tenant app, you must add validation to ensure correct tenant
     const { items, hasMore, nextPage, count } = await paginate({
       skip,
       take,
       count: () => table.count({ where }),
-      query: (paginateArgs) => table.findMany({ ...paginateArgs, where, orderBy }),
+      query: (paginateArgs) => table.findMany({ ...paginateArgs, where, ...restInput }),
     })
 
     return {

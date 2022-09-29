@@ -78,9 +78,11 @@ export function useRouterSearch<T extends string>(fields: T[]) {
       [field]: { contains: search.value, mode: "insensitive" },
     }
   })
-  const queryWhereParams = {
-    OR: queryOrs,
-  }
+  const queryWhereParams = queryOrs.length
+    ? {
+        OR: queryOrs,
+      }
+    : null
   return {
     ...search,
     queryWhereParams,
@@ -181,7 +183,7 @@ export const AdminSearch: React.FC<UI.InputGroupProps & { searchFields: string[]
   }
 
   return (
-    <UI.InputGroup as="form" onSubmit={onSearchSubmit} {...inputGroupProps}>
+    <UI.InputGroup as="form" onSubmit={onSearchSubmit} {...inputGroupProps} mb={4}>
       <UI.InputLeftElement>
         <FontAwesomeIcon icon={faMagnifyingGlass} />
       </UI.InputLeftElement>

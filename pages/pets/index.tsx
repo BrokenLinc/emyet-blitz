@@ -12,6 +12,8 @@ import {
   useRouterSearch,
 } from "app/core/components/admin/AdminComponents"
 import { HighlightText } from "app/core/components/admin"
+import { getItemLabel } from "app/core/getItemLabel"
+import { getModelReferenceColumns } from "app/core/getModelReferenceColumns"
 
 import {
   modelString,
@@ -30,6 +32,7 @@ const ItemList = () => {
     where: {
       ...search.queryWhereParams,
     },
+    include: getModelReferenceColumns(modelSchema),
     orderBy: { id: "asc" },
   })
 
@@ -49,15 +52,18 @@ const ItemList = () => {
             <UI.Tbody>
               {items.map((item) => (
                 <UI.Tr key={item.id}>
-                  {_.map(modelSchema.columns, (column) => (
-                    <UI.Td key={column.key}>
-                      {column.meta.searchable ? (
-                        <HighlightText search={search.value}>{item[column.key]}</HighlightText>
-                      ) : (
-                        <React.Fragment>{JSON.stringify(item[column.key])}</React.Fragment>
-                      )}
-                    </UI.Td>
-                  ))}
+                  {_.map(modelSchema.columns, (column) => {
+                    const label = getItemLabel(item[column.key])
+                    return (
+                      <UI.Td key={column.key}>
+                        {column.meta.searchable ? (
+                          <HighlightText search={search.value}>{label}</HighlightText>
+                        ) : (
+                          <React.Fragment>{label}</React.Fragment>
+                        )}
+                      </UI.Td>
+                    )
+                  })}
                   <UI.Td>
                     <UI.HStack spacing={2} justifyContent="end">
                       <Link href={modelRouteHelpers.getShowRoute(item.id)} passHref>

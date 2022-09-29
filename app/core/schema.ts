@@ -4,7 +4,7 @@ import jsonSchema from "../../db/json-schema/json-schema.json"
 import getSchemaMeta from "./components/admin/getSchemaMeta"
 import getQueries from "./components/getQueries"
 
-const definitions = _.mapValues(jsonSchema.definitions, (model) => {
+const definitions = _.mapValues(jsonSchema.definitions, (model, modelKey) => {
   const meta = getSchemaMeta(model)
 
   const properties = _.mapValues(model.properties, (property, propertyName) => {
@@ -15,7 +15,13 @@ const definitions = _.mapValues(jsonSchema.definitions, (model) => {
     const meta = getSchemaMeta(model, propertyName)
     let relatedModel: keyof typeof getQueries | undefined = undefined
 
-    if (meta.relation) {
+    if (type === "array") {
+      // console.log(modelKey, propertyName, type, property)
+      relatedModel = _.get(property["items"], required ? "$ref" : "anyOf[0].$ref")
+        .split("/")
+        .pop()
+      // console.log(modelKey, label, relatedModel)
+    } else if (meta.relation) {
       label = _.startCase(meta.relation)
       relatedModel = _.get(model.properties[meta.relation], required ? "$ref" : "anyOf[0].$ref")
         .split("/")

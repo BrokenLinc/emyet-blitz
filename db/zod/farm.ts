@@ -1,5 +1,5 @@
 import * as z from "zod"
-import { CompletePet, RelatedPetModel } from "./index"
+import { CompletePetOnFarm, RelatedPetOnFarmModel } from "./index"
 
 export const FarmModel = z.object({
   /**
@@ -13,7 +13,7 @@ export const FarmModel = z.object({
 })
 
 export interface CompleteFarm extends z.infer<typeof FarmModel> {
-  Pets: CompletePet[]
+  Pets: CompletePetOnFarm[]
 }
 
 /**
@@ -22,5 +22,5 @@ export interface CompleteFarm extends z.infer<typeof FarmModel> {
  * NOTE: Lazy required in case of potential circular dependencies within schema
  */
 export const RelatedFarmModel: z.ZodSchema<CompleteFarm> = z.lazy(() => FarmModel.extend({
-  Pets: RelatedPetModel.array(),
+  Pets: RelatedPetOnFarmModel.array(),
 }))

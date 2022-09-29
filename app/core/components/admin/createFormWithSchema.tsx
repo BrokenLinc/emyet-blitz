@@ -19,7 +19,7 @@ export function createFormWithSchema(modelName: keyof typeof schema.definitions)
       if (!type) return null
       if (name === "id") return null
 
-      if (relatedModel) {
+      if (relatedModel && type === "integer") {
         return (
           <ModelSelectControl
             model={relatedModel}

@@ -73,10 +73,10 @@ enum TokenType {
 
 model Farm {
   /// { "adminMenu": true }
-  id   Int    @id @default(autoincrement())
+  id   Int         @id @default(autoincrement())
   /// { "column": true, "searchable": true }
   name String
-  Pets Pet[]
+  Pets PetOnFarm[]
 }
 
 model Animal {
@@ -95,12 +95,25 @@ model Animal {
 
 model Pet {
   /// { "adminMenu": true }
-  id       Int     @id @default(autoincrement())
+  id       Int         @id @default(autoincrement())
   /// { "column": true, "searchable": true }
   name     String
   /// { "column": true }
-  animal   Animal? @relation(fields: [animalId], references: [id])
+  animal   Animal?     @relation(fields: [animalId], references: [id])
   /// { "relation": "animal" }
   animalId Int?
-  Farms    Farm[]
+  Farms    PetOnFarm[]
+}
+
+model PetOnFarm {
+  /// { "adminMenu": true, "column": true }
+  id     Int  @id @default(autoincrement())
+  /// { "column": true }
+  pet    Pet  @relation(fields: [petId], references: [id])
+  /// { "relation": "pet" }
+  petId  Int
+  /// { "column": true }
+  farm   Farm @relation(fields: [farmId], references: [id])
+  /// { "relation": "farm" }
+  farmId Int
 }

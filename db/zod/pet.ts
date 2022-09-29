@@ -1,5 +1,5 @@
 import * as z from "zod"
-import { CompleteAnimal, RelatedAnimalModel, CompleteFarm, RelatedFarmModel } from "./index"
+import { CompleteAnimal, RelatedAnimalModel, CompletePetOnFarm, RelatedPetOnFarmModel } from "./index"
 
 export const PetModel = z.object({
   /**
@@ -18,7 +18,7 @@ export const PetModel = z.object({
 
 export interface CompletePet extends z.infer<typeof PetModel> {
   animal?: CompleteAnimal | null
-  Farms: CompleteFarm[]
+  Farms: CompletePetOnFarm[]
 }
 
 /**
@@ -31,5 +31,5 @@ export const RelatedPetModel: z.ZodSchema<CompletePet> = z.lazy(() => PetModel.e
    * { "column": true }
    */
   animal: RelatedAnimalModel.nullish(),
-  Farms: RelatedFarmModel.array(),
+  Farms: RelatedPetOnFarmModel.array(),
 }))

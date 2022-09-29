@@ -16,19 +16,13 @@
           "format": "date-time"
         },
         "name": {
-          "type": [
-            "string",
-            "null"
-          ]
+          "type": ["string", "null"]
         },
         "email": {
           "type": "string"
         },
         "hashedPassword": {
-          "type": [
-            "string",
-            "null"
-          ]
+          "type": ["string", "null"]
         },
         "role": {
           "type": "string",
@@ -47,10 +41,7 @@
           }
         }
       },
-      "required": [
-        "updatedAt",
-        "email"
-      ]
+      "required": ["updatedAt", "email"]
     },
     "Session": {
       "type": "object",
@@ -67,38 +58,23 @@
           "format": "date-time"
         },
         "expiresAt": {
-          "type": [
-            "string",
-            "null"
-          ],
+          "type": ["string", "null"],
           "format": "date-time"
         },
         "handle": {
           "type": "string"
         },
         "hashedSessionToken": {
-          "type": [
-            "string",
-            "null"
-          ]
+          "type": ["string", "null"]
         },
         "antiCSRFToken": {
-          "type": [
-            "string",
-            "null"
-          ]
+          "type": ["string", "null"]
         },
         "publicData": {
-          "type": [
-            "string",
-            "null"
-          ]
+          "type": ["string", "null"]
         },
         "privateData": {
-          "type": [
-            "string",
-            "null"
-          ]
+          "type": ["string", "null"]
         },
         "user": {
           "anyOf": [
@@ -111,16 +87,10 @@
           ]
         },
         "userId": {
-          "type": [
-            "integer",
-            "null"
-          ]
+          "type": ["integer", "null"]
         }
       },
-      "required": [
-        "updatedAt",
-        "handle"
-      ]
+      "required": ["updatedAt", "handle"]
     },
     "Token": {
       "type": "object",
@@ -141,9 +111,7 @@
         },
         "type": {
           "type": "string",
-          "enum": [
-            "RESET_PASSWORD"
-          ]
+          "enum": ["RESET_PASSWORD"]
         },
         "expiresAt": {
           "type": "string",
@@ -159,14 +127,7 @@
           "type": "integer"
         }
       },
-      "required": [
-        "updatedAt",
-        "hashedToken",
-        "type",
-        "expiresAt",
-        "sentTo",
-        "userId"
-      ]
+      "required": ["updatedAt", "hashedToken", "type", "expiresAt", "sentTo", "userId"]
     },
     "Farm": {
       "type": "object",
@@ -182,13 +143,11 @@
         "Pets": {
           "type": "array",
           "items": {
-            "$ref": "#/definitions/Pet"
+            "$ref": "#/definitions/PetOnFarm"
           }
         }
       },
-      "required": [
-        "name"
-      ]
+      "required": ["name"]
     },
     "Animal": {
       "type": "object",
@@ -220,12 +179,7 @@
           }
         }
       },
-      "required": [
-        "name",
-        "description",
-        "numLegs",
-        "isFurry"
-      ]
+      "required": ["name", "description", "numLegs", "isFurry"]
     },
     "Pet": {
       "type": "object",
@@ -246,25 +200,47 @@
             {
               "type": "null"
             }
-          ]
+          ],
+          "description": "{ \"column\": true }"
         },
         "animalId": {
-          "type": [
-            "integer",
-            "null"
-          ],
+          "type": ["integer", "null"],
           "description": "{ \"relation\": \"animal\" }"
         },
         "Farms": {
           "type": "array",
           "items": {
-            "$ref": "#/definitions/Farm"
+            "$ref": "#/definitions/PetOnFarm"
           }
         }
       },
-      "required": [
-        "name"
-      ]
+      "required": ["name"]
+    },
+    "PetOnFarm": {
+      "type": "object",
+      "properties": {
+        "id": {
+          "type": "integer",
+          "description": "{ \"adminMenu\": true, \"column\": true }"
+        },
+        "pet": {
+          "$ref": "#/definitions/Pet",
+          "description": "{ \"column\": true }"
+        },
+        "petId": {
+          "type": "integer",
+          "description": "{ \"relation\": \"pet\" }"
+        },
+        "farm": {
+          "$ref": "#/definitions/Farm",
+          "description": "{ \"column\": true }"
+        },
+        "farmId": {
+          "type": "integer",
+          "description": "{ \"relation\": \"farm\" }"
+        }
+      },
+      "required": ["petId", "farmId"]
     }
   },
   "type": "object",
@@ -286,6 +262,9 @@
     },
     "pet": {
       "$ref": "#/definitions/Pet"
+    },
+    "petOnFarm": {
+      "$ref": "#/definitions/PetOnFarm"
     }
   }
 }
