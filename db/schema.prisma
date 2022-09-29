@@ -106,7 +106,7 @@ model Pet {
 }
 
 model PetOnFarm {
-  /// { "adminMenu": true, "column": true }
+  /// { "adminMenu": true }
   id     Int  @id @default(autoincrement())
   /// { "column": true }
   pet    Pet  @relation(fields: [petId], references: [id])

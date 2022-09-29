@@ -13,11 +13,6 @@ import {
 
 import { ItemList } from "app/core/components/ItemList"
 
-/*
-  This index file has been streamlined to use the ItemList component.
-  Pray I do not streamline it further.
- */
-
 const FarmsPage = () => {
   return (
     <AdminLayout title={modelString.Names}>

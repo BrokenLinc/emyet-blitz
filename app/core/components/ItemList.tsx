@@ -93,13 +93,13 @@ export function ItemList<
                 </UI.Tr>
               ))}
             </UI.Tbody>
-            <UI.Tfoot>
+            {/* <UI.Tfoot>
               <UI.Tr>
                 {_.map(modelSchema.columns, (column) => (
                   <UI.Th key={column.key}>{column.label}</UI.Th>
                 ))}
               </UI.Tr>
-            </UI.Tfoot>
+            </UI.Tfoot> */}
           </UI.Table>
         </UI.TableContainer>
       </UI.Box>

@@ -221,7 +221,7 @@
       "properties": {
         "id": {
           "type": "integer",
-          "description": "{ \"adminMenu\": true, \"column\": true }"
+          "description": "{ \"adminMenu\": true }"
         },
         "pet": {
           "$ref": "#/definitions/Pet",
